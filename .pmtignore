@@ -1,0 +1,5 @@
+documentation/source/
+spec/
+Rakefile
+Gemfile
+.fixtures.yml

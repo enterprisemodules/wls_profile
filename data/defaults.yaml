@@ -1,0 +1,351 @@
+---
+wls_profile::domain_name:         MYDOMAIN
+wls_profile::cluster_name:        main
+wls_profile::java_version:        8u152
+wls_profile::java_full_version:   jdk1.8.0_152
+wls_profile::weblogic_version:    12213
+wls_profile::weblogic_user:       weblogic
+wls_profile::weblogic_password:   Welcome01
+wls_profile::os_user:             oracle
+wls_profile::os_group:            dba
+wls_profile::source:              puppet:///modules/software
+wls_profile::oracle_base:         /opt/oracle
+wls_profile::middleware_home:     "%{lookup('wls_profile::oracle_base')}/middleware12"
+wls_profile::weblogic_home:       "%{lookup('wls_profile::middleware_home')}/wlserver"
+wls_profile::jdk_home:            "/usr/java/%{lookup('wls_profile::java_full_version')}"
+wls_profile::log_dir:             "%{lookup('wls_profile::domains_dir')}/log"
+wls_profile::adminserver_address: "%{::fqdn}"
+wls_profile::adminserver_port:    7001
+wls_profile::nodemanager_address: "%{::fqdn}"
+wls_profile::nodemanager_port:    5556
+wls_profile::weblogic::file_name: fmw_12.2.1.3.0_wls.jar
+
+#------------------------------------------------------------------------------
+#
+# Sysctl
+#
+#------------------------------------------------------------------------------
+wls_profile::weblogic::sysctl::list:
+  'kernel.msgmnb':                 
+    value: 65536
+  'kernel.msgmax':                 
+    value: 65536
+  'kernel.shmmax':                 
+    value: 2588483584
+  'kernel.shmall':                 
+    value: 2097152
+  'fs.file-max':                   
+    value: 6815744
+  'net.ipv4.tcp_keepalive_time':   
+    value: 1800
+  'net.ipv4.tcp_keepalive_intvl':  
+    value: 30
+  'net.ipv4.tcp_keepalive_probes': 
+    value: 5
+  'net.ipv4.tcp_fin_timeout':      
+    value: 30
+  'kernel.shmmni':                 
+    value: 4096
+  'fs.aio-max-nr':                 
+    value: 1048576
+  'kernel.sem':                    
+    value: '250 32000 100 128'
+  'net.ipv4.ip_local_port_range':  
+    value: '9000 65500'
+  'net.core.rmem_default':         
+    value: 262144
+  'net.core.rmem_max':             
+    value: 4194304
+  'net.core.wmem_default':         
+    value: 262144
+  'net.core.wmem_max':             
+    value: 1048576
+#------------------------------------------------------------------------------
+#
+# Limits
+#
+#------------------------------------------------------------------------------
+wls_profile::weblogic::limits::list:
+  '*/nofile':
+    soft: 2048
+    hard: 8192
+  "%{lookup('wls_profile::os_user')}/nofile":
+    soft: 65536
+    hard: 65536
+  "%{lookup('wls_profile::os_user')}/nproc":
+    soft: 2048
+    hard: 16384
+  "%{lookup('wls_profile::os_user')}/stack":
+    soft: 10240
+  "%{lookup('wls_profile::os_user')}/memlock":
+    soft: 1048576
+    hard: 1048576
+#------------------------------------------------------------------------------
+#
+# Packages WebLogic needs
+#
+#------------------------------------------------------------------------------
+wls_profile::weblogic::packages::list:
+  - binutils.x86_64
+  - unzip.x86_64
+#------------------------------------------------------------------------------
+#
+# Groups to create
+#
+#------------------------------------------------------------------------------
+wls_profile::weblogic::groups_and_users::groups:
+  "%{lookup('wls_profile::os_group')}":
+    gid:  54321,
+#------------------------------------------------------------------------------
+#
+# Users to create
+#
+#------------------------------------------------------------------------------
+wls_profile::weblogic::groups_and_users::users:
+  "%{lookup('wls_profile::os_user')}":
+    uid:        54321
+    gid:        "%{lookup('wls_profile::os_group')}"
+    groups:
+    - "%{lookup('wls_profile::os_group')}"
+    shell:      /bin/bash
+    password:   '$1$DSJ51vh6$4XzzwyIOk6Bi/54kglGk3.'
+    home:       /home/oracle
+    comment:    This user oracle was created by Puppet
+    managehome: true
+#------------------------------------------------------------------------------
+#
+# Java software
+#
+#------------------------------------------------------------------------------
+wls_profile::weblogic::java_software::version:                      "%{lookup('wls_profile::java_version')}"
+wls_profile::weblogic::java_software::full_version:                 "%{lookup('wls_profile::java_full_version')}"
+wls_profile::weblogic::java_software::cryptography_extension_file:  jce_policy-8.zip
+wls_profile::weblogic::java_software::source:                       "%{lookup('wls_profile::source')}"
+wls_profile::weblogic::java_software::urandom_fix:                  true
+wls_profile::weblogic::java_software::rsa_key_size_fix:             true
+wls_profile::weblogic::java_software::x64:                          true
+wls_profile::weblogic::java_software::alternatives_priority:        18001
+#------------------------------------------------------------------------------
+#
+# WebLogic software
+#
+#------------------------------------------------------------------------------
+wls_profile::weblogic::wls_software::version:                     "%{alias('wls_profile::weblogic_version')}"
+wls_profile::weblogic::wls_software::file_name:                   "%{lookup('wls_profile::weblogic::file_name')}"
+wls_profile::weblogic::wls_software::oracle_base:                 "%{lookup('wls_profile::oracle_base')}"
+wls_profile::weblogic::wls_software::middleware_home:             "%{lookup('wls_profile::middleware_home')}"
+wls_profile::weblogic::wls_software::jdk_home:                    "%{lookup('wls_profile::jdk_home')}"
+wls_profile::weblogic::wls_software::os_user:                     "%{lookup('wls_profile::os_user')}"
+wls_profile::weblogic::wls_software::os_group:                    "%{lookup('wls_profile::os_group')}"
+wls_profile::weblogic::wls_software::source:                      "%{lookup('wls_profile::source')}"
+wls_profile::weblogic::wls_software::fmw_infra:                   false
+#------------------------------------------------------------------------------
+#
+# WebLogic Domain
+#
+#------------------------------------------------------------------------------
+wls_profile::basic_domain::wls_domain::domain_name:             "%{lookup('wls_profile::domain_name')}"
+wls_profile::basic_domain::wls_domain::version:                 "%{alias('wls_profile::weblogic_version')}"
+wls_profile::basic_domain::wls_domain::weblogic_home:           "%{lookup('wls_profile::weblogic_home')}"
+wls_profile::basic_domain::wls_domain::domains_dir:             "%{lookup('wls_profile::oracle_base')}/domains"
+wls_profile::basic_domain::wls_domain::log_dir:                 "%{lookup('wls_profile::log_dir')}"
+wls_profile::basic_domain::wls_domain::template_name:           standard
+wls_profile::basic_domain::wls_domain::nodemanager_address:     "%{lookup('wls_profile::nodemanager_address')}"
+wls_profile::basic_domain::wls_domain::nodemanager_port:        "%{alias('wls_profile::nodemanager_port')}"
+wls_profile::basic_domain::wls_domain::adminserver_address:     "%{lookup('wls_profile::adminserver_address')}"
+wls_profile::basic_domain::wls_domain::adminserver_port:        "%{alias('wls_profile::adminserver_port')}"
+wls_profile::basic_domain::wls_domain::os_user:                 "%{lookup('wls_profile::os_user')}"
+wls_profile::basic_domain::wls_domain::os_group:                "%{lookup('wls_profile::os_group')}"
+wls_profile::basic_domain::wls_domain::weblogic_user:           "%{lookup('wls_profile::weblogic_user')}"
+wls_profile::basic_domain::wls_domain::weblogic_password:       "%{lookup('wls_profile::weblogic_password')}"
+wls_profile::basic_domain::wls_domain::bam_enabled:             false
+wls_profile::basic_domain::wls_domain::b2b_enabled:             false
+wls_profile::basic_domain::wls_domain::ess_enabled:             false
+wls_profile::basic_domain::wls_domain::development_mode:        false
+wls_profile::basic_domain::wls_domain::nodemanager_wait:        20
+wls_profile::basic_domain::wls_domain::adminserver_settings:
+  log_file_min_size:            2000
+  log_filecount:                10
+  log_number_of_files_limited:  1
+  ssllistenport:                7002
+#------------------------------------------------------------------------------
+#
+# WebLogic servers
+#
+#------------------------------------------------------------------------------
+wls_profile::admin_server::wls_servers::domain_name:          "%{lookup('wls_profile::domain_name')}"
+wls_profile::admin_server::wls_servers::servers:
+  "%{::fqdn}":
+    machine_name:     "%{::fqdn}"
+    listenaddress:    "%{::fqdn}"
+    server_arguments: []
+  wls2.example.com:
+    machine_name:     wls2.example.com
+    listenaddress:    wls2.example.com
+    server_arguments: []
+wls_profile::admin_server::wls_servers::server_defaults:
+  listenport:      7005
+  ssllistenport:   7006
+wls_profile::admin_server::wls_servers::machine_defaults:
+  listenport:      7005
+  machinetype:     UnixMachine
+  nmtype:          SSL
+#------------------------------------------------------------------------------
+#
+# WebLogic Clusters
+#
+#------------------------------------------------------------------------------
+wls_profile::admin_server::wls_cluster::domain_name:        "%{lookup('wls_profile::domain_name')}"
+wls_profile::admin_server::wls_cluster::cluster_name:       "%{lookup('wls_profile::cluster_name')}"
+wls_profile::admin_server::wls_cluster::servers:            "%{alias('wls_profile::admin_server::wls_servers::servers')}" 
+wls_profile::admin_server::wls_cluster::cluster_defaults:
+  messagingmode:  unicast
+  migrationbasis: consensus
+#------------------------------------------------------------------------------
+#
+# WebLogic Datasources
+#
+# This is a simple way to get started. It is easy to get started, but
+# soon your hiera yaml become a nightmare. Our advise is when you need
+# to let puppet manage your oracle tablespaces, to override this class and 
+# add your own puppet implementation. This is much better maintainable
+# and adds more consistency.
+# 
+#------------------------------------------------------------------------------
+wls_profile::admin_server::wls_datasources::list: {}
+#------------------------------------------------------------------------------
+#
+# WebLogic JMS Config
+#
+# This is a simple way to get started. It is easy to get started, but
+# soon your hiera yaml become a nightmare. Our advise is when you need
+# to let puppet manage your oracle tablespaces, to override this class and 
+# add your own puppet implementation. This is much better maintainable
+# and adds more consistency.
+# 
+#------------------------------------------------------------------------------
+wls_profile::admin_server::wls_jms::module_list:  {}
+wls_profile::admin_server::wls_jms::queue_list:   {}
+wls_profile::admin_server::wls_jms::topic_list:   {}
+#------------------------------------------------------------------------------
+#
+# WebLogic Startup
+#
+#------------------------------------------------------------------------------
+wls_profile::basic_domain::wls_startup::domain_name:      "%{lookup('wls_profile::domain_name')}"
+wls_profile::basic_domain::wls_startup::version:          "%{alias('wls_profile::weblogic_version')}"
+wls_profile::basic_domain::wls_startup::weblogic_home:    "%{lookup('wls_profile::weblogic_home')}"
+wls_profile::basic_domain::wls_startup::domains_dir:      "%{lookup('wls_profile::basic_domain::wls_domain::domains_dir')}"
+wls_profile::basic_domain::wls_startup::log_dir:          "%{lookup('wls_profile::log_dir')}"
+wls_profile::basic_domain::wls_startup::os_user:          "%{lookup('wls_profile::os_user')}"
+#------------------------------------------------------------------------------
+#
+# WebLogic Users and Groups
+#
+# This is a simple way to get started. It is easy to get started, but
+# soon your hiera yaml become a nightmare. Our advise is when you need
+# to let puppet manage your oracle tablespaces, to override this class and 
+# add your own puppet implementation. This is much better maintainable
+# and adds more consistency,
+# 
+#------------------------------------------------------------------------------
+wls_profile::admin_server::wls_users_and_groups::group_list: {}
+wls_profile::admin_server::wls_users_and_groups::user_list: {}
+#------------------------------------------------------------------------------
+#
+# WebLogic Startup
+#
+#------------------------------------------------------------------------------
+wls_profile::admin_server::pack_domain::domain_name:        "%{lookup('wls_profile::domain_name')}"
+wls_profile::admin_server::pack_domain::middleware_home:    "%{lookup('wls_profile::middleware_home')}"
+wls_profile::admin_server::pack_domain::weblogic_home:      "%{lookup('wls_profile::weblogic_home')}"
+wls_profile::admin_server::pack_domain::jdk_home:           "%{lookup('wls_profile::jdk_home')}"
+wls_profile::admin_server::pack_domain::domains_dir:        "%{lookup('wls_profile::basic_domain::wls_domain::domains_dir')}"
+wls_profile::admin_server::pack_domain::os_user:            "%{lookup('wls_profile::os_user')}"
+wls_profile::admin_server::pack_domain::os_group:           "%{lookup('wls_profile::os_group')}"
+#------------------------------------------------------------------------------
+#
+# WebLogic Copy Domain
+#
+#------------------------------------------------------------------------------
+wls_profile::node::copy_domain::domain_name:                "%{lookup('wls_profile::domain_name')}"
+wls_profile::node::copy_domain::version:                    "%{alias('wls_profile::weblogic_version')}"
+wls_profile::node::copy_domain::weblogic_home:              "%{lookup('wls_profile::weblogic_home')}"
+wls_profile::node::copy_domain::log_dir:                    "%{lookup('wls_profile::log_dir')}"
+wls_profile::node::copy_domain::middleware_home:            "%{lookup('wls_profile::middleware_home')}"
+wls_profile::node::copy_domain::jdk_home:                   "%{lookup('wls_profile::jdk_home')}"
+wls_profile::node::copy_domain::domains_dir:                "%{lookup('wls_profile::basic_domain::wls_domain::domains_dir')}"
+wls_profile::node::copy_domain::os_user:                    "%{lookup('wls_profile::os_user')}"
+wls_profile::node::copy_domain::os_group:                   "%{lookup('wls_profile::os_group')}"
+wls_profile::node::copy_domain::adminserver_address:        "%{lookup('wls_profile::adminserver_address')}"
+wls_profile::node::copy_domain::adminserver_port:           "%{alias('wls_profile::adminserver_port')}"
+wls_profile::node::copy_domain::weblogic_user:              "%{lookup('wls_profile::weblogic_user')}"
+wls_profile::node::copy_domain::weblogic_password:          "%{lookup('wls_profile::weblogic_password')}"
+wls_profile::node::copy_domain::nodemanager_address:        "%{lookup('wls_profile::nodemanager_address')}"
+wls_profile::node::copy_domain::nodemanager_wait:           "%{alias('wls_profile::basic_domain::wls_domain::nodemanager_wait')}"
+#------------------------------------------------------------------------------
+#
+# WebLogic SSH setup
+#
+#------------------------------------------------------------------------------
+wls_profile::weblogic::ssh_setup::os_user:        "%{lookup('wls_profile::os_user')}"
+wls_profile::weblogic::ssh_setup::os_group:       "%{lookup('wls_profile::os_group')}"
+wls_profile::weblogic::ssh_setup::public_key:     AAAAB3NzaC1yc2EAAAADAQABAAACAQDnM4+Y5VIXcwVdoSguVtkgJe4bSra5PmRbUHBHMNvNV2Im24AVawQoU3Tpf0BQMdmUrsy+MJ8ALwpZSrtVVBx0xW73xOylyiDY8O8JSbhWoE1fN0E3pbYm+A2c6Ca/n2JR2bp7Asy+k/NWPnS9QBJsvtXm/UcVpsfkHDQIeX3494x1Ad4jhsUyokBeHePPgQDg9Yac46DwKGtDfUs9KapN4D9XQe2hzc9aMWmfjxdImtSainF6bq+LtJB95xlpjB/2I+YVrDzWvz9AVMUNwbsUrABudEhz7c/v4wbZVIajZ2qVCVTlfUpCtOYCYh4Ob2hIFEuzWF28QfKmmvajMFQ4jBgTk7LAi0bTbKfIV125FI8rikzi/G81wTHm9ZZOjgCJYKb/oVFHs4QVip6DrcYtVvCatQkmvBoVjcfINw7MzUMJrcN40UJtR9ObCza68yE0c7Ie5uguPj5bLECRA2FYPyozMRZnJ+KOZxgWxccitL6bfIhhnPNn0u9Ekod214t9S3N78cYK2mX+yleRm4Gg2iYQawarw15rzDg2UmlWDI5FOQmxZKugB78t+QClD973ceFHpT9+1Xm4LoosubaRQgZO9bLAH9x1AsxkhROIBLE/Jvh39DJ3DWrwulvXLEbs76PpDjxD5XfH2hbkjjayr0GCVyddJM4PCtlM43olbQ==
+wls_profile::weblogic::ssh_setup::private_key: |
+  -----BEGIN RSA PRIVATE KEY-----
+  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
+  -----END RSA PRIVATE KEY-----
+#------------------------------------------------------------------------------
+#
+# WebLogic Patches
+#
+#------------------------------------------------------------------------------
+wls_profile::weblogic::wls_patches::list: {}

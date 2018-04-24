@@ -1,0 +1,159 @@
+---
+title: wls software
+keywords: documentation
+layout: documentation
+sidebar: wls_profile_sidebar
+toc: false
+---
+## Overview
+
+This class is the default implementation for installing the WebLogic software on your system.
+
+Using hiera, you you can customize some of the aspects of this proces.
+
+When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::weblogic](./weblogic.html) for an explanation on how to do this.
+
+
+
+
+
+## Attributes
+
+
+
+Attribute Name                                   | Short Description                                                          |
+------------------------------------------------ | -------------------------------------------------------------------------- |
+[file_name](#wls_software_file_name)             | The file name containing the WebLogic software to install.                 |
+[fmw_infra](#wls_software_fmw_infra)             | Boolean specifying if you want WebLogic Fusion Middleware Infra installed. |
+[jdk_home](#wls_software_jdk_home)               | The locatie where the JDK is installed.                                    |
+[middleware_home](#wls_software_middleware_home) | The Oracle middleware home directory.                                      |
+[oracle_base](#wls_software_oracle_base)         | The directory used as the base for all Oracle weblogic files.              |
+[os_group](#wls_software_os_group)               | The os group to use for WebLogic.                                          |
+[os_user](#wls_software_os_user)                 | The os user to use for WebLogic.                                           |
+[source](#wls_software_source)                   | The location where the classes can find the software.                      |
+[version](#wls_software_version)                 | The version of WebLogic you want to use.                                   |
+
+
+
+
+### version<a name='wls_software_version'>
+
+
+
+The version of WebLogic you want to use.
+
+This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::version` to change it to your requested value.
+
+Valid values are:
+
+  - `1036`
+  - `1111`
+  - `1112`
+  - `1211`
+  - `1212`
+  - `1213`
+  - `1221`
+  - `12211`
+  - `12212`
+  - `12213`
+
+Default value: `12213`
+[Back to overview of wls_software](#attributes)
+
+
+### file_name<a name='wls_software_file_name'>
+
+
+
+The file name containing the WebLogic software to install.
+
+This file is fetched from the location specfied by the property `source`.
+
+The default value is: `fmw_12.2.1.3.0_wls.jar`
+[Back to overview of wls_software](#attributes)
+
+
+### oracle_base<a name='wls_software_oracle_base'>
+
+
+
+The directory used as the base for all Oracle weblogic files.
+
+This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::oracle_base` to change it to your requested value.
+
+Default value: `/opt/oracle`
+[Back to overview of wls_software](#attributes)
+
+
+### middleware_home<a name='wls_software_middleware_home'>
+
+
+
+The Oracle middleware home directory.
+
+This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::middleware_home` to change it to your requested value.
+
+Default value: `/opt/oracle/middleware12`
+[Back to overview of wls_software](#attributes)
+
+
+### jdk_home<a name='wls_software_jdk_home'>
+
+
+
+The locatie where the JDK is installed.
+
+This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::jdk_home` to change it to your requested value.
+
+The default value is: `/usr/java/jdk1.8.0_152`
+[Back to overview of wls_software](#attributes)
+
+
+### os_user<a name='wls_software_os_user'>
+
+
+
+The os user to use for WebLogic.
+
+This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_user` to change it to your requested value.
+
+Default value: `oracle`
+[Back to overview of wls_software](#attributes)
+
+
+### os_group<a name='wls_software_os_group'>
+
+
+
+The os group to use for WebLogic.
+
+This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_group` to change it to your requested value.
+
+Default value: `dba`
+[Back to overview of wls_software](#attributes)
+
+
+### source<a name='wls_software_source'>
+
+
+
+The location where the classes can find the software. 
+
+You can specify a local directory, a Puppet url or an http url.
+
+This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::source` to change it to your requested value.
+
+The default is : `puppet:///modules/software/`
+
+[Back to overview of wls_software](#attributes)
+
+
+### fmw_infra<a name='wls_software_fmw_infra'>
+
+
+
+Boolean specifying if you want WebLogic Fusion Middleware Infra installed.
+
+Default value: `false`
+[Back to overview of wls_software](#attributes)
+
