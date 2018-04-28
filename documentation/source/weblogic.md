@@ -1,17 +1,17 @@
 
-This is a highly customizable Puppet profile class to define an WebLogic Software and its requirements on your system. In it's core just adding:
+This is a highly customizable Puppet profile class to define a WebLogic Software and its requirements on your system. At its core just adding:
 
 ```
 contain wls_profile::weblogic
 ```
 
-Is enough to get an WebLogic 12.2.1.3 installed  on your system. 
+Is enough to get a WebLogic 12.2.1.3 installed on your system. 
 
 But sometimes you have specific uses cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.
 
 ## Stages
 
-Defining and starting an WebLogic Admin Server on you system goes through several stages(These are not puppet stages):
+Defining and starting a WebLogic Admin Server on you system goes through several stages(These are not puppet stages):
 
 - [`sysctl`](/docs/wls_profile/sysctl.html)            Set required sysctl parameters
 - [`limits`](/docs/wls_profile/limits.html)            Set OS security limits
@@ -27,7 +27,7 @@ All these stages have a default implementation. This implementation is suitable 
 
 ## before classes
 
-But sometimes this is not enough and you would like to add some extra definitions, you can, for example, add a Puppet class to be executed after the `packages` stage is done and before the `groups_and_users` is done. You can do this by adding the next line to your yaml data:
+But sometimes this is not enough, and you would like to add some extra definitions, you can, for example, add a Puppet class to be executed after the `packages` stage is done and before the `groups_and_users` is done. You can do this by adding the next line to your yaml data:
 
 ```yaml
 wls_profile::weblogic::groups_and_users:   my_profile::my_extra_class
@@ -43,7 +43,7 @@ wls_profile::weblogic::firewall:   my_profile::my_extra_class
 
 ## Skipping
 
-Sometimes organisation use different modules and mechanisms to implement a feature and you want to skip the class:
+Sometimes organizations use different modules and mechanisms to implement a feature, and you want to skip the class:
 
 ```yaml
 wls_profile::weblogic::java_software:   skip

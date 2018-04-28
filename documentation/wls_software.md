@@ -9,7 +9,7 @@ toc: false
 
 This class is the default implementation for installing the WebLogic software on your system.
 
-Using hiera, you you can customize some of the aspects of this proces.
+Using hiera, you can customize some of the aspects of this process.
 
 When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::weblogic](./weblogic.html) for an explanation on how to do this.
 
@@ -25,7 +25,7 @@ Attribute Name                                   | Short Description            
 ------------------------------------------------ | -------------------------------------------------------------------------- |
 [file_name](#wls_software_file_name)             | The file name containing the WebLogic software to install.                 |
 [fmw_infra](#wls_software_fmw_infra)             | Boolean specifying if you want WebLogic Fusion Middleware Infra installed. |
-[jdk_home](#wls_software_jdk_home)               | The locatie where the JDK is installed.                                    |
+[jdk_home](#wls_software_jdk_home)               | The location where the JDK is installed.                                   |
 [middleware_home](#wls_software_middleware_home) | The Oracle middleware home directory.                                      |
 [oracle_base](#wls_software_oracle_base)         | The directory used as the base for all Oracle weblogic files.              |
 [os_group](#wls_software_os_group)               | The os group to use for WebLogic.                                          |
@@ -67,7 +67,7 @@ Default value: `12213`
 
 The file name containing the WebLogic software to install.
 
-This file is fetched from the location specfied by the property `source`.
+This file is fetched from the location specified by the property `source`.
 
 The default value is: `fmw_12.2.1.3.0_wls.jar`
 [Back to overview of wls_software](#attributes)
@@ -101,7 +101,7 @@ Default value: `/opt/oracle/middleware12`
 
 
 
-The locatie where the JDK is installed.
+The location where the JDK is installed.
 
 This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::jdk_home` to change it to your requested value.
 

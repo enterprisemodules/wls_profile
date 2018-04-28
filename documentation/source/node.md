@@ -1,17 +1,17 @@
 
-This is a highly customizable Puppet profile class to define an WebLogic node. In it's core just adding:
+This is a highly customizable Puppet profile class to define a WebLogic node. At its core just adding:
 
 ```
 contain wls_profile::node
 ```
 
-Is enough to get an WebLogic 12.2.1.3. installed, fetch the domain definition from the Admin Server and start the node manager.
+Is enough to get a WebLogic 12.2.1.3. Installed, fetch the domain definition from the Admin Server and start the node manager.
 
 But sometimes you have specific uses cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.
 
 ## Stages
 
-Defining and starting an WebLogic Admin Server on you system goes through several stages(These are not puppet stages):
+Defining and starting a WebLogic Admin Server on your system goes through several stages(These are not puppet stages):
 
 - [`weblogic`](./weblogic.html)     Setup the OS and install the WebLogic software
 - [`copy_domain`](./copy_domain.html)   Copy the packed domain from the AdminServer and start the Nodemanager
@@ -21,7 +21,7 @@ All these stages have a default implementation. This implementation is suitable 
 
 ## before classes
 
-But sometimes this is not enough and you would like to add some extra definitions, you can, for example, add a Puppet class to be executed after the `weblogic` stage is done and before the `copy_domain` is done. You can do this by adding the next line to your yaml data:
+But sometimes this is not enough, and you would like to add some extra definitions, you can, for example, add a Puppet class to be executed after the `weblogic` stage is done and before the `copy_domain` is done. You can do this by adding the next line to your yaml data:
 
 ```yaml
 wls_profile::node::before_copy_domain:   my_profile::my_extra_class
@@ -37,7 +37,7 @@ wls_profile::node::wls_startup:   my_profile::my_extra_class
 
 ## Skipping
 
-Sometimes organisation use different modules and mechanisms to implement a feature and you want to skip the class:
+Sometimes organizations use different modules and mechanisms to implement a feature, and you want to skip the class:
 
 ```yaml
 wls_profile::node::pack_domain:   skip

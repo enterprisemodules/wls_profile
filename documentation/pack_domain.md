@@ -9,7 +9,7 @@ toc: false
 
 This class is the default implementation for packing a domain on the current server. The packed domain can be used to create other WebLogic nodes in the same domain. When you are creating just a single node WebLogic server, you can skip this class.
 
-Using hiera, you you can customize some of the aspects of this proces.
+Using hiera, you can customize some of the aspects of this process.
 
 When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::admin)_server](./admin)_server.html) for an explanation on how to do this.
 
@@ -24,8 +24,8 @@ When these customizations aren't enough, you can replace the class with your own
 Attribute Name                                  | Short Description                                                    |
 ----------------------------------------------- | -------------------------------------------------------------------- |
 [domain_name](#pack_domain_domain_name)         | The name of the WebLogic domain.                                     |
-[domains_dir](#pack_domain_domains_dir)         | The top level directory where the domain directories will reside in. |
-[jdk_home](#pack_domain_jdk_home)               | The locatie where the JDK is installed.                              |
+[domains_dir](#pack_domain_domains_dir)         | The top-level directory where the domain directories will reside in. |
+[jdk_home](#pack_domain_jdk_home)               | The location where the JDK is installed.                             |
 [middleware_home](#pack_domain_middleware_home) | The Oracle middleware home directory.                                |
 [os_group](#pack_domain_os_group)               | The os group to use for WebLogic.                                    |
 [os_user](#pack_domain_os_user)                 | The os user to use for WebLogic.                                     |
@@ -39,11 +39,11 @@ Attribute Name                                  | Short Description             
 
 
 
-The name of the WebLogic domain. This will be used both as the REAL WebLogic domain name, and also be used by Pupopet as a designator for Puppet resources. (e.g. the name before the slash `my_domain/wls_queue1`).
+The name of the WebLogic domain. This will be used both as the REAL WebLogic domain name, and also be used by Puppet as a designator for Puppet resources. (e.g. the name before the slash `my_domain/wls_queue1`).
 
 The change the domain name, use the hiera key: `wls_profile::domain_name`. This will make sure the correct domain name gets used in all classes.
 
-The default values is: `MYDOMAIN`
+The default value is: `MYDOMAIN`
 [Back to overview of pack_domain](#attributes)
 
 
@@ -76,7 +76,7 @@ Default value: `/opt/oracle/middleware12/wlserver`
 
 
 
-The locatie where the JDK is installed.
+The location where the JDK is installed.
 
 This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::jdk_home` to change it to your requested value.
 
@@ -88,7 +88,7 @@ The default value is: `/usr/java/jdk1.8.0_152`
 
 
 
-The top level directory where the domain directories will reside in. 
+The top-level directory where the domain directories will reside in. 
 
 This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::domains_dir` to change it to your requested value.
 

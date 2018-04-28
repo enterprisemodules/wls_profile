@@ -20,7 +20,7 @@ The [`wls_profile`](https://www.enterprisemodules.com/shop/products/puppet-wls_i
 - Runs on Solaris
 - Windows systems are **NOT** supported
 
-This module uses some other public Puppet forge modules. Check the metadata to ensure you have all dependecies installed.
+This module uses some other public Puppet forge modules. Check the metadata to ensure you have all dependencies installed.
 
 
 

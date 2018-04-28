@@ -1,5 +1,5 @@
 
-This is a highly customizable Puppet profile class to define an basic WebLogic (empty) domain on your system. In it's core just adding:
+This is a highly customizable Puppet profile class to define a basic WebLogic (empty) domain on your system. At its core just adding:
 
 ```
 contain wls_profile::basic_domain
@@ -17,11 +17,11 @@ Defining and starting an empty basic WebLogic domain on you system goes through 
 - [`wls_domain`](./wls_domain.html)    Create an empty WebLogic domain
 - [`wls_startup`](./wls_startup.html)   Make sure the domain restarts after a system reboot.
 
-All these stages have a default implementation. This implementation is suitable to get started with. These classed all have parameters you can customize through hiera values. The defaults are specified in the module's `data/default.yaml` file. 
+All these stages have a default implementation. This implementation is suitable to get off to an easy start. These classed all have parameters you can customize through hiera values. The defaults are specified in the module's `data/default.yaml` file. 
 
 ## before classes
 
-But sometimes this is not enough and you would like to add some extra definitions, you can, for example, add a Puppet class to be executed after the `weblogic` stage is done and before the `wls_domain` is done. You can do this by adding the next line to your yaml data:
+But sometimes this is not enough, and you would like to add some extra definitions, you can, for example, add a Puppet class to be executed after the `weblogic` stage is done and before the `wls_domain` is done. You can do this by adding the next line to your yaml data:
 
 ```yaml
 wls_profile::basic_domain::before_wls_domain:   my_profile::my_extra_class
@@ -37,7 +37,7 @@ wls_profile::basic_domain::after_wls_domain:   my_profile::my_extra_class
 
 ## Skipping
 
-Sometimes organisation use different modules and mechanisms to implement a feature and you want to skip the class:
+Sometimes organizations use different modules and mechanisms to implement a feature, and you want to skip the class:
 
 ```yaml
 wls_profile::basic_domain::wls_startup:   skip

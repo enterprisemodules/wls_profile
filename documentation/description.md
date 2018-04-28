@@ -9,7 +9,7 @@ toc: false
 
 ## Overview
 
-This module has a couple of conveniant classes to help you setup your WebLogic environment:
+This module has a couple of convenient classes to help you setup your WebLogic environment:
 
 - [`wls_profile::weblogic`](/docs/wls_profile/weblogic.html)       Ensure WebLogic is installed and patched
 - [`wls_profile::basic_domain`](/docs/wls_profile/basic_domain.html)   Same as `weblogic` and create an empty domain.

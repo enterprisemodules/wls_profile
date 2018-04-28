@@ -1,6 +1,6 @@
 This class is the default implementation to copy the packed domain from the Admin Server, unpack it on the current machine and start the nodemanager.
 
-Using hiera, you you can customize some of the aspects of this proces.
+Using hiera, you can customize some of the aspects of this process.
 
 When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::node](./node.html) for an explanation on how to do this.
 

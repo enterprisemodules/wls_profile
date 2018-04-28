@@ -15,7 +15,7 @@
 
 ## Overview
 
-The `wls_profile` module allows an easy path from first simple installation to a fully customized Enterprise setup. It is part of our family of Puppet modules to install, manage and secure WebLogic and Fusion Middlware with Puppet. Besides the `wls_profile` module, this family also contains:
+The `wls_profile` module allows an easy path from first simple installation to a fully customized Enterprise setup. It is part of our family of Puppet modules to install, manage and secure WebLogic and Fusion Middleware with Puppet. Besides the `wls_profile` module, this family also contains:
 
 - [wls_config](https://www.enterprisemodules.com/shop/products/puppet-wls_config-module) For configuring an Oracle WebLogic and other Fusion products
 - [wls_install](https://www.enterprisemodules.com/shop/products/puppet-wls_install-module) For installing an Oracle WebLogic and other Fusion products
@@ -26,7 +26,7 @@ Most of the [Enterprise Modules](https://www.enterprisemodules.com) modules are 
 
 ## Description
 
-This module has a couple of conveniant classes to help you setup your WebLogic environment:
+This module has a couple of convenient classes to help you setup your WebLogic environment:
 
 - [`wls_profile::weblogic`](https://www.enterprisemodules.com/docs/wls_profile/weblogic.html)       Ensure WebLogic is installed and patched
 - [`wls_profile::basic_domain`](https://www.enterprisemodules.com/docs/wls_profile/basic_domain.html)   Same as `weblogic` and create an empty domain.
@@ -54,7 +54,7 @@ The [`wls_profile`](https://www.enterprisemodules.com/shop/products/puppet-wls_i
 - Runs on Solaris
 - Windows systems are **NOT** supported
 
-This module uses some other public Puppet forge modules. Check the metadata to ensure you have all dependecies installed.
+This module uses some other public Puppet forge modules. Check the metadata to ensure you have all dependencies installed.
 
 #### We support WebLogic versions:
 
@@ -90,7 +90,7 @@ puppet module install enterprisemodules-wls_profile
 ```
 ## Usage
 
-To get started, include the `wls_profile::admin_server` class in your role, make sure you have a module called `software` that has a folder `files` and that directory contains the the next files:
+To get started, include the `wls_profile::admin_server` class in your role, make sure you have a module called `software` that has a folder `files` and that directory contains the next files:
 
 - `fmw_12.2.1.3.0_wls.jar`      WebLogic software
 - `jdk-8u152-linux-x64.tar.gz`  Java JDK software
@@ -119,7 +119,7 @@ Here you can find some more information regarding this puppet module:
 - [The `wls_install` documentation](https://www.enterprisemodules.com/docs/wls_install/description.html)
 - [The `wls_config` documentation](https://www.enterprisemodules.com/docs/wls_config/description.html)
 
-Here are a related blog posts:
+Here are related blog posts:
 - [Introducing version 3 of wls_config](https://www.enterprisemodules.com//blog/2016/05/introducing-version-3-of-wls-config/)
 - [Know thy WebLogic configuration using Puppet](https://www.enterprisemodules.com//blog/2016/01/know-thy-weblogic-configuration-using-puppet/)
 - [Manage your WebLogic JMS config with Puppet](https://www.enterprisemodules.com//blog/2016/01/manage-your-weblogic-jms-config-with-puppet/)

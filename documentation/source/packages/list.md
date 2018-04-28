@@ -1,4 +1,4 @@
-The required packages for a succesfull WebLogic installation.
+The required packages for a succesful WebLogic installation.
 
 The defaults are:
 

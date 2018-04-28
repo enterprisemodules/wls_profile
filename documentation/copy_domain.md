@@ -9,7 +9,7 @@ toc: false
 
 This class is the default implementation to copy the packed domain from the Admin Server, unpack it on the current machine and start the nodemanager.
 
-Using hiera, you you can customize some of the aspects of this proces.
+Using hiera, you can customize some of the aspects of this process.
 
 When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::node](./node.html) for an explanation on how to do this.
 
@@ -22,24 +22,24 @@ When these customizations aren't enough, you can replace the class with your own
 
 
 
-Attribute Name                                          | Short Description                                                                         |
-------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-[adminserver_address](#copy_domain_adminserver_address) | The address the admin server process will run and listen on.                              |
-[adminserver_port](#copy_domain_adminserver_port)       | The adIP portdress the admin server process will run and listen on.                       |
-[domain_name](#copy_domain_domain_name)                 | The name of the WebLogic domain.                                                          |
-[domains_dir](#copy_domain_domains_dir)                 | The top level directory where the domain directories will reside in.                      |
-[jdk_home](#copy_domain_jdk_home)                       | The locatie where the JDK is installed.                                                   |
-[log_dir](#copy_domain_log_dir)                         | The directory used for log files.                                                         |
-[middleware_home](#copy_domain_middleware_home)         | The Oracle middleware home directory.                                                     |
-[nodemanager_address](#copy_domain_nodemanager_address) | The IP adress the nodemanager will run and listen on.                                     |
-[nodemanager_wait](#copy_domain_nodemanager_wait)       | The time in seconds Puppet waits for the  nodemanager to start before declaring an error. |
-[os_group](#copy_domain_os_group)                       | The os group to use for WebLogic.                                                         |
-[os_user](#copy_domain_os_user)                         | The os user to use for WebLogic.                                                          |
-[version](#copy_domain_version)                         | The version of WebLogic you want to use.                                                  |
+Attribute Name                                          | Short Description                                                                        |
+------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+[adminserver_address](#copy_domain_adminserver_address) | The address the admin server process will run and listen on.                             |
+[adminserver_port](#copy_domain_adminserver_port)       | The IP port the admin server process will run and listen on.                             |
+[domain_name](#copy_domain_domain_name)                 | The name of the WebLogic domain.                                                         |
+[domains_dir](#copy_domain_domains_dir)                 | The top-level directory where the domain directories will reside in.                     |
+[jdk_home](#copy_domain_jdk_home)                       | The location where the JDK is installed.                                                 |
+[log_dir](#copy_domain_log_dir)                         | The directory used for log files.                                                        |
+[middleware_home](#copy_domain_middleware_home)         | The Oracle middleware home directory.                                                    |
+[nodemanager_address](#copy_domain_nodemanager_address) | The IP address the nodemanager will run and listen on.                                   |
+[nodemanager_wait](#copy_domain_nodemanager_wait)       | The time in seconds Puppet waits for the nodemanager to start before declaring an error. |
+[os_group](#copy_domain_os_group)                       | The os group to use for WebLogic.                                                        |
+[os_user](#copy_domain_os_user)                         | The os user to use for WebLogic.                                                         |
+[version](#copy_domain_version)                         | The version of WebLogic you want to use.                                                 |
 [weblogic_home](#copy_domain_weblogic_home)             | The directory used as WebLogic home
-                                                      |
-[weblogic_password](#copy_domain_weblogic_password)     | The password for the WebLogic account.                                                    |
-[weblogic_user](#copy_domain_weblogic_user)             | The WebLogic user account to bear all administration rights.                              |
+                                                     |
+[weblogic_password](#copy_domain_weblogic_password)     | The password for the WebLogic account.                                                   |
+[weblogic_user](#copy_domain_weblogic_user)             | The WebLogic user account to bear all administration rights.                             |
 
 
 
@@ -48,11 +48,11 @@ Attribute Name                                          | Short Description     
 
 
 
-The name of the WebLogic domain. This will be used both as the REAL WebLogic domain name, and also be used by Pupopet as a designator for Puppet resources. (e.g. the name before the slash `my_domain/wls_queue1`).
+The name of the WebLogic domain. This will be used both as the REAL WebLogic domain name, and also be used by Puppet as a designator for Puppet resources. (e.g. the name before the slash `my_domain/wls_queue1`).
 
 The change the domain name, use the hiera key: `wls_profile::domain_name`. This will make sure the correct domain name gets used in all classes.
 
-The default values is: `MYDOMAIN`
+The default value is: `MYDOMAIN`
 [Back to overview of copy_domain](#attributes)
 
 
@@ -122,7 +122,7 @@ Default value: `/opt/oracle/middleware12`
 
 
 
-The locatie where the JDK is installed.
+The location where the JDK is installed.
 
 This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::jdk_home` to change it to your requested value.
 
@@ -134,7 +134,7 @@ The default value is: `/usr/java/jdk1.8.0_152`
 
 
 
-The top level directory where the domain directories will reside in. 
+The top-level directory where the domain directories will reside in. 
 
 This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::domains_dir` to change it to your requested value.
 
@@ -183,7 +183,7 @@ The default value is: The fact `fqdn`
 
 
 
-The adIP portdress the admin server process will run and listen on. 
+The IP port the admin server process will run and listen on. 
 
 This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::adminserver_port` to change it to your requested value.
 
@@ -195,7 +195,7 @@ The default value is:  `7001`
 
 
 
-The IP adress the nodemanager will run and listen on.
+The IP address the nodemanager will run and listen on.
 
 This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::wls_domain::log_dir` to change it to your requested value.
 
@@ -207,7 +207,7 @@ Default value: `::fqdn`
 
 
 
-The time in seconds Puppet waits for the  nodemanager to start before declaring an error.
+The time in seconds Puppet waits for the nodemanager to start before declaring an error.
 
 Default value: `20`
 [Back to overview of copy_domain](#attributes)
