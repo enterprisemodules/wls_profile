@@ -113,8 +113,6 @@ Attribute Name                                               | Short Description
 
 ### sysctl<a name='weblogic_sysctl'>
 
-
-
 Use this value if you want to skip or use your own class for stage `sysctl`.
 
 ## Use your own class
@@ -133,12 +131,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::sysctl:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### limits<a name='weblogic_limits'>
-
-
 
 Use this value if you want to skip or use your own class for stage `limits`.
 
@@ -158,12 +157,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::limits:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### packages<a name='weblogic_packages'>
-
-
 
 Use this value if you want to skip or use your own class for stage `packages`.
 
@@ -183,12 +183,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::packages:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### groups_and_users<a name='weblogic_groups_and_users'>
-
-
 
 Use this value if you want to skip or use your own class for stage `groups_and_users`.
 
@@ -208,12 +209,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::groups_and_users:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### ssh_setup<a name='weblogic_ssh_setup'>
-
-
 
 Use this value if you want to skip or use your own class for stage `ssh_setup`.
 
@@ -233,12 +235,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::ssh_setup:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### firewall<a name='weblogic_firewall'>
-
-
 
 Use this value if you want to skip or use your own class for stage `firewall`.
 
@@ -258,12 +261,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::firewall:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### java_software<a name='weblogic_java_software'>
-
-
 
 Use this value if you want to skip or use your own class for stage `java_software`.
 
@@ -283,12 +287,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::java_software:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### wls_software<a name='weblogic_wls_software'>
-
-
 
 Use this value if you want to skip or use your own class for stage `wls_software`.
 
@@ -308,12 +313,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::wls_software:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### wls_patches<a name='weblogic_wls_patches'>
-
-
 
 Use this value if you want to skip or use your own class for stage `wls_patches`.
 
@@ -333,12 +339,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::wls_patches:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### before_sysctl<a name='weblogic_before_sysctl'>
-
-
 
 The name of the class you want to execute directly **before** the `sysctl` class.
 
@@ -348,12 +355,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::before_sysctl:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### before_limits<a name='weblogic_before_limits'>
-
-
 
 The name of the class you want to execute directly **before** the `limits` class.
 
@@ -363,12 +371,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::before_limits:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### before_packages<a name='weblogic_before_packages'>
-
-
 
 The name of the class you want to execute directly **before** the `packages` class.
 
@@ -378,12 +387,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::before_packages:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### before_groups_and_users<a name='weblogic_before_groups_and_users'>
-
-
 
 The name of the class you want to execute directly **before** the `groups_and_users` class.
 
@@ -393,12 +403,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::before_groups_and_users:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### before_ssh_setup<a name='weblogic_before_ssh_setup'>
-
-
 
 The name of the class you want to execute directly **before** the `ssh_setup` class.
 
@@ -408,12 +419,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::before_ssh_setup:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### before_firewall<a name='weblogic_before_firewall'>
-
-
 
 The name of the class you want to execute directly **before** the `firewall` class.
 
@@ -423,12 +435,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::before_firewall:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### before_java_software<a name='weblogic_before_java_software'>
-
-
 
 The name of the class you want to execute directly **before** the `java_software` class.
 
@@ -438,12 +451,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::before_java_software:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### before_wls_software<a name='weblogic_before_wls_software'>
-
-
 
 The name of the class you want to execute directly **before** the `wls_software` class.
 
@@ -453,12 +467,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::before_wls_software:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### before_wls_patches<a name='weblogic_before_wls_patches'>
-
-
 
 The name of the class you want to execute directly **before** the `wls_patches` class.
 
@@ -468,12 +483,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::before_wls_patches:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### after_sysctl<a name='weblogic_after_sysctl'>
-
-
 
 The name of the class you want to execute directly **after** the `sysctl` class.
 
@@ -483,12 +499,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::after_sysctl:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### after_limits<a name='weblogic_after_limits'>
-
-
 
 The name of the class you want to execute directly **after** the `limits` class.
 
@@ -498,12 +515,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::after_limits:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### after_packages<a name='weblogic_after_packages'>
-
-
 
 The name of the class you want to execute directly **after** the `packages` class.
 
@@ -513,12 +531,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::after_packages:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### after_groups_and_users<a name='weblogic_after_groups_and_users'>
-
-
 
 The name of the class you want to execute directly **after** the `groups_and_usesr` class.
 
@@ -528,12 +547,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::after_groups_and_usesr:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### after_ssh_setup<a name='weblogic_after_ssh_setup'>
-
-
 
 The name of the class you want to execute directly **after** the `ssh_setup` class.
 
@@ -543,12 +563,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::after_ssh_setup:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### after_firewall<a name='weblogic_after_firewall'>
-
-
 
 The name of the class you want to execute directly **after** the `firewall` class.
 
@@ -558,12 +579,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::after_firewall:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### after_java_software<a name='weblogic_after_java_software'>
-
-
 
 The name of the class you want to execute directly **after** the `java_software` class.
 
@@ -573,12 +595,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::after_java_software:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### after_wls_software<a name='weblogic_after_wls_software'>
-
-
 
 The name of the class you want to execute directly **after** the `wls_software` class.
 
@@ -588,12 +611,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::after_wls_software:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of weblogic](#attributes)
 
-
 ### after_wls_patches<a name='weblogic_after_wls_patches'>
-
-
 
 The name of the class you want to execute directly **after** the `wls_patches` class.
 
@@ -603,5 +627,8 @@ You can use hiera to set this value. Here is an example:
 wls_profile::weblogic::after_wls_patches:  my_module::my_class
 ```
 
-[Back to overview of weblogic](#attributes)
+Type: `Optional[String]`
 
+Default:`undef`
+
+[Back to overview of weblogic](#attributes)

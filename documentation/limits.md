@@ -30,8 +30,6 @@ Attribute Name       | Short Description                   |
 
 ### list<a name='limits_list'>
 
-
-
 The OS limits created for WebLogic.
 
 The defaults are:
@@ -53,5 +51,5 @@ wls_profile::weblogic::limits::list:
     soft: 1048576
     hard: 1048576
 ```
-[Back to overview of limits](#attributes)
 
+[Back to overview of limits](#attributes)

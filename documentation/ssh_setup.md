@@ -32,44 +32,44 @@ Attribute Name                        | Short Description                       
 
 ### os_user<a name='ssh_setup_os_user'>
 
-
-
 The os user to use for WebLogic.
 
 This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_user` to change it to your requested value.
 
 Default value: `oracle`
+Type: `String[1]`
+
+
 [Back to overview of ssh_setup](#attributes)
 
-
 ### os_group<a name='ssh_setup_os_group'>
-
-
 
 The os group to use for WebLogic.
 
 This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_group` to change it to your requested value.
 
 Default value: `dba`
+Type: `String[1]`
+
+
 [Back to overview of ssh_setup](#attributes)
 
-
 ### private_key<a name='ssh_setup_private_key'>
-
-
 
 The private key to create for the `os_user`  account.
 
 The defaults contain a valid pair. It is recommended to specify your own values.
+Type: `String[1]`
+
+
 [Back to overview of ssh_setup](#attributes)
 
-
 ### public_key<a name='ssh_setup_public_key'>
-
-
 
 The public key to create for the `os_user`  account.
 
 The defaults contain a valid pair. It is recommended to specify your own values.
-[Back to overview of ssh_setup](#attributes)
+Type: `String[1]`
 
+
+[Back to overview of ssh_setup](#attributes)

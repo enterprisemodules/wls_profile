@@ -88,8 +88,6 @@ Attribute Name                                 | Short Description              
 
 ### weblogic<a name='node_weblogic'>
 
-
-
 Use this value if you want to skip or use your own class for stage `weblogic`.
 
 ## Use your own class
@@ -108,12 +106,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::node::weblogic:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of node](#attributes)
 
-
 ### copy_domain<a name='node_copy_domain'>
-
-
 
 Use this value if you want to skip or use your own class for stage `copy_domain`.
 
@@ -133,12 +132,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::node::copy_domain:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of node](#attributes)
 
-
 ### wls_startup<a name='node_wls_startup'>
-
-
 
 Use this value if you want to skip or use your own class for stage `wls_startup`.
 
@@ -158,12 +158,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::node::wls_startup:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of node](#attributes)
 
-
 ### before_weblogic<a name='node_before_weblogic'>
-
-
 
 The name of the class you want to execute directly **before** the `weblogic` class.
 
@@ -173,12 +174,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::node::before_weblogic:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of node](#attributes)
 
-
 ### before_copy_domain<a name='node_before_copy_domain'>
-
-
 
 The name of the class you want to execute directly **before** the `copy_domain` class.
 
@@ -188,12 +190,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::node::before_copy_domain:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of node](#attributes)
 
-
 ### before_wls_startup<a name='node_before_wls_startup'>
-
-
 
 The name of the class you want to execute directly **before** the `wls_startup` class.
 
@@ -203,12 +206,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::node::before_wls_startup:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of node](#attributes)
 
-
 ### after_weblogic<a name='node_after_weblogic'>
-
-
 
 The name of the class you want to execute directly **after** the `weblogic` class.
 
@@ -218,12 +222,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::node::after_weblogic:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of node](#attributes)
 
-
 ### after_copy_domain<a name='node_after_copy_domain'>
-
-
 
 The name of the class you want to execute directly **after** the `copy_domain` class.
 
@@ -233,12 +238,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::node::after_copy_domain:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of node](#attributes)
 
-
 ### after_wls_startup<a name='node_after_wls_startup'>
-
-
 
 The name of the class you want to execute directly **after** the `wls_startup` class.
 
@@ -248,5 +254,8 @@ You can use hiera to set this value. Here is an example:
 wls_profile::node::after_wls_startup:  my_module::my_class
 ```
 
-[Back to overview of node](#attributes)
+Type: `Optional[String]`
 
+Default:`undef`
+
+[Back to overview of node](#attributes)

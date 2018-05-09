@@ -30,12 +30,12 @@ Attribute Name                | Short Description                |
 
 ### list<a name='wls_datasources_list'>
 
-
-
 A list of datasources to define.
 
 The default value is: `{}`
 
 This is a simple way to get started. It is easy to get started, but soon your hiera yaml become a nightmare. Our advice is when you need to let puppet manage your Oracle profiles, to override this class and add your own puppet implementation. This is much better maintainable and adds more consistency.
-[Back to overview of wls_datasources](#attributes)
+Type: `Hash`
 
+
+[Back to overview of wls_datasources](#attributes)

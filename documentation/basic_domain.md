@@ -90,8 +90,6 @@ Attribute Name                                         | Short Description      
 
 ### weblogic<a name='basic_domain_weblogic'>
 
-
-
 Use this value if you want to skip or use your own class for stage `weblogic`.
 
 ## Use your own class
@@ -110,12 +108,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::basic_domain::weblogic:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of basic_domain](#attributes)
 
-
 ### wls_domain<a name='basic_domain_wls_domain'>
-
-
 
 Use this value if you want to skip or use your own class for stage `wls_domain`.
 
@@ -135,12 +134,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::basic_domain::wls_domain:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of basic_domain](#attributes)
 
-
 ### wls_startup<a name='basic_domain_wls_startup'>
-
-
 
 Use this value if you want to skip or use your own class for stage `wls_startup`.
 
@@ -160,12 +160,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::basic_domain::wls_startup:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of basic_domain](#attributes)
 
-
 ### before_weblogic<a name='basic_domain_before_weblogic'>
-
-
 
 The name of the class you want to execute directly **before** the `weblogic` class.
 
@@ -175,12 +176,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::basic_domain::before_weblogic:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of basic_domain](#attributes)
 
-
 ### before_wls_domain<a name='basic_domain_before_wls_domain'>
-
-
 
 The name of the class you want to execute directly **before** the `wls_domain` class.
 
@@ -190,12 +192,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::basic_domain::before_wls_domain:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of basic_domain](#attributes)
 
-
 ### before_wls_startup<a name='basic_domain_before_wls_startup'>
-
-
 
 The name of the class you want to execute directly **before** the `wls_startup` class.
 
@@ -205,12 +208,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::basic_domain::before_wls_startup:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of basic_domain](#attributes)
 
-
 ### after_weblogic<a name='basic_domain_after_weblogic'>
-
-
 
 The name of the class you want to execute directly **after** the `weblogic` class.
 
@@ -220,12 +224,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::basic_domain::after_weblogic:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of basic_domain](#attributes)
 
-
 ### after_wls_domain<a name='basic_domain_after_wls_domain'>
-
-
 
 The name of the class you want to execute directly **after** the `wls_domain` class.
 
@@ -235,12 +240,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::basic_domain::after_wls_domain:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of basic_domain](#attributes)
 
-
 ### after_wls_startup<a name='basic_domain_after_wls_startup'>
-
-
 
 The name of the class you want to execute directly **after** the `wls_startup` class.
 
@@ -250,5 +256,8 @@ You can use hiera to set this value. Here is an example:
 wls_profile::basic_domain::after_wls_startup:  my_module::my_class
 ```
 
-[Back to overview of basic_domain](#attributes)
+Type: `Optional[String]`
 
+Default:`undef`
+
+[Back to overview of basic_domain](#attributes)

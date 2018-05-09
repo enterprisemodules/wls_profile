@@ -32,20 +32,18 @@ Attribute Name                      | Short Description               |
 
 ### module_list<a name='wls_jms_module_list'>
 
-
-
 A list of modules to define.
 
 The default value is: `{}`
 
 This is a simple way to get started. It is easy to get started, but soon your hiera yaml become a nightmare. Our advice is when you need to let puppet manage your Oracle profiles, to override this class and add your own puppet implementation. This is much better maintainable and adds more consistency.
 
+Type: `Hash`
+
+
 [Back to overview of wls_jms](#attributes)
 
-
 ### queue_list<a name='wls_jms_queue_list'>
-
-
 
 A list of JMS queues to define.
 
@@ -53,12 +51,12 @@ The default value is: `{}`
 
 This is a simple way to get started. It is easy to get started, but soon your hiera yaml become a nightmare. Our advice is when you need to let puppet manage your Oracle profiles, to override this class and add your own puppet implementation. This is much better maintainable and adds more consistency.
 
+Type: `Hash`
+
+
 [Back to overview of wls_jms](#attributes)
 
-
 ### topic_lis<a name='wls_jms_topic_lis'>
-
-
 
 A list of JMS topics to define.
 
@@ -66,5 +64,5 @@ The default value is: `{}`
 
 This is a simple way to get started. It is easy to get started, but soon your hiera yaml become a nightmare. Our advice is when you need to let puppet manage your Oracle profiles, to override this class and add your own puppet implementation. This is much better maintainable and adds more consistency.
 
-[Back to overview of wls_jms](#attributes)
 
+[Back to overview of wls_jms](#attributes)

@@ -32,8 +32,6 @@ Attribute Name                     | Short Description                          
 
 ### users<a name='groups_and_users_users'>
 
-
-
 The OS users to create for WebLogic.
 
 The default value is:
@@ -51,12 +49,12 @@ wls_profile::weblogic::groups_and_users::users:
     comment:    This user oracle was created by Puppet
     managehome: true
 ```
+Type: `Hash`
+
+
 [Back to overview of groups_and_users](#attributes)
 
-
 ### groups<a name='groups_and_users_groups'>
-
-
 
 The list of groups to create for WebLogic.
 
@@ -68,5 +66,7 @@ wls_profile::weblogic::groups_and_users::groups:
     gid:  54321,
 ```
 
-[Back to overview of groups_and_users](#attributes)
+Type: `Hash`
 
+
+[Back to overview of groups_and_users](#attributes)

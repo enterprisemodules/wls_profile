@@ -104,8 +104,6 @@ Attribute Name                                                           | Short
 
 ### basic_domain<a name='admin_server_basic_domain'>
 
-
-
 Use this value if you want to skip or use your own class for stage `basic_domain`.
 
 ## Use your own class
@@ -124,12 +122,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::basic_domain:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### wls_servers<a name='admin_server_wls_servers'>
-
-
 
 Use this value if you want to skip or use your own class for stage `wls_servers`.
 
@@ -149,12 +148,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::wls_servers:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### wls_cluster<a name='admin_server_wls_cluster'>
-
-
 
 Use this value if you want to skip or use your own class for stage `wls_cluster`.
 
@@ -174,12 +174,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::wls_cluster:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### wls_datasources<a name='admin_server_wls_datasources'>
-
-
 
 Use this value if you want to skip or use your own class for stage `wls_datasources`.
 
@@ -199,12 +200,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::wls_datasources:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### wls_jms<a name='admin_server_wls_jms'>
-
-
 
 Use this value if you want to skip or use your own class for stage `wls_jms`.
 
@@ -224,12 +226,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::wls_jms:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### wls_users_and_groups<a name='admin_server_wls_users_and_groups'>
-
-
 
 Use this value if you want to skip or use your own class for stage `wls_users_and_groups`.
 
@@ -249,12 +252,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::wls_users_and_groups:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### pack_domain<a name='admin_server_pack_domain'>
-
-
 
 Use this value if you want to skip or use your own class for stage `pack_domain`.
 
@@ -274,12 +278,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::pack_domain:  skip
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### before_basic_domain<a name='admin_server_before_basic_domain'>
-
-
 
 The name of the class you want to execute directly **before** the `basic_domain` class.
 
@@ -289,12 +294,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::before_basic_domain:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### before_wls_servers<a name='admin_server_before_wls_servers'>
-
-
 
 The name of the class you want to execute directly **before** the `wls_servers` class.
 
@@ -304,12 +310,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::before_wls_servers:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### before_wls_cluster<a name='admin_server_before_wls_cluster'>
-
-
 
 The name of the class you want to execute directly **before** the `wls_cluster` class.
 
@@ -319,12 +326,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::before_wls_cluster:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### before_wls_datasources<a name='admin_server_before_wls_datasources'>
-
-
 
 The name of the class you want to execute directly **before** the `wls_datasources` class.
 
@@ -334,12 +342,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::before_wls_datasources:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### before_wls_jms<a name='admin_server_before_wls_jms'>
-
-
 
 The name of the class you want to execute directly **before** the `wls_jms` class.
 
@@ -349,12 +358,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::before_wls_jms:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### before_wls_users_and_groups<a name='admin_server_before_wls_users_and_groups'>
-
-
 
 The name of the class you want to execute directly **before** the `wls_users` class.
 
@@ -364,12 +374,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::before_wls_users:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### before_pack_domain<a name='admin_server_before_pack_domain'>
-
-
 
 The name of the class you want to execute directly **before** the `pack_domain` class.
 
@@ -379,12 +390,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::before_pack_domain:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### after_basic_domain<a name='admin_server_after_basic_domain'>
-
-
 
 The name of the class you want to execute directly **after** the `basic_domain` class.
 
@@ -394,12 +406,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::basic_domain:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### after_wls_servers<a name='admin_server_after_wls_servers'>
-
-
 
 The name of the class you want to execute directly **after** the `wls_servers` class.
 
@@ -409,12 +422,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::after_wls_servers:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### after_wls_cluster<a name='admin_server_after_wls_cluster'>
-
-
 
 The name of the class you want to execute directly **after** the `wls_cluster` class.
 
@@ -424,12 +438,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::after_wls_cluster:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### after_wls_datasources<a name='admin_server_after_wls_datasources'>
-
-
 
 The name of the class you want to execute directly **after** the `wls_datasources` class.
 
@@ -439,12 +454,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::after_wls_datasources:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### after_wls_jms<a name='admin_server_after_wls_jms'>
-
-
 
 The name of the class you want to execute directly **after** the `wls_jms` class.
 
@@ -454,12 +470,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::after_wls_jms:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### after_wls_users_and_groups<a name='admin_server_after_wls_users_and_groups'>
-
-
 
 The name of the class you want to execute directly **after** the `wls_users_and_groups` class.
 
@@ -469,12 +486,13 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::after_wls_users_and_groups:  my_module::my_class
 ```
 
+Type: `Optional[String]`
+
+Default:`undef`
+
 [Back to overview of admin_server](#attributes)
 
-
 ### after_pack_domain<a name='admin_server_after_pack_domain'>
-
-
 
 The name of the class you want to execute directly **after** the `pack_domain` class.
 
@@ -484,5 +502,8 @@ You can use hiera to set this value. Here is an example:
 wls_profile::admin_server::after_pack_domain:  my_module::my_class
 ```
 
-[Back to overview of admin_server](#attributes)
+Type: `Optional[String]`
 
+Default:`undef`
+
+[Back to overview of admin_server](#attributes)

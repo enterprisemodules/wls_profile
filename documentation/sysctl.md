@@ -29,8 +29,6 @@ Attribute Name       | Short Description                            |
 
 ### list<a name='sysctl_list'>
 
-
-
 The required sysctl parameters for WebLogic.
 
 The defaults are:
@@ -73,5 +71,5 @@ wls_profile::weblogic::sysctl::list:
     value: 1048576
 
 ```
-[Back to overview of sysctl](#attributes)
 
+[Back to overview of sysctl](#attributes)

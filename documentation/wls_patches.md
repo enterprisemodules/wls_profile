@@ -29,10 +29,8 @@ Attribute Name            | Short Description                                   
 
 ### list<a name='wls_patches_list'>
 
-
-
 A Hash describing the WebLogic patches you want be installed.
 
 Default value is: `{}`
-[Back to overview of wls_patches](#attributes)
 
+[Back to overview of wls_patches](#attributes)

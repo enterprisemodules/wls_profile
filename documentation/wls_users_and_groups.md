@@ -31,20 +31,18 @@ Attribute Name                                 | Short Description              
 
 ### group_list<a name='wls_users_and_groups_group_list'>
 
-
-
 A list of WebLogic groups to define.
 
 The default value is: `{}`
 
 This is a simple way to get started. It is easy to get started, but soon your hiera yaml become a nightmare. Our advice is when you need to let puppet manage your Oracle profiles, to override this class and add your own puppet implementation. This is much better maintainable and adds more consistency.
 
+Type: `Hash`
+
+
 [Back to overview of wls_users_and_groups](#attributes)
 
-
 ### user_list<a name='wls_users_and_groups_user_list'>
-
-
 
 A list of WebLogic users to define.
 
@@ -52,5 +50,7 @@ The default value is: `{}`
 
 This is a simple way to get started. It is easy to get started, but soon your hiera yaml become a nightmare. Our advice is when you need to let puppet manage your Oracle profiles, to override this class and add your own puppet implementation. This is much better maintainable and adds more consistency.
 
-[Back to overview of wls_users_and_groups](#attributes)
+Type: `Hash`
 
+
+[Back to overview of wls_users_and_groups](#attributes)

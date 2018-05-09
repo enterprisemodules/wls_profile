@@ -31,8 +31,6 @@ Attribute Name         | Short Description                                      
 
 ### list<a name='packages_list'>
 
-
-
 The required packages for a succesful WebLogic installation.
 
 The defaults are:
@@ -42,5 +40,7 @@ wls_profile::weblogic::packages::list:
   - binutils.x86_64
   - unzip.x86_64
 ```
-[Back to overview of packages](#attributes)
+Type: `Array[String[1]]`
 
+
+[Back to overview of packages](#attributes)

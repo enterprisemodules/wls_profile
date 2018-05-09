@@ -33,76 +33,58 @@ Attribute Name                                       | Short Description        
 
 ### machine_name<a name='managed_server_machine_name'>
 
-
-Type: String[1]
-
-
-
 The machine name to create for this managed server
-[Back to overview of managed_server](#attributes)
+Type: `String[1]`
 
+
+[Back to overview of managed_server](#attributes)
 
 ### listenaddress<a name='managed_server_listenaddress'>
 
-
-Type: String[1]
-
-
-
 The listen address for the managed server
+Type: `String[1]`
+
+
 [Back to overview of managed_server](#attributes)
 
-
 ### domain_name<a name='managed_server_domain_name'>
-
-
-Type: String[1]
-
-
 
 The name of the WebLogic domain. This will be used both as the REAL WebLogic domain name, and also be used by Puppet as a designator for Puppet resources. (e.g. the name before the slash `my_domain/wls_queue1`).
 
 The change the domain name, use the hiera key: `wls_profile::domain_name`. This will make sure the correct domain name gets used in all classes.
 
 The default value is: `MYDOMAIN`
+Type: `String[1]`
+
+
 [Back to overview of managed_server](#attributes)
 
-
 ### server_arguments<a name='managed_server_server_arguments'>
-
-
-Type: Array
-
-
 
 An Array containing the server startup arguments.
 
 Default value is : `[]`
+Type: `Array`
+
+
 [Back to overview of managed_server](#attributes)
 
-
 ### server_defaults<a name='managed_server_server_defaults'>
-
-
-Type: Hash
-
-
 
 a Hash describing the defauls to use when creating WebLogic servers.
 
 Default value : `{}`
+Type: `Hash`
+
+
 [Back to overview of managed_server](#attributes)
 
-
 ### machine_defaults<a name='managed_server_machine_defaults'>
-
-
-Type: Hash
-
-
 
 a Hash describing the defauls to use when creating WebLogic machines.
 
 Default value : `{}`
-[Back to overview of managed_server](#attributes)
+Type: `Hash`
 
+
+[Back to overview of managed_server](#attributes)

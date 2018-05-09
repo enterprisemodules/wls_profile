@@ -33,36 +33,36 @@ Attribute Name                                    | Short Description           
 
 ### domain_name<a name='wls_servers_domain_name'>
 
-
-
 The name of the WebLogic domain. This will be used both as the REAL WebLogic domain name, and also be used by Puppet as a designator for Puppet resources. (e.g. the name before the slash `my_domain/wls_queue1`).
 
 The change the domain name, use the hiera key: `wls_profile::domain_name`. This will make sure the correct domain name gets used in all classes.
 
 The default value is: `MYDOMAIN`
-[Back to overview of wls_servers](#attributes)
+Type: `String[1]`
 
+
+[Back to overview of wls_servers](#attributes)
 
 ### servers<a name='wls_servers_servers'>
 
 
+Type: `Hash`
 
 
 [Back to overview of wls_servers](#attributes)
-
 
 ### server_defaults<a name='wls_servers_server_defaults'>
 
 
+Type: `Hash`
 
 
 [Back to overview of wls_servers](#attributes)
-
 
 ### machine_defaults<a name='wls_servers_machine_defaults'>
 
 
+Type: `Hash`
 
 
 [Back to overview of wls_servers](#attributes)
-
