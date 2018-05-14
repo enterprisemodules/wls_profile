@@ -28,7 +28,7 @@ class wls_profile::node::copy_domain(
   Integer   $nodemanager_wait,
   String[1] $weblogic_user,
   String[1] $weblogic_password,
-) {
+) inherits wls_profile {
   echo {"WebLogic copy domain ${domain_name} from ${adminserver_address}:${domains_dir}/${domain_name}":
     withpath => false,
   }

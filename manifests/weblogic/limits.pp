@@ -8,7 +8,7 @@
 #   include wls_profile::weblogic::limits
 class wls_profile::weblogic::limits(
   Hash $list
-) {
+) inherits wls_profile {
   echo {'WeLogic limits':
     withpath => false,
   }

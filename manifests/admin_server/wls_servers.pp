@@ -8,10 +8,10 @@
 #   include wls_profile::admin_server::wls_servers
 class wls_profile::admin_server::wls_servers(
   String[1] $domain_name,
-  Hash      $servers,
   Hash      $server_defaults,
   Hash      $machine_defaults,
-) {
+  Hash      $servers            = $wls_profile::servers,
+) inherits wls_profile {
   echo {"WebLogic servers ${servers.keys.join(',')}":
     withpath => false
   }

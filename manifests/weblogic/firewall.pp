@@ -6,7 +6,9 @@
 #
 # @example
 #   include wls_profile::weblogic::firewall
-class wls_profile::weblogic::firewall {
+class wls_profile::weblogic::firewall(
+
+) inherits wls_profile {
   echo {'WebLogic Firewall':
     withpath => false,
   }

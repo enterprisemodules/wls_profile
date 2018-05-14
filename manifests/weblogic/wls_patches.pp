@@ -8,7 +8,7 @@
 #   include wls_profile::weblogic::wls_patches
 class wls_profile::weblogic::wls_patches(
   Hash $list
-) {
+) inherits wls_profile {
   echo {'WebLogic Patches':
     withpath => false,
   }

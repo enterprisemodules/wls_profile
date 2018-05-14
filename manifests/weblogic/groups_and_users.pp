@@ -9,7 +9,7 @@
 class wls_profile::weblogic::groups_and_users(
   Hash  $users,
   Hash  $groups,
-) {
+) inherits wls_profile {
   echo {'Weblogic Groups and Users':
     withpath => false,
   }

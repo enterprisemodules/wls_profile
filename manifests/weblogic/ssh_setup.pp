@@ -11,7 +11,7 @@ class wls_profile::weblogic::ssh_setup (
   String[1] $os_group,
   String[1] $private_key,
   String[1] $public_key,
-) {
+) inherits wls_profile {
   echo {"Setting up ssh keys for ${os_user}":
     withpath => false,
   }

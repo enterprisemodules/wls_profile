@@ -8,7 +8,7 @@
 #   include wls_profile::weblogic::sysctl
 class wls_profile::weblogic::sysctl(
   Hash $list
-) {
+) inherits wls_profile {
   echo {'WebLogic Sysctl':
     withpath => false,
   }

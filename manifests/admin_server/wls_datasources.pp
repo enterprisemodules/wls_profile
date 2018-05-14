@@ -8,7 +8,7 @@
 #   include wls_profile::admin_server::wls_datasources
 class wls_profile::admin_server::wls_datasources(
   Hash $list,
-) {
+) inherits wls_profile {
   echo {"WebLogic Datasources ${list.keys.join(',')} ":
     withpath => false,
   }

@@ -16,7 +16,7 @@ class wls_profile::node (
   Optional[String] $after_weblogic = undef,
   Optional[String] $after_copy_domain = undef,
   Optional[String] $after_wls_startup = undef,
-){
+) inherits wls_profile {
   easy_type::staged_contain([
     'wls_profile::weblogic',
     'wls_profile::node::copy_domain',

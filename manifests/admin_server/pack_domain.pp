@@ -18,7 +18,7 @@ class wls_profile::admin_server::pack_domain(
             $domains_dir,
   String[1] $os_user,
   String[1] $os_group,
-) {
+) inherits wls_profile {
   echo {"WebLogic pack domain ${domain_name}":
     withpath => false,
   }

@@ -8,8 +8,6 @@
 #   include wls_profile::weblogic::wls_startup
 class wls_profile::basic_domain::wls_startup(
   String[1] $domain_name,
-  Wls_install::Versions
-            $version,
   Stdlib::Absolutepath
             $weblogic_home,
   Stdlib::Absolutepath
@@ -17,7 +15,9 @@ class wls_profile::basic_domain::wls_startup(
   Stdlib::Absolutepath
             $log_dir,
   String[1] $os_user,
-) {
+  Wls_install::Versions
+            $version          = $wls_profile::weblogic_version,
+) inherits wls_profile {
   echo {"WebLogic startup for domain ${domain_name}":
     withpath => false,
   }

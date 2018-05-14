@@ -15,7 +15,7 @@ class wls_profile::weblogic::java_software(
   Boolean $rsa_key_size_fix,
   Boolean $x64,
   Integer $alternatives_priority,
-) {
+) inherits wls_profile {
   echo {"Java version ${version}":
     withpath => false
   }

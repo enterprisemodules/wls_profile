@@ -8,7 +8,7 @@
 #   include wls_profile::database::packages
 class wls_profile::weblogic::packages(
   Array[String[1]] $list,
-) {
+) inherits wls_profile {
   echo {'WebLogic Packages':
     withpath => false,
   }

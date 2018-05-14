@@ -34,7 +34,7 @@ class wls_profile::weblogic (
   Optional[String] $after_java_software = undef,
   Optional[String] $after_wls_software = undef,
   Optional[String] $after_wls_patches = undef,
-) {
+) inherits wls_profile {
   easy_type::staged_contain([
     'wls_profile::weblogic::sysctl',
     'wls_profile::weblogic::limits',

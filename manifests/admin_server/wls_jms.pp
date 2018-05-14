@@ -10,7 +10,7 @@ class wls_profile::admin_server::wls_jms(
   Hash  $module_list,
   Hash  $queue_list,
   Hash  $topic_list
-) {
+) inherits wls_profile {
   echo {'WebLogic JMS configuration':
     withpath => false,
   }

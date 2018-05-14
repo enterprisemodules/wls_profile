@@ -7,8 +7,6 @@
 # @example
 #   include wls_profile::weblogic::wls_software
 class wls_profile::weblogic::wls_software(
-  Wls_install::Versions
-            $version,
   String[1] $file_name,
   Stdlib::Absolutepath
             $oracle_base,
@@ -20,7 +18,9 @@ class wls_profile::weblogic::wls_software(
   String[1] $os_group,
   String[1] $source,
   Boolean   $fmw_infra,
-) {
+  Wls_install::Versions
+            $version  = $wls_profile::weblogic_version,
+) inherits wls_profile {
   echo {"WebLogic Software ${version} into ${middleware_home} using java in ${jdk_home}.":
     withpath => false
   }

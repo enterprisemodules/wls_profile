@@ -8,8 +8,6 @@
 #   include wls_profile::basic_domain::wls_domain
 class wls_profile::basic_domain::wls_domain(
   String[1] $domain_name,
-  Wls_install::Versions
-            $version,
   Stdlib::Absolutepath
             $weblogic_home,
   Stdlib::Absolutepath
@@ -33,9 +31,7 @@ class wls_profile::basic_domain::wls_domain(
     'wc_wcc_bpm']
             $template_name,
   String[1] $nodemanager_address,
-  Integer   $nodemanager_port,
   String[1] $adminserver_address,
-  Integer   $adminserver_port,
   String[1] $os_user,
   String[1] $os_group,
   String[1] $weblogic_user,
@@ -46,11 +42,14 @@ class wls_profile::basic_domain::wls_domain(
   Boolean   $development_mode,
   Integer   $nodemanager_wait,
   Hash      $adminserver_settings,
-) {
+  Integer   $nodemanager_port       = $wls_profile::nodemanager_port,
+  Integer   $adminserver_port       = $wls_profile::adminserver_port,
+  Wls_install::Versions
+            $version                = $wls_profile::weblogic_version,
+) inherits wls_profile {
   echo {"WebLogic domain for domain ${domain_name} using template for ${template_name}":
     withpath => false
   }
-
   #
   # Here you create your domain. The domain is the first thing a WebLogic installation needs. Here
   # you also decide what kind of domain you need. A bare WebLogic
