@@ -8,8 +8,6 @@
 #   include wls_profile::node::copy_domain
 class wls_profile::node::copy_domain(
   String[1] $domain_name,
-  Wls_install::Versions
-            $version,
   Stdlib::Absolutepath
             $weblogic_home,
   Stdlib::Absolutepath
@@ -23,11 +21,13 @@ class wls_profile::node::copy_domain(
   String[1] $os_user,
   String[1] $os_group,
   String[1] $adminserver_address,
-  Integer   $adminserver_port,
   String[1] $nodemanager_address,
   Integer   $nodemanager_wait,
   String[1] $weblogic_user,
   String[1] $weblogic_password,
+  Wls_install::Versions
+            $version               = $wls_profile::weblogic_version,
+  Integer   $adminserver_port      = $wls_profile::adminserver_port,
 ) inherits wls_profile {
   echo {"WebLogic copy domain ${domain_name} from ${adminserver_address}:${domains_dir}/${domain_name}":
     withpath => false,
@@ -57,6 +57,10 @@ class wls_profile::node::copy_domain(
   # with multiple nodemanagers, you have to specify different addresses and/or ports.
   #
   -> wls_install::nodemanager{"nodemanager for ${domain_name}":
+    weblogic_home_dir   => $weblogic_home,
+    middleware_home_dir => $middleware_home,
+    jdk_home_dir        => $jdk_home,
+    download_dir        => '/var/tmp/install',
     domain_name         => $domain_name,
     version             => $version,
     log_dir             => $log_dir,

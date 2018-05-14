@@ -154,6 +154,8 @@ wls_profile::weblogic::wls_software::fmw_infra:                   false
 #------------------------------------------------------------------------------
 wls_profile::basic_domain::wls_domain::domain_name:             "%{::wls_profile::domain_name}"
 wls_profile::basic_domain::wls_domain::weblogic_home:           "%{::wls_profile::weblogic_home}"
+wls_profile::basic_domain::wls_domain::jdk_home:                "%{::wls_profile::jdk_home}"
+wls_profile::basic_domain::wls_domain::middleware_home:         "%{::wls_profile::middleware_home}"
 wls_profile::basic_domain::wls_domain::domains_dir:             "%{::wls_profile::domains_dir}"
 wls_profile::basic_domain::wls_domain::log_dir:                 "%{::wls_profile::log_dir}"
 wls_profile::basic_domain::wls_domain::template_name:           standard
@@ -180,10 +182,10 @@ wls_profile::basic_domain::wls_domain::adminserver_settings:
 #------------------------------------------------------------------------------
 wls_profile::admin_server::wls_servers::domain_name:          "%{::wls_profile::domain_name}"
 wls_profile::admin_server::wls_servers::server_defaults:
-  listenport:      7005
-  ssllistenport:   7006
+  listenport:      7001
+  ssllistenport:   7002
 wls_profile::admin_server::wls_servers::machine_defaults:
-  listenport:      7005
+  listenport:      7001
   machinetype:     UnixMachine
   nmtype:          SSL
 #------------------------------------------------------------------------------
@@ -263,7 +265,6 @@ wls_profile::admin_server::pack_domain::os_group:           "%{::wls_profile::os
 #
 #------------------------------------------------------------------------------
 wls_profile::node::copy_domain::domain_name:                "%{::wls_profile::domain_name}"
-wls_profile::node::copy_domain::version:                    "%{::wls_profile::weblogic_version}"
 wls_profile::node::copy_domain::weblogic_home:              "%{::wls_profile::weblogic_home}"
 wls_profile::node::copy_domain::log_dir:                    "%{::wls_profile::log_dir}"
 wls_profile::node::copy_domain::middleware_home:            "%{::wls_profile::middleware_home}"
@@ -275,7 +276,7 @@ wls_profile::node::copy_domain::adminserver_address:        "%{::wls_profile::ad
 wls_profile::node::copy_domain::weblogic_user:              "%{::wls_profile::weblogic_user}"
 wls_profile::node::copy_domain::weblogic_password:          "%{::wls_profile::weblogic_password}"
 wls_profile::node::copy_domain::nodemanager_address:        "%{::wls_profile::nodemanager_address}"
-wls_profile::node::copy_domain::nodemanager_wait:           "%{::wls_profile::basic_domain::wls_domain::nodemanager_wait}"
+wls_profile::node::copy_domain::nodemanager_wait:           20
 #------------------------------------------------------------------------------
 #
 # WebLogic SSH setup
@@ -336,6 +337,16 @@ wls_profile::weblogic::ssh_setup::private_key: |
   1FEt43cWTwDh0ViojWTAmAmu+Ic+TRopnVsvULshzQPSGWArVVDn3pB3uJ74MtBu
   PsLoml7g3jpGkRb3xgW1N4N4Xt+Vkzp6qAB5aqvCZO3EoHfeOS5DE9O+XbSW
   -----END RSA PRIVATE KEY-----
+#------------------------------------------------------------------------------
+#
+# Firewall rules
+#
+#------------------------------------------------------------------------------
+wls_profile::weblogic::firewall::ports:
+  - 5556
+  - 7001
+  - 7002
+wls_profile::weblogic::firewall::manage_service: true
 #------------------------------------------------------------------------------
 #
 # WebLogic Patches

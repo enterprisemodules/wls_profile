@@ -11,7 +11,11 @@ class wls_profile::basic_domain::wls_domain(
   Stdlib::Absolutepath
             $weblogic_home,
   Stdlib::Absolutepath
+            $middleware_home,
+  Stdlib::Absolutepath
             $domains_dir,
+  Stdlib::Absolutepath
+            $jdk_home,
   Stdlib::Absolutepath
             $log_dir,
   Enum[
@@ -55,17 +59,22 @@ class wls_profile::basic_domain::wls_domain(
   # you also decide what kind of domain you need. A bare WebLogic
   #
   wls_install::domain{$domain_name:
-    domain_name       => $domain_name,
-    domain_template   => $template_name,
-    bam_enabled       => $bam_enabled,
-    b2b_enabled       => $b2b_enabled,
-    ess_enabled       => $ess_enabled,
-    development_mode  => $development_mode,
-    weblogic_user     => $weblogic_user,
-    weblogic_password => $weblogic_password,
-    os_user           => $os_user,
-    os_group          => $os_group,
-    download_dir      => '/var/tmp/install',
+    weblogic_home_dir   => $weblogic_home,
+    middleware_home_dir => $middleware_home,
+    jdk_home_dir        => $jdk_home,
+    domain_name         => $domain_name,
+    domain_template     => $template_name,
+    bam_enabled         => $bam_enabled,
+    b2b_enabled         => $b2b_enabled,
+    ess_enabled         => $ess_enabled,
+    development_mode    => $development_mode,
+    weblogic_user       => $weblogic_user,
+    weblogic_password   => $weblogic_password,
+    os_user             => $os_user,
+    os_group            => $os_group,
+    adminserver_address => $adminserver_address,
+    adminserver_port    => $adminserver_port,
+    download_dir        => '/var/tmp/install',
   }
   #
   # Over here you define the nodemanager. Here you can specify the address
@@ -73,6 +82,10 @@ class wls_profile::basic_domain::wls_domain(
   # with multiple nodemanagers, you have to specify different addresses and/or ports.
   #
   -> wls_install::nodemanager{"nodemanager for ${domain_name}":
+    weblogic_home_dir   => $weblogic_home,
+    middleware_home_dir => $middleware_home,
+    jdk_home_dir        => $jdk_home,
+    download_dir        => '/var/tmp/install',
     domain_name         => $domain_name,
     version             => $version,
     log_dir             => $log_dir,
@@ -87,12 +100,16 @@ class wls_profile::basic_domain::wls_domain(
   # to specify unique addresses and ports.
   #
   -> wls_install::control{"start_adminserver_${domain_name}":
-    action            => 'start',
-    os_user           => $os_user,
-    os_group          => $os_group,
-    domain_name       => $domain_name,
-    weblogic_user     => $weblogic_user,
-    weblogic_password => $weblogic_password,
+    weblogic_home_dir   => $weblogic_home,
+    middleware_home_dir => $middleware_home,
+    download_dir        => '/var/tmp/install',
+    jdk_home_dir        => $jdk_home,
+    action              => 'start',
+    os_user             => $os_user,
+    os_group            => $os_group,
+    domain_name         => $domain_name,
+    weblogic_user       => $weblogic_user,
+    weblogic_password   => $weblogic_password,
   }
   #
   # wls_setting is used to store the credentials and connect URL of a domain. The Puppet

@@ -1,6 +1,7 @@
 require 'spec_helper'
 
-describe 'wls_profile::admin_server::managed_server' do
+describe 'wls_profile::basic_domain::wls_domain' do
+
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }
