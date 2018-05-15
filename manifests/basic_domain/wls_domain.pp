@@ -59,8 +59,12 @@ class wls_profile::basic_domain::wls_domain(
   # you also decide what kind of domain you need. A bare WebLogic
   #
   wls_install::domain{$domain_name:
+    version             => $version,
+    wls_domains_dir     => $domains_dir,
+    wls_apps_dir        => "${domains_dir}/applications",
     weblogic_home_dir   => $weblogic_home,
     middleware_home_dir => $middleware_home,
+    log_dir             => $log_dir,
     jdk_home_dir        => $jdk_home,
     domain_name         => $domain_name,
     domain_template     => $template_name,
@@ -72,6 +76,8 @@ class wls_profile::basic_domain::wls_domain(
     weblogic_password   => $weblogic_password,
     os_user             => $os_user,
     os_group            => $os_group,
+    nodemanager_address => $nodemanager_address,
+    nodemanager_port    => $nodemanager_port,
     adminserver_address => $adminserver_address,
     adminserver_port    => $adminserver_port,
     download_dir        => '/var/tmp/install',
@@ -82,6 +88,7 @@ class wls_profile::basic_domain::wls_domain(
   # with multiple nodemanagers, you have to specify different addresses and/or ports.
   #
   -> wls_install::nodemanager{"nodemanager for ${domain_name}":
+    wls_domains_dir     => $domains_dir,
     weblogic_home_dir   => $weblogic_home,
     middleware_home_dir => $middleware_home,
     jdk_home_dir        => $jdk_home,
@@ -100,16 +107,19 @@ class wls_profile::basic_domain::wls_domain(
   # to specify unique addresses and ports.
   #
   -> wls_install::control{"start_adminserver_${domain_name}":
+    wls_domains_dir     => $domains_dir,
+    action              => 'start',
     weblogic_home_dir   => $weblogic_home,
     middleware_home_dir => $middleware_home,
     download_dir        => '/var/tmp/install',
     jdk_home_dir        => $jdk_home,
-    action              => 'start',
     os_user             => $os_user,
     os_group            => $os_group,
     domain_name         => $domain_name,
     weblogic_user       => $weblogic_user,
     weblogic_password   => $weblogic_password,
+    adminserver_address => $adminserver_address,
+    adminserver_port    => $adminserver_port,
   }
   #
   # wls_setting is used to store the credentials and connect URL of a domain. The Puppet
