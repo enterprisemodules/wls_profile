@@ -169,7 +169,7 @@ wls_profile::basic_domain::wls_domain::bam_enabled:             false
 wls_profile::basic_domain::wls_domain::b2b_enabled:             false
 wls_profile::basic_domain::wls_domain::ess_enabled:             false
 wls_profile::basic_domain::wls_domain::development_mode:        false
-wls_profile::basic_domain::wls_domain::nodemanager_wait:        20
+wls_profile::basic_domain::wls_domain::nodemanager_wait:        60
 wls_profile::basic_domain::wls_domain::adminserver_settings:
   log_file_min_size:            2000
   log_filecount:                10
@@ -276,7 +276,7 @@ wls_profile::node::copy_domain::adminserver_address:        "%{::wls_profile::ad
 wls_profile::node::copy_domain::weblogic_user:              "%{::wls_profile::weblogic_user}"
 wls_profile::node::copy_domain::weblogic_password:          "%{::wls_profile::weblogic_password}"
 wls_profile::node::copy_domain::nodemanager_address:        "%{::wls_profile::nodemanager_address}"
-wls_profile::node::copy_domain::nodemanager_wait:           20
+wls_profile::node::copy_domain::nodemanager_wait:           60
 #------------------------------------------------------------------------------
 #
 # WebLogic SSH setup
