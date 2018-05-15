@@ -1,3 +1,7 @@
+RSpec.configure do |c|
+  c.mock_with :rspec
+end
+
 require 'puppetlabs_spec_helper/module_spec_helper'
 require 'puppetlabs_spec_helper/puppet_spec_helper'
 require 'beaker-rspec/spec_helper'
@@ -35,7 +39,7 @@ RSpec.configure do |c|
     copy_module_to(master, :source => proj_root,
                            :ignore_list => ['software', 'log', 'junit'],
                            :target_module_path => '/etc/puppetlabs/code/environments/production/modules',
-                           :module_name => 'ora_profile')
+                           :module_name => 'wls_profile')
     # Now we don't use hiera any more. This code is needed when we want to use hiera to specify any stuff
     # on(master, "mkdir -p /etc/puppetlabs/puppet/data")
     # scp_to(master, "#{proj_root}/spec/hiera.yaml",'/etc/puppetlabs/puppet/hiera.yaml',  )
@@ -47,9 +51,8 @@ RSpec.configure do |c|
       'saz-limits',
       'herculesteam-augeasproviders_sysctl',
       'enterprisemodules-easy_type',
-      'enterprisemodules-ora_install',
-      'enterprisemodules-ora_config',
-      'enterprisemodules-ora_cis',
+      'enterprisemodules-wls_install',
+      'enterprisemodules-wls_config',
       'puppetlabs-stdlib',
       'ipcrm-echo',
       'puppet-archive',
@@ -57,8 +60,10 @@ RSpec.configure do |c|
       'herculesteam-augeasproviders_sysctl',
       'saz-limits',
       'puppetlabs-firewall',
-      'crayfishx-firewalld'
-    ]
+      'crayfishx-firewalld',
+      'fiddyspence-sleep',
+      'biemond-jdk7',
+      ]
 
     modules.each { |module_name | on(master, "puppet module install #{module_name} --force")}
 
