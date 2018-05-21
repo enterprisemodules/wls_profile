@@ -71,5 +71,7 @@ wls_profile::weblogic::sysctl::list:
     value: 1048576
 
 ```
+Type: `Hash`
+
 
 [Back to overview of sysctl](#attributes)

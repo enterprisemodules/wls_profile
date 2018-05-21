@@ -51,5 +51,7 @@ wls_profile::weblogic::limits::list:
     soft: 1048576
     hard: 1048576
 ```
+Type: `Hash`
+
 
 [Back to overview of limits](#attributes)

@@ -1,11 +1,5 @@
-# wls_profile::weblogic::firewall::iptables
-#
-# Open up ports for WebLogic using the firewalld firewall
-#
-# @summary A short summary of the purpose of this class
-#
-# @example
-#   include wls_profile::weblogic::firewall::iptables
+#++--++
+#--++--
 class wls_profile::weblogic::firewall::firewalld(
   Array[Integer]  $ports,
   Boolean         $manage_service,

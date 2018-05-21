@@ -23,7 +23,7 @@ if defined?(RSpec)
   end
 end
 
-@module_name = 'ora_profile'
+@module_name = 'wls_profile'
 
 
 if defined?(PuppetLint)

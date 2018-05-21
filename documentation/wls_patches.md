@@ -32,5 +32,7 @@ Attribute Name            | Short Description                                   
 A Hash describing the WebLogic patches you want be installed.
 
 Default value is: `{}`
+Type: `Hash`
+
 
 [Back to overview of wls_patches](#attributes)

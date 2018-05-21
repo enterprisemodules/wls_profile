@@ -1,11 +1,28 @@
-# wls_profile::admin_server::wls_servers
+#++--++
 #
-# A description of what this class does
+# wls_profile::wls_servers
 #
-# @summary A short summary of the purpose of this class
+# @summary This class makes sure all te required WebLogic machines and servers are defined on your system.
+# Using hiera, you can customize some of the aspects of this process.
+# 
+# When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::weblogic](./weblogic.html) for an explanation on how to do this.
 #
-# @example
-#   include wls_profile::admin_server::wls_servers
+# @param [String[1]] domain_name
+#    The name of the WebLogic domain.
+#    This will be used both as the REAL WebLogic domain name, and also be used by Puppet as a designator for Puppet resources. (e.g. the name before the slash `my_domain/wls_queue1`).
+#    The change the domain name, use the hiera key: `wls_profile::domain_name`. This will make sure the correct domain name gets used in all classes.
+#    The default value is: `MYDOMAIN`
+#
+# @param [Hash] servers
+#    
+#
+# @param [Hash] server_defaults
+#    
+#
+# @param [Hash] machine_defaults
+#    
+#
+#--++--
 class wls_profile::admin_server::wls_servers(
   String[1] $domain_name,
   Hash      $server_defaults,

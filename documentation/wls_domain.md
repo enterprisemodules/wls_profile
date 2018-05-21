@@ -81,6 +81,7 @@ Valid values are:
 Default value: `12213`
 Type: `Wls_install::Versions`
 
+Default:`$wls_profile::weblogic_version`
 
 [Back to overview of wls_domain](#attributes)
 
@@ -185,6 +186,7 @@ This value is used in multiple places. To make sure in all classed the correct v
 Default value: `5556`
 Type: `Integer`
 
+Default:`$wls_profile::nodemanager_port`
 
 [Back to overview of wls_domain](#attributes)
 
@@ -209,6 +211,7 @@ This value is used in multiple places. To make sure in all classed the correct v
 The default value is:  `7001`
 Type: `Integer`
 
+Default:`$wls_profile::adminserver_port`
 
 [Back to overview of wls_domain](#attributes)
 

@@ -48,6 +48,7 @@ Type: `String[1]`
 
 Type: `Hash`
 
+Default:`$wls_profile::servers`
 
 [Back to overview of wls_servers](#attributes)
 

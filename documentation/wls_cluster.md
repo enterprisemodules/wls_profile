@@ -61,6 +61,7 @@ A Hash of machine-servers defining all servers that need to be part of the clust
 The default implementations reads these values from the hiera key `wls_profile::admin_server::wls_servers::servers`
 Type: `Hash`
 
+Default:`$wls_profile::servers`
 
 [Back to overview of wls_cluster](#attributes)
 

@@ -1,11 +1,49 @@
-# wls_profile::weblogic::java_software
+#++--++
 #
-# A description of what this class does
+# wls_profile::java_software
 #
-# @summary A short summary of the purpose of this class
+# @summary This class is the default implementation for making sure the Java software is correctly installed on your system.
+# Using hiera, you can customize some of the aspects of this process.
+# 
+# When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::weblogic](./weblogic.html) for an explanation on how to do this.
 #
-# @example
-#   include wls_profile::weblogic::java_software
+# @param [String] version
+#    The version of java you want to use.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::java_version` to change it to your requested value.
+#    Default value: `8u152`
+#
+# @param [String] full_version
+#    The full version of java you want to use.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::java_full_version` to change it to your requested value.
+#    Default value: `jdk1.8.0_152`
+#
+# @param [String] cryptography_extension_file
+#    Cryptographic extension file to use.
+#    Default value: `jce_policy-8.zip`
+#
+# @param [String] source
+#    The location where the classes can find the software.
+#    You can specify a local directory, a Puppet url or an http url.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::source` to change it to your requested value.
+#    The default is : `puppet:///modules/software/`
+#
+# @param [Boolean] urandom_fix
+#    Enable the urandom fix.
+#    Default value: `true`
+#
+# @param [Boolean] rsa_key_size_fix
+#    Enable the RSA keysize fix.
+#    Default value: `true`
+#
+# @param [Boolean] x64
+#    Install x64 version of java.
+#    Default value: `true`
+#
+# @param [Integer] alternatives_priority
+#    alternatives priority for jdk.
+#    Default value is: `18001`
+#
+#--++--
 class wls_profile::weblogic::java_software(
   String  $version,
   String  $full_version,

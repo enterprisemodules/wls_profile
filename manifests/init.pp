@@ -1,11 +1,5 @@
-# wls_profile
-#
-# A description of what this class does
-#
-# @summary A short summary of the purpose of this class
-#
-# @example
-#   include wls_profile
+#++--++
+#--++--
 class wls_profile(
   String[1] $domain_name,
   String[1] $cluster_name,

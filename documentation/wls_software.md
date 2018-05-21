@@ -58,6 +58,7 @@ Valid values are:
 Default value: `12213`
 Type: `Wls_install::Versions`
 
+Default:`$wls_profile::weblogic_version`
 
 [Back to overview of wls_software](#attributes)
 

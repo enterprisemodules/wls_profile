@@ -1,11 +1,28 @@
-# wls_profile::admin_server::wls_jms
+#++--++
 #
-# A description of what this class does
+# wls_profile::wls_jms
 #
-# @summary A short summary of the purpose of this class
+# @summary This class is the default implementation for defining WebLogic JMS setup.
+# Using hiera, you can customize some of the aspects of this process.
+# 
+# When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::weblogic](./weblogic.html) for an explanation on how to do this.
 #
-# @example
-#   include wls_profile::admin_server::wls_jms
+# @param [Hash] module_list
+#    A list of modules to define.
+#    The default value is: `{}`
+#    This is a simple way to get started. It is easy to get started, but soon your hiera yaml become a nightmare. Our advice is when you need to let puppet manage your Oracle profiles, to override this class and add your own puppet implementation. This is much better maintainable and adds more consistency.
+#
+# @param [Hash] queue_list
+#    A list of JMS queues to define.
+#    The default value is: `{}`
+#    This is a simple way to get started. It is easy to get started, but soon your hiera yaml become a nightmare. Our advice is when you need to let puppet manage your Oracle profiles, to override this class and add your own puppet implementation. This is much better maintainable and adds more consistency.
+#
+# @param topic_lis
+#    A list of JMS topics to define.
+#    The default value is: `{}`
+#    This is a simple way to get started. It is easy to get started, but soon your hiera yaml become a nightmare. Our advice is when you need to let puppet manage your Oracle profiles, to override this class and add your own puppet implementation. This is much better maintainable and adds more consistency.
+#
+#--++--
 class wls_profile::admin_server::wls_jms(
   Hash  $module_list,
   Hash  $queue_list,
