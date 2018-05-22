@@ -15,6 +15,7 @@ class wls_profile::weblogic::firewall::firewalld(
       zone     => 'public',
       port     => $port,
       protocol => 'tcp',
+      notify   => Service['firewalld']
     }
   }
 
