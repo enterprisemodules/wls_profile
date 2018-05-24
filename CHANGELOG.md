@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+
+## Release 0.1.3
+
+**Features**
+
+- Manage firewall ports on both RHEL5 and RHEL > 5 systems
+- Add unit and acceptance tests
+- Remove reliance on old defauts
+- implement EM Quality control
+
+**Bugfixes**
+
+None
+
+**Known Issues**
+
+None
+
 ## Release 0.1.2
 
 **Features**
