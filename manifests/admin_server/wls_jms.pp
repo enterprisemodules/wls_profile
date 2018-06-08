@@ -38,7 +38,7 @@ class wls_profile::admin_server::wls_jms(
   # add your own puppet implementation. This is much better maintainable
   # and adds more consistency,
   #
-  create_resources(wls_module, $module_list)
-  create_resources(wls_queue, $queue_list)
-  create_resources(wls_topic, $topic_list)
+  create_resources(wls_jms_module, $module_list)
+  create_resources(wls_jms_queue, $queue_list)
+  create_resources(wls_jms_topic, $topic_list)
 }
