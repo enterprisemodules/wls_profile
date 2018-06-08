@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.1.4
+
+**Features**
+
+None
+
+**Bugfixes**
+
+- Fix used resource types in wls_jms
 
 ## Release 0.1.3
 
