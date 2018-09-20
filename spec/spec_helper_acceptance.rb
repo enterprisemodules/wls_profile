@@ -63,7 +63,8 @@ RSpec.configure do |c|
       'crayfishx-firewalld',
       'fiddyspence-sleep',
       'biemond-jdk7',
-      ]
+      'puppetlabs-sshkeys_core',
+    ]
 
     modules.each { |module_name | on(master, "puppet module install #{module_name} --force")}
 
