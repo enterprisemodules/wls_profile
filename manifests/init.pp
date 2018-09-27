@@ -1,6 +1,23 @@
 #++--++
 #--++--
 class wls_profile(
+  Enum[
+    'standard',
+    'forms',
+    'ohs_standalone',
+    'adf_restricted',
+    'osb',
+    'osb_soa',
+    'osb_soa_bpm',
+    'soa',
+    'soa_bpm',
+    'bam',
+    'adf',
+    'oim',
+    'oud',
+    'wc',
+    'wc_wcc_bpm']
+            $install_type = 'standard',      
   String[1] $domain_name,
   String[1] $cluster_name,
   String[1] $java_version,
@@ -24,10 +41,10 @@ class wls_profile(
             $log_dir,
   String[1] $adminserver_address,
   String[1] $nodemanager_address,
-  Hash      $servers              = lookup('wls_profile::servers'),
-  Integer   $adminserver_port     = lookup('wls_profile::adminserver_port'),
-  Integer   $nodemanager_port     = lookup('wls_profile::nodemanager_port'),
+  Hash      $servers,
+  Integer   $adminserver_port,
+  Integer   $nodemanager_port,
   Wls_install::Versions
-            $weblogic_version     = lookup('wls_profile::weblogic_version'),
+            $weblogic_version,
 ) {
 }

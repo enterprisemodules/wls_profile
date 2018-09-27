@@ -354,3 +354,15 @@ wls_profile::weblogic::firewall::manage_service: true
 #
 #------------------------------------------------------------------------------
 wls_profile::weblogic::wls_patches::list: {}
+#------------------------------------------------------------------------------
+#
+# FMW software
+#
+#------------------------------------------------------------------------------
+wls_profile::weblogic::fmw_software::oracle_base:                 "%{::wls_profile::oracle_base}"
+wls_profile::weblogic::fmw_software::middleware_home:             "%{::wls_profile::middleware_home}"
+wls_profile::weblogic::fmw_software::weblogic_home:               "%{::wls_profile::weblogic_home}"
+wls_profile::weblogic::fmw_software::jdk_home:                    "%{::wls_profile::jdk_home}"
+wls_profile::weblogic::fmw_software::os_user:                     "%{::wls_profile::os_user}"
+wls_profile::weblogic::fmw_software::os_group:                    "%{::wls_profile::os_group}"
+wls_profile::weblogic::fmw_software::source:                      "%{::wls_profile::source}"

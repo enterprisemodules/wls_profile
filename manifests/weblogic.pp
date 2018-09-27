@@ -278,6 +278,16 @@ class wls_profile::weblogic (
   Optional[String] $after_wls_software = undef,
   Optional[String] $after_wls_patches = undef,
 ) inherits wls_profile {
+
+  $install_fusion = $wls_profile::install_type != 'standard'
+
+  if $install_fusion {
+    # If we install anything else then basic weblogic, we fmw_infra to be true
+    class { 'wls_profile::weblogic::wls_software':
+      fmw_infra => true
+    }
+  }
+
   easy_type::staged_contain([
     'wls_profile::weblogic::sysctl',
     'wls_profile::weblogic::limits',
@@ -287,6 +297,7 @@ class wls_profile::weblogic (
     'wls_profile::weblogic::firewall',
     'wls_profile::weblogic::java_software',
     'wls_profile::weblogic::wls_software',
+    ['wls_profile::weblogic::fmw_software', $install_fusion],
     'wls_profile::weblogic::wls_patches',
   ])
 }

@@ -129,53 +129,77 @@
 #
 #--++--
 class wls_profile::basic_domain::wls_domain(
-  String[1] $domain_name,
+  String[1]           $domain_name,
   Stdlib::Absolutepath
-            $weblogic_home,
+                      $weblogic_home,
   Stdlib::Absolutepath
-            $middleware_home,
+                      $middleware_home,
   Stdlib::Absolutepath
-            $domains_dir,
+                      $domains_dir,
   Stdlib::Absolutepath
-            $jdk_home,
+                      $jdk_home,
   Stdlib::Absolutepath
-            $log_dir,
+                      $log_dir,
   Enum[
-    'standard',
-    'ohs_standalone',
-    'adf_restricted',
-    'osb',
-    'osb_soa',
-    'osb_soa_bpm',
-    'soa',
-    'soa_bpm',
-    'bam',
-    'adf',
-    'oim',
-    'oud',
-    'wc',
-    'wc_wcc_bpm']
-            $template_name,
-  String[1] $nodemanager_address,
-  String[1] $adminserver_address,
-  String[1] $os_user,
-  String[1] $os_group,
-  String[1] $weblogic_user,
-  String[1] $weblogic_password,
-  Boolean   $bam_enabled,
-  Boolean   $b2b_enabled,
-  Boolean   $ess_enabled,
-  Boolean   $development_mode,
-  Integer   $nodemanager_wait,
-  Hash      $adminserver_settings,
-  Integer   $nodemanager_port       = $wls_profile::nodemanager_port,
-  Integer   $adminserver_port       = $wls_profile::adminserver_port,
+    'forms'
+    # Later extend these types.
+    # 'ohs_standalone',
+    # 'adf_restricted',
+    # 'osb',
+    #
+    # 'osb_soa',
+    # 'osb_soa_bpm',
+    # 'soa',
+    # 'soa_bpm',
+    # 'bam',
+    # 'adf',
+    # 'oim',
+    # 'oud',
+    # 'wc',
+    # 'wc_wcc_bpm'
+    ]
+                      $template_name,
+  String[1]           $nodemanager_address,
+  String[1]           $adminserver_address,
+  String[1]           $os_user,
+  String[1]           $os_group,
+  String[1]           $weblogic_user,
+  String[1]           $weblogic_password,
+  Boolean             $bam_enabled,
+  Boolean             $b2b_enabled,
+  Boolean             $ess_enabled,
+  Boolean             $development_mode,
+  Integer             $nodemanager_wait,
+  Hash                $adminserver_settings,
+  Integer             $nodemanager_port        = $wls_profile::nodemanager_port,
+  Integer             $adminserver_port        = $wls_profile::adminserver_port,
   Wls_install::Versions
-            $version                = $wls_profile::weblogic_version,
+                      $version                 = $wls_profile::weblogic_version,
+  Optional[String[1]] $repository_database_url = undef,
+  Optional[String[1]] $rcu_database_url        = undef,
+  Optional[String[1]] $repository_prefix       = undef,
+  Optional[String[1]] $repository_password     = undef,
+  Optional[String[1]] $repository_sys_password = undef,
+
 ) inherits wls_profile {
+
   echo {"WebLogic domain for domain ${domain_name} using template for ${template_name}":
     withpath => false
   }
+
+
+  if $template_name in ['forms', 'soa', 'osb'] {
+    $optional_settings = {
+      repository_database_url => $repository_database_url,
+      rcu_database_url        => $rcu_database_url,
+      repository_prefix       => $repository_prefix,
+      repository_password     => $repository_password,
+      repository_sys_password => $repository_sys_password,
+    }
+  } else {
+    $optional_settings = {}
+  }
+
   #
   # Here you create your domain. The domain is the first thing a WebLogic installation needs. Here
   # you also decide what kind of domain you need. A bare WebLogic
@@ -203,6 +227,7 @@ class wls_profile::basic_domain::wls_domain(
     adminserver_address => $adminserver_address,
     adminserver_port    => $adminserver_port,
     download_dir        => '/var/tmp/install',
+    *                   => $optional_settings,         
   }
   #
   # Over here you define the nodemanager. Here you can specify the address

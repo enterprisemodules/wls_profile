@@ -276,6 +276,7 @@ class wls_profile::admin_server(
   Optional[String] $after_wls_users_and_groups = undef,
   Optional[String] $after_pack_domain = undef,
 ) inherits wls_profile {
+
   easy_type::staged_contain([
     'wls_profile::basic_domain',
     'wls_profile::admin_server::wls_servers',
