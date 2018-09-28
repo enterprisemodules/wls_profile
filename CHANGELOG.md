@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.2.0
+
+**Features**
+
+- Add basic support for Fusion Middleware
+- Make ready for Puppet 6
+
+**Bugfixes**
+
+None
+
 ## Release 0.1.4
 
 **Features**
