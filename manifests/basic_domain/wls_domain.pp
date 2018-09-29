@@ -141,6 +141,7 @@ class wls_profile::basic_domain::wls_domain(
   Stdlib::Absolutepath
                       $log_dir,
   Enum[
+    'standard',
     'forms'
     # Later extend these types.
     # 'ohs_standalone',
@@ -227,7 +228,7 @@ class wls_profile::basic_domain::wls_domain(
     adminserver_address => $adminserver_address,
     adminserver_port    => $adminserver_port,
     download_dir        => '/var/tmp/install',
-    *                   => $optional_settings,         
+    *                   => $optional_settings,
   }
   #
   # Over here you define the nodemanager. Here you can specify the address

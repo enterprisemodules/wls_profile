@@ -2,8 +2,6 @@
 #--++--
 class wls_profile::weblogic::fmw_software(
   Array[String[1]] $file_name,
-  Wls_install::Versions
-            $version  = $wls_profile::weblogic_version,
   Stdlib::Absolutepath
             $oracle_base,
   Stdlib::Absolutepath
@@ -15,6 +13,8 @@ class wls_profile::weblogic::fmw_software(
   String[1] $os_user,
   String[1] $os_group,
   String[1] $source,
+  Wls_install::Versions
+            $version  = $wls_profile::weblogic_version,
 ) inherits wls_profile {
 
   wls_install::fmw{$file_name[0]:
