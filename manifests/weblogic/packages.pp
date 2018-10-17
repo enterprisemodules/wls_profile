@@ -16,13 +16,15 @@
 #
 #--++--
 class wls_profile::weblogic::packages(
-  Array[String[1]] $list,
+  Hash $list,
 ) inherits wls_profile {
-  echo {'WebLogic Packages':
-    withpath => false,
+  if $list.size > 0 {
+    $packages = $list.keys
+    echo {"Ensure WebLogic Packages(s) ${packages.join(',')}":
+      withpath => false,
+    }
   }
 
-  package { $list:
-    ensure  => present,
-  }
+  ensure_resources('package', $list, {})
+
 }
