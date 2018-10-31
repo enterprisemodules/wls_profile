@@ -4,7 +4,7 @@
 #
 # @summary This class is the default implementation to copy the packed domain from the Admin Server, unpack it on the current machine and start the nodemanager.
 # Using hiera, you can customize some of the aspects of this process.
-# 
+#
 # When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::node](./node.html) for an explanation on how to do this.
 #
 # @param [String[1]] domain_name
@@ -114,7 +114,7 @@ class wls_profile::node::copy_domain(
   String[1] $nodemanager_address,
   Integer   $nodemanager_wait,
   String[1] $weblogic_user,
-  String[1] $weblogic_password,
+  Easy_type::Password $weblogic_password,
   Wls_install::Versions
             $version               = $wls_profile::weblogic_version,
   Integer   $adminserver_port      = $wls_profile::adminserver_port,
