@@ -6,7 +6,8 @@ class wls_profile(
   String[1] $java_version,
   String[1] $java_full_version,
   String[1] $weblogic_user,
-  String[1] $weblogic_password,
+  Easy_type::Password
+            $weblogic_password,
   String[1] $os_user,
   String[1] $os_group,
   String[1] $source,
