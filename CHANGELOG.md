@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.2.1
+
+**Features**
+
+None
+
+**Bugfixes**
+
+- [wls_patches] Fix puppet type for the patches
+- [weblogic] Add missing fmw_software variables
+- [core] Add support for Sensitive data
+- [packages] Use Hash, like other profiles
+
 ## Release 0.2.0
 
 **Features**
