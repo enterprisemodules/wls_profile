@@ -4,7 +4,7 @@
 #
 # @summary This class is the default implementation for ensuring your WebLogic software has all the required patches installed.
 # Using hiera, you can customize some of the aspects of this process.
-# 
+# s
 # When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::weblogic](./weblogic.html) for an explanation on how to do this.
 #
 # @param [Hash] list
@@ -18,5 +18,5 @@ class wls_profile::weblogic::wls_patches(
   echo {'WebLogic Patches':
     withpath => false,
   }
-  create_resources(ora_config::wls_opatch, $list)
+  create_resources(wls_opatch, $list)
 }
