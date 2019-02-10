@@ -148,19 +148,8 @@ Valid values are:
 
 Type: `Enum[
     'standard',
-    'ohs_standalone',
-    'adf_restricted',
-    'osb',
-    'osb_soa',
-    'osb_soa_bpm',
-    'soa',
-    'soa_bpm',
-    'bam',
-    'adf',
-    'oim',
-    'oud',
-    'wc',
-    'wc_wcc_bpm']`
+    'forms'
+    ]`
 
 
 [Back to overview of wls_domain](#attributes)

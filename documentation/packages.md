@@ -40,7 +40,7 @@ wls_profile::weblogic::packages::list:
   - binutils.x86_64
   - unzip.x86_64
 ```
-Type: `Array[String[1]]`
+Type: `Hash`
 
 
 [Back to overview of packages](#attributes)
