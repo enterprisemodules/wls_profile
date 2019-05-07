@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.3.0
+
+**Features**
+
+- [wls_opatch] Initial implementation
+
+**Bugfixes**
+
+None
+
 ## Release 0.2.1
 
 **Features**
