@@ -259,6 +259,7 @@ class wls_profile::weblogic (
   Optional[String] $java_software = undef,
   Optional[String] $wls_software = undef,
   Optional[String] $fmw_software = undef,
+  Optional[String] $wls_opatch = undef,
   Optional[String] $wls_patches = undef,
   Optional[String] $before_sysctl = undef,
   Optional[String] $before_limits = undef,
@@ -269,6 +270,7 @@ class wls_profile::weblogic (
   Optional[String] $before_java_software = undef,
   Optional[String] $before_wls_software = undef,
   Optional[String] $before_fmw_software = undef,
+  Optional[String] $before_wls_opatch = undef,
   Optional[String] $before_wls_patches = undef,
   Optional[String] $after_sysctl = undef,
   Optional[String] $after_limits = undef,
@@ -279,6 +281,7 @@ class wls_profile::weblogic (
   Optional[String] $after_java_software = undef,
   Optional[String] $after_wls_software = undef,
   Optional[String] $after_fmw_software = undef,
+  Optional[String] $after_wls_opatch = undef,
   Optional[String] $after_wls_patches = undef,
 ) inherits wls_profile {
 
@@ -301,6 +304,7 @@ class wls_profile::weblogic (
     'wls_profile::weblogic::java_software',
     'wls_profile::weblogic::wls_software',
     ['wls_profile::weblogic::fmw_software', $install_fusion],
+    'wls_profile::weblogic::wls_opatch',
     'wls_profile::weblogic::wls_patches',
   ])
 }
