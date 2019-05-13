@@ -128,6 +128,7 @@ class wls_profile::node::copy_domain(
     middleware_home_dir => $middleware_home,
     jdk_home_dir        => $jdk_home,
     wls_domains_dir     => $domains_dir,
+    wls_apps_dir        => "${domains_dir}/applications",
     os_user             => $os_user,
     os_group            => $os_group,
     download_dir        => '/tmp',
