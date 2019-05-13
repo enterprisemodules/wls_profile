@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.3.1
+
+**Features**
+
+None
+
+**Bugfixes**
+
+-[copy_domain] Fix used app dir
+
 ## Release 0.3.0
 
 **Features**
