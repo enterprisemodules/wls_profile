@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.3.2
+
+**Bugfixes**
+
+- [core] Export the download_dir and temp_dir parameters
+- [copy_domain] Fix directory issues
+
 ## Release 0.3.1
 
 **Features**
