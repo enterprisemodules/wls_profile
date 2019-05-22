@@ -64,6 +64,7 @@
 #    Default value: `false`
 #
 #--++--
+# lint:ignore:variable_scope
 class wls_profile::weblogic::wls_software(
   String[1] $file_name,
   Stdlib::Absolutepath
@@ -92,8 +93,10 @@ class wls_profile::weblogic::wls_software(
     jdk_home_dir         => $jdk_home,
     os_user              => $os_user,
     os_group             => $os_group,
-    download_dir         => '/var/tmp/install',
+    download_dir         => $download_dir,
+    temp_directory       => $temp_dir,
     source               => $source,
   }
   contain ::wls_install::software
 }
+# lint:endignore:variable_scope

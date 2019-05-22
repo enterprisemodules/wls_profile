@@ -1,5 +1,6 @@
 #++--++
 #--++--
+# lint:ignore:variable_scope
 class wls_profile::weblogic::fmw_software(
   Array[String[1]] $file_name,
   Stdlib::Absolutepath
@@ -31,8 +32,8 @@ class wls_profile::weblogic::fmw_software(
     jdk_home_dir         => $jdk_home,
     os_user              => $os_user,
     os_group             => $os_group,
-    download_dir         => '/var/tmp/install',
-    logoutput            => true,
+    download_dir         => $download_dir,
+    temp_directory       => $temp_dir,
   }
 }
-
+# lint:endignore:variable_scope

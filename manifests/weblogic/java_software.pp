@@ -44,6 +44,7 @@
 #    Default value is: `18001`
 #
 #--++--
+# lint:ignore:variable_scope
 class wls_profile::weblogic::java_software(
   String  $version,
   String  $full_version,
@@ -69,10 +70,11 @@ class wls_profile::weblogic::java_software(
     full_version                => $full_version,
     alternatives_priority       => $alternatives_priority,
     x64                         => $x64,
-    download_dir                => '/var/tmp/install',
+    download_dir                => $download_dir,
     urandom_java_fix            => $urandom_fix,
     rsa_key_size_fix            => $rsa_key_size_fix,
     cryptography_extension_file => $cryptography_extension_file,
     source_path                 => $source,
   }
 }
+# lint:endignore:variable_scope

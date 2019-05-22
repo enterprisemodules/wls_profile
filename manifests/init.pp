@@ -27,6 +27,10 @@ class wls_profile(
   Hash      $servers,
   Integer   $adminserver_port,
   Integer   $nodemanager_port,
+  Stdlib::Absolutepath
+            $download_dir,
+  Stdlib::Absolutepath
+            $temp_dir,
   Wls_install::Versions
             $weblogic_version,
   Enum[

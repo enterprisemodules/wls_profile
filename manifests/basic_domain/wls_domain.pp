@@ -128,6 +128,7 @@
 #    The default value is: `{}`
 #
 #--++--
+# lint:ignore:variable_scope
 class wls_profile::basic_domain::wls_domain(
   String[1]           $domain_name,
   Stdlib::Absolutepath
@@ -227,7 +228,7 @@ class wls_profile::basic_domain::wls_domain(
     nodemanager_port    => $nodemanager_port,
     adminserver_address => $adminserver_address,
     adminserver_port    => $adminserver_port,
-    download_dir        => '/var/tmp/install',
+    download_dir        => $download_dir,
     *                   => $optional_settings,
   }
   #
@@ -240,7 +241,7 @@ class wls_profile::basic_domain::wls_domain(
     weblogic_home_dir   => $weblogic_home,
     middleware_home_dir => $middleware_home,
     jdk_home_dir        => $jdk_home,
-    download_dir        => '/var/tmp/install',
+    download_dir        => $download_dir,
     domain_name         => $domain_name,
     version             => $version,
     log_dir             => $log_dir,
@@ -259,7 +260,7 @@ class wls_profile::basic_domain::wls_domain(
     action              => 'start',
     weblogic_home_dir   => $weblogic_home,
     middleware_home_dir => $middleware_home,
-    download_dir        => '/var/tmp/install',
+    download_dir        => $download_dir,
     jdk_home_dir        => $jdk_home,
     os_user             => $os_user,
     os_group            => $os_group,
@@ -315,3 +316,4 @@ class wls_profile::basic_domain::wls_domain(
     subscribe           => Wls_install::Domain[$domain_name],
   }
 }
+# lint:endignore:variable_scope

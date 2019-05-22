@@ -15,6 +15,8 @@ wls_profile::weblogic_home:       /opt/oracle/middleware12/wlserver
 wls_profile::jdk_home:            /usr/java/jdk1.8.0_152
 wls_profile::domains_dir:         /opt/oracle/domains
 wls_profile::log_dir:             /opt/oracle/domains/log
+wls_profile::download_dir:        /var/install
+wls_profile::temp_dir:            /tmp
 wls_profile::adminserver_address: "%{::fqdn}"
 wls_profile::nodemanager_address: "%{::fqdn}"
 wls_profile::adminserver_port:    7001

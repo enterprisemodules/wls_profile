@@ -94,6 +94,7 @@
 #    Default value: `Welcome01`
 #
 #--++--
+# lint:ignore:variable_scope
 class wls_profile::node::copy_domain(
   String[1] $domain_name,
   Stdlib::Absolutepath
@@ -131,7 +132,7 @@ class wls_profile::node::copy_domain(
     wls_apps_dir        => "${domains_dir}/applications",
     os_user             => $os_user,
     os_group            => $os_group,
-    download_dir        => '/tmp',
+    download_dir        => $download_dir,
     log_dir             => $log_dir,
     use_ssh             => true,
     domain_pack_dir     => "${domains_dir}/${domain_name}",
@@ -150,7 +151,7 @@ class wls_profile::node::copy_domain(
     middleware_home_dir => $middleware_home,
     wls_domains_dir     => $domains_dir,
     jdk_home_dir        => $jdk_home,
-    download_dir        => '/tmp/install',
+    download_dir        => $download_dir,
     domain_name         => $domain_name,
     version             => $version,
     log_dir             => $log_dir,
@@ -162,3 +163,4 @@ class wls_profile::node::copy_domain(
 
 
 }
+# lint:endignore:variable_scope
