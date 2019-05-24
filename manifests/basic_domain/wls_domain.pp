@@ -173,6 +173,7 @@ class wls_profile::basic_domain::wls_domain(
   Boolean             $development_mode,
   Integer             $nodemanager_wait,
   Hash                $adminserver_settings,
+  Array               $extra_properties,
   Integer             $nodemanager_port        = $wls_profile::nodemanager_port,
   Integer             $adminserver_port        = $wls_profile::adminserver_port,
   Wls_install::Versions
@@ -280,6 +281,7 @@ class wls_profile::basic_domain::wls_domain(
     weblogic_password => $weblogic_password,
     connect_url       => "t3://${adminserver_address}:${adminserver_port}",
     weblogic_home_dir => $weblogic_home,
+    extra_properties  => $extra_properties,
   }
 
   #

@@ -172,6 +172,7 @@ wls_profile::basic_domain::wls_domain::bam_enabled:             false
 wls_profile::basic_domain::wls_domain::b2b_enabled:             false
 wls_profile::basic_domain::wls_domain::ess_enabled:             false
 wls_profile::basic_domain::wls_domain::development_mode:        false
+wls_profile::basic_domain::wls_domain::extra_properties:        []
 wls_profile::basic_domain::wls_domain::nodemanager_wait:        60
 wls_profile::basic_domain::wls_domain::adminserver_settings:
   log_file_min_size:            2000
