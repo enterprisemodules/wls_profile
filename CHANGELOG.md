@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.3.3
+
+**Bugfixes**
+
+- [wls_domain] Add extra properties parameter
+
 ## Release 0.3.2
 
 **Bugfixes**
