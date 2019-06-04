@@ -1,17 +1,16 @@
-Use this value if you want to skip or use your own class for stage `pack_domain`.
+This class is the default implementation for packing a domain on the current server. The packed domain can be used to create other WebLogic nodes in the same domain. When you are creating just a single node WebLogic server, you can skip this class.
 
-## Use your own class
+Using hiera, you can customize some of the aspects of this process.
 
-You can use hiera to set this value. Here is an example:
+When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::admin_server](./admin_server.html) for an explanation on how to do this.
 
-```yaml
-wls_profile::admin_server::pack_domain:  my_module::my_class
-```
 
-## Skip
-
-You can use hiera to set this value. Here is an example:
-
-```yaml
-wls_profile::admin_server::pack_domain:  skip
-```
+<%- include_attributes [
+  :domain_name,
+  :middleware_home,
+  :weblogic_home,
+  :jdk_home,
+  :domains_dir,
+  :os_user,
+  :os_group,
+] %>

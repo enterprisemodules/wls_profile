@@ -1,6 +1,6 @@
 #++--++
 #
-# wls_profile::managed_server
+# wls_profile::admin_server::managed_server
 #
 # @summary This defined type is the default implementation for defining a managed server in your WebLogic domain.
 # It is called once for every machine server combination you passed to `wls_profile::admin_server::wls_servers`.

@@ -1,6 +1,6 @@
 #++--++
 #
-# wls_profile::wls_cluster
+# wls_profile::admin_server::wls_cluster
 #
 # @summary This class is the default implementation for creating a WebLogic cluster on your system.
 # Using hiera, you can customize some of the aspects of this process.

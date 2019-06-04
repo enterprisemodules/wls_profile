@@ -1,6 +1,6 @@
 #++--++
 #
-# wls_profile::copy_domain
+# wls_profile::node::copy_domain
 #
 # @summary This class is the default implementation to copy the packed domain from the Admin Server, unpack it on the current machine and start the nodemanager.
 # Using hiera, you can customize some of the aspects of this process.

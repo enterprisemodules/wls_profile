@@ -1,6 +1,6 @@
 #++--++
 #
-# wls_profile::groups_and_users
+# wls_profile::weblogic::groups_and_users
 #
 # @summary This class is the default implementation for creating the required OS users and groups for the installation of WebLogic.
 # Using hiera, you can customize some of the aspects of this process.

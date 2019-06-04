@@ -1,6 +1,6 @@
 #++--++
 #
-# wls_profile::firewall
+# wls_profile::weblogic::firewall
 #
 # @summary This class is the default implementation for setting the firewall rules for your WebLogic sever.
 # Using hiera, you can customize some of the aspects of this process.

@@ -1,6 +1,6 @@
 #++--++
 #
-# wls_profile::wls_servers
+# wls_profile::admin_server::wls_servers
 #
 # @summary This class makes sure all te required WebLogic machines and servers are defined on your system.
 # Using hiera, you can customize some of the aspects of this process.

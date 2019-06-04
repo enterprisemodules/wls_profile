@@ -1,6 +1,6 @@
 #++--++
 #
-# wls_profile::wls_datasources
+# wls_profile::admin_server::wls_datasources
 #
 # @summary This class is the default implementation for defining WebLogic datasources.
 # Using hiera, you can customize some of the aspects of this process.

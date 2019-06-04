@@ -1,6 +1,6 @@
 #++--++
 #
-# wls_profile::ssh_setup
+# wls_profile::weblogic::ssh_setup
 #
 # @summary This class is the default implementation for making sure the WebLogic account has ssh keys setup so it can passwordless copy files.
 # This is required when copying the packed domain from an admin server to a WebLogic node. If you are building singles node WebLogic configurations, you can skip this class.

@@ -1,11 +1,11 @@
 #++--++
 #
-# wls_profile::packages
+# wls_profile::weblogic::packages
 #
 # @summary 
 # This class is the default implementation for making sure the required packages are on your system.Using hiera, you can customize some of the aspects of this process.When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::weblogic](./weblogic.html) for an explanation on how to do this.
 #
-# @param [Array[String[1]]] list
+# @param [Hash] list
 #    The required packages for a succesful WebLogic installation.
 #    The defaults are:
 #    ```yaml

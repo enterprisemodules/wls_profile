@@ -1,6 +1,6 @@
 #++--++
 #
-# wls_profile::sysctl
+# wls_profile::weblogic::sysctl
 #
 # @summary This class is the default implementation for making sure the OS sysctl settings on your system are set correctly for WebLogic.
 # Using hiera, you can customize some of the aspects of this process.

@@ -1,17 +1,10 @@
-Use this value if you want to skip or use your own class for stage `wls_datasources`.
+This class is the default implementation for defining WebLogic datasources. 
 
-## Use your own class
+Using hiera, you can customize some of the aspects of this process.
 
-You can use hiera to set this value. Here is an example:
+When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::weblogic](./weblogic.html) for an explanation on how to do this.
 
-```yaml
-wls_profile::admin_server::wls_datasources:  my_module::my_class
-```
 
-## Skip
-
-You can use hiera to set this value. Here is an example:
-
-```yaml
-wls_profile::admin_server::wls_datasources:  skip
-```
+<%- include_attributes [
+  :list,
+] %>

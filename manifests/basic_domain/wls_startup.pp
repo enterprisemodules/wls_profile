@@ -1,6 +1,6 @@
 #++--++
 #
-# wls_profile::wls_startup
+# wls_profile::basic_domain::wls_startup
 #
 # @summary This class is the default implementation for making sure WebLogic gets started after a system reboot.
 # Using hiera, you can customize some of the aspects of this process.

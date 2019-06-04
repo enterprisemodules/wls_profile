@@ -1,6 +1,6 @@
 #++--++
 #
-# wls_profile::wls_jms
+# wls_profile::admin_server::wls_jms
 #
 # @summary This class is the default implementation for defining WebLogic JMS setup.
 # Using hiera, you can customize some of the aspects of this process.

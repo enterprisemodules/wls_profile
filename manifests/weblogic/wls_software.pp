@@ -1,6 +1,6 @@
 #++--++
 #
-# wls_profile::wls_software
+# wls_profile::weblogic::wls_software
 #
 # @summary This class is the default implementation for installing the WebLogic software on your system.
 # Using hiera, you can customize some of the aspects of this process.

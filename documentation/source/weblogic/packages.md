@@ -1,17 +1,11 @@
-Use this value if you want to skip or use your own class for stage `packages`.
 
-## Use your own class
+This class is the default implementation for making sure the required packages are on your system.
 
-You can use hiera to set this value. Here is an example:
+Using hiera, you can customize some of the aspects of this process.
 
-```yaml
-wls_profile::weblogic::packages:  my_module::my_class
-```
+When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::weblogic](./weblogic.html) for an explanation on how to do this.
 
-## Skip
 
-You can use hiera to set this value. Here is an example:
-
-```yaml
-wls_profile::weblogic::packages:  skip
-```
+<%- include_attributes [
+  :list,
+] %>

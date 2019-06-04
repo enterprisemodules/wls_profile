@@ -1,17 +1,18 @@
-Use this value if you want to skip or use your own class for stage `java_software`.
+This class is the default implementation for making sure the Java software is correctly installed on your system.
 
-## Use your own class
+Using hiera, you can customize some of the aspects of this process.
 
-You can use hiera to set this value. Here is an example:
+When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::weblogic](./weblogic.html) for an explanation on how to do this.
 
-```yaml
-wls_profile::weblogic::java_software:  my_module::my_class
-```
 
-## Skip
+<%- include_attributes [
+  :version,
+  :full_version,
+  :cryptography_extension_file,
+  :source,
+  :urandom_fix,
+  :rsa_key_size_fix,
+  :x64,
+  :alternatives_priority,
+] %>
 
-You can use hiera to set this value. Here is an example:
-
-```yaml
-wls_profile::weblogic::java_software:  skip
-```

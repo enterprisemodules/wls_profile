@@ -1,6 +1,6 @@
 #++--++
 #
-# wls_profile::limits
+# wls_profile::weblogic::limits
 #
 # @summary This class is the default implementation for making sure the OS Limits on your system are set correctly for WebLogic.
 # Using hiera, you can customize some of the aspects of this process.

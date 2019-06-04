@@ -1,17 +1,25 @@
-Use this value if you want to skip or use your own class for stage `copy_domain`.
+This class is the default implementation to copy the packed domain from the Admin Server, unpack it on the current machine and start the nodemanager.
 
-## Use your own class
+Using hiera, you can customize some of the aspects of this process.
 
-You can use hiera to set this value. Here is an example:
+When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::node](./node.html) for an explanation on how to do this.
 
-```yaml
-wls_profile::node::copy_domain:  my_module::my_class
-```
+<%- include_attributes [
+  :domain_name,
+  :version,
+  :weblogic_home,
+  :log_dir,
+  :middleware_home,
+  :jdk_home,
+  :domains_dir,
+  :os_user,
+  :os_group,
+  :adminserver_address,
+  :adminserver_port,
+  :nodemanager_address,
+  :nodemanager_wait,
+  :weblogic_user,
+  :weblogic_password,
+] %>
 
-## Skip
 
-You can use hiera to set this value. Here is an example:
-
-```yaml
-wls_profile::node::copy_domain:  skip
-```

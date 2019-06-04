@@ -1,6 +1,6 @@
 #++--++
 #
-# wls_profile::java_software
+# wls_profile::weblogic::java_software
 #
 # @summary This class is the default implementation for making sure the Java software is correctly installed on your system.
 # Using hiera, you can customize some of the aspects of this process.
