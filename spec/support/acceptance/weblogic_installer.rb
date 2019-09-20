@@ -1,6 +1,12 @@
-require_relative '../spec_helper_acceptance'
+shared_examples "a WebLogic installer" do | settings|
+  version = settings.fetch(:version)
+  file    = settings.fetch(:file)
 
-describe 'wls_profile::admin_server' do
+  after(:all) do
+    # Cleanup all
+    run_shell('killall -u oracle -w || true')
+    run_shell('rm -rf /opt/oracle /etc/wls* /etc/oraInst.loc|| true')
+  end
 
   manifest = <<-MANIFEST
     class {wls_profile:
@@ -11,9 +17,9 @@ describe 'wls_profile::admin_server' do
     }
 
     contain wls_profile::admin_server
-  MANIFEST
+MANIFEST
 
-  it 'installs the weblogic software' do
+  it 'installs the WebLogic software' do
     apply_manifest(manifest, expect_changes: true)
   end
 
