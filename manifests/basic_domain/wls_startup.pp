@@ -66,13 +66,20 @@ class wls_profile::basic_domain::wls_startup(
     withpath => false,
   }
 
-  wls_install::support::nodemanagerautostart{"${domain_name}_nodemanager":
-    version     => $version,
-    wl_home     => $weblogic_home,
-    log_dir     => $log_dir,
-    user        => $os_user,
-    domain      => $domain_name,
-    domain_path => "${domains_dir}/${domain_name}",
+  case  $::operatingsystem {
+    'RedHat', 'CentOS', 'OracleLinux': {
+      wls_install::support::nodemanagerautostart{"${domain_name}_nodemanager":
+        version     => $version,
+        wl_home     => $weblogic_home,
+        log_dir     => $log_dir,
+        user        => $os_user,
+        domain      => $domain_name,
+        domain_path => "${domains_dir}/${domain_name}",
+      }
+    }
+    default: {
+      warning "Automatic startup for WebLogic not supported on  ${::operatingsystem}"
+    }
   }
 }
 

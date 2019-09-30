@@ -55,26 +55,46 @@ class wls_profile::weblogic::java_software(
   Boolean $x64,
   Integer $alternatives_priority,
 ) inherits wls_profile {
+
   echo {"Java version ${version}":
     withpath => false
   }
 
-  $remove = [ 'java-1.7.0-openjdk.x86_64', 'java-1.6.0-openjdk.x86_64' ]
+  case  $::operatingsystem {
+    'AIX': {
+      package { 'Java8_64.jre':
+        ensure   => $version,
+        source   => $source,
+        provider => 'aix',
+      }
+      package { 'Java8_64.sdk':
+        ensure   => $version,
+        source   => $source,
+        provider => 'aix',
+      }
+    }
+    'RedHat', 'CentOS', 'OracleLinux': {
+      $remove = [ 'java-1.7.0-openjdk.x86_64', 'java-1.6.0-openjdk.x86_64' ]
 
-  package { $remove:
-    ensure  => absent,
-  }
+      package { $remove:
+        ensure  => absent,
+      }
 
-  ->jdk7::install7{ "jdk-${version}-linux-x64":
-    version                     => $version ,
-    full_version                => $full_version,
-    alternatives_priority       => $alternatives_priority,
-    x64                         => $x64,
-    download_dir                => $download_dir,
-    urandom_java_fix            => $urandom_fix,
-    rsa_key_size_fix            => $rsa_key_size_fix,
-    cryptography_extension_file => $cryptography_extension_file,
-    source_path                 => $source,
+      ->jdk7::install7{ "jdk-${version}-linux-x64":
+        version                     => $version ,
+        full_version                => $full_version,
+        alternatives_priority       => $alternatives_priority,
+        x64                         => $x64,
+        download_dir                => $download_dir,
+        urandom_java_fix            => $urandom_fix,
+        rsa_key_size_fix            => $rsa_key_size_fix,
+        cryptography_extension_file => $cryptography_extension_file,
+        source_path                 => $source,
+      }
+    }
+    default: {
+      fail "Don't know how to install Java on ${::operatingsystem}"
+    }
   }
 }
 # lint:endignore:variable_scope

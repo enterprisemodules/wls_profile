@@ -13,12 +13,13 @@ class wls_profile::weblogic::firewall(
   Boolean         $manage_service,
 ) inherits wls_profile {
 
-  echo {"Firewall: ensuring tcp port(s) ${ports.join(',')} are open.":
-    withpath => false,
-  }
-
   case  $::operatingsystem {
     'RedHat', 'CentOS', 'OracleLinux': {
+
+      echo {"Firewall: ensuring tcp port(s) ${ports.join(',')} are open.":
+        withpath => false,
+      }
+
       case ($::os['release']['major']) {
         '4','5','6': {
           class {'wls_profile::weblogic::firewall::iptables':
@@ -26,7 +27,7 @@ class wls_profile::weblogic::firewall(
             manage_service => $manage_service,
           }
         }
-        '7': {
+        '7', '8': {
           class {'wls_profile::weblogic::firewall::firewalld':
             ports          => $ports,
             manage_service => $manage_service,
@@ -35,11 +36,8 @@ class wls_profile::weblogic::firewall(
         default: { fail 'unsupported OS version when checking firewall service'}
       }
     }
-    'Solaris':{
-      warning 'No firewall rules added on Solaris.'
-    }
-    default: {
-        fail "${::operatingsystem} is not supported."
+    default :{
+      warning "No WebLogic firewall rules added on ${::operatingsystem}"
     }
   }
 }

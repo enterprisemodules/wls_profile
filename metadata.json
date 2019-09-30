@@ -2,7 +2,7 @@
   "name": "enterprisemodules-wls_profile",
   "version": "0.3.3",
   "author": "enterprisemodules",
-  "summary": "Easy customisable profile classes for WebLogic and Fusion nodes",
+  "summary": "Easy customisable profile classes for WebLogic and Fusion nodes for Linux, Solaris & AIX",
   "license": "Apache-2.0",
   "source": "https://github.com/enterprisemodules/wls_profile",
   "dependencies": [
@@ -56,6 +56,13 @@
     }
   ],
   "operatingsystem_support": [
+    {
+      "operatingsystem": "AIX",
+      "operatingsystemrelease": [
+        "7.1",
+        "7.2"
+      ]
+    },
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
