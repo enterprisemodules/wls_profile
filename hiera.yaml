@@ -3,8 +3,7 @@ defaults:  # Used for any hierarchy level that omits these keys.
   datadir: data         # This path is relative to hiera.yaml's directory.
   data_hash: yaml_data  # Use the built-in YAML backend.
 hierarchy:
-hierarchy:
   - name: "OS specific defaults"
-    path: "%{facts.os.family}.yaml"
+    path: "%{facts.kernel}.yaml"
   - name: "wls_profile class parameter defaults"
     path: "defaults.yaml"

@@ -25,4 +25,5 @@ end
 
 RSpec.configure do |c|
   c.default_facts = default_facts
+  c.default_facter_version = '3.14.0'
 end
