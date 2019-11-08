@@ -1,0 +1,18 @@
+---
+wls_profile::weblogic::groups_and_users::users:
+  "%{::wls_profile::os_user}":
+    uid:        54321
+    gid:        "%{::wls_profile::os_group}"
+    shell:      /bin/bash
+    password:   '$1$DSJ51vh6$4XzzwyIOk6Bi/54kglGk3.'
+    home:       /export/home/oracle
+    comment:    This user oracle was created by Puppet
+    managehome: true
+
+
+wls_profile::weblogic::firewall:  skip
+wls_profile::weblogic::packages:  skip
+wls_profile::weblogic::limits:    skip
+wls_profile::weblogic::sysctl:    skip
+wls_profile::weblogic::ssh_setup: skip
+

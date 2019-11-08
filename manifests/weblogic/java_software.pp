@@ -92,6 +92,15 @@ class wls_profile::weblogic::java_software(
         source_path                 => $source,
       }
     }
+    'Solaris': {
+      jdksolaris::install7{ "jdk-${version}-solaris":
+        version      => $version ,
+        full_version => $full_version,
+        x64          => $x64,
+        download_dir => $download_dir,
+        source_path  => $source,
+      }
+    }
     default: {
       fail "Don't know how to install Java on ${::operatingsystem}"
     }
