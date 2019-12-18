@@ -143,22 +143,20 @@ class wls_profile::basic_domain::wls_domain(
                       $log_dir,
   Enum[
     'standard',
-    'forms'
-    # Later extend these types.
-    # 'ohs_standalone',
-    # 'adf_restricted',
-    # 'osb',
-    #
-    # 'osb_soa',
-    # 'osb_soa_bpm',
-    # 'soa',
-    # 'soa_bpm',
-    # 'bam',
-    # 'adf',
-    # 'oim',
-    # 'oud',
-    # 'wc',
-    # 'wc_wcc_bpm'
+    'forms',
+    'ohs_standalone',
+    'adf_restricted',
+    'osb',
+    'osb_soa',
+    'osb_soa_bpm',
+    'soa',
+    'soa_bpm',
+    'bam',
+    'adf',
+    'oim',
+    'oud',
+    'wc',
+    'wc_wcc_bpm'
     ]
                       $template_name,
   String[1]           $nodemanager_address,
@@ -191,7 +189,7 @@ class wls_profile::basic_domain::wls_domain(
   }
 
 
-  if $template_name in ['forms', 'soa', 'osb'] {
+  if $template_name in ['forms','ohs_standalone','osb','osb_soa','osb_soa_bpm','soa','soa_bpm','bam','oim','oud','wc','wc_wcc_bpm'] {
     $optional_settings = {
       repository_database_url => $repository_database_url,
       rcu_database_url        => $rcu_database_url,
