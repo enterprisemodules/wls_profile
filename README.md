@@ -66,12 +66,13 @@ This module uses some other public Puppet forge modules. Check the metadata to e
 - WebLogic 12.2.1.1
 - WebLogic 12.2.1.2
 - WebLogic 12.2.1.3
+- WebLogic 12.2.1.4
 
 And Fusion versions:
 
 - WebLogic 10g
 - WebLogic 11g
-- WebLogic 12c ( 12.1.1, 12.1.2, 12.1.3, 12.2.1, 12.2.1.1, 12.2.1.2, 12.2.1.3)
+- WebLogic 12c ( 12.1.1, 12.1.2, 12.1.3, 12.2.1, 12.2.1.1, 12.2.1.2, 12.2.1.3, 12.2.1.4)
 
 ### Installing the wls_profile module
 
