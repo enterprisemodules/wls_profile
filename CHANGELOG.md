@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.5.1
+
+**Features**
+
+- [wls_domain] Add support for more fusion domain types
+- [release] Update readme to indicate support for WebLogic 12.2.1.4
+
 ## Release 0.5.0
 
 **Features**
