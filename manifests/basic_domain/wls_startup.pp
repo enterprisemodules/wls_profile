@@ -27,6 +27,7 @@
 #      - `12211`
 #      - `12212`
 #      - `12213`
+#      - `12214`
 #    Default value: `12213`
 #
 # @param [Stdlib::Absolutepath] weblogic_home

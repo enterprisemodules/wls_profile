@@ -128,8 +128,7 @@ Here are related blog posts:
 
 Some example code:
 - [Simple WLS demo](https://github.com/enterprisemodules/simple_wls_demo)
-- [Simple osb demo](https://github.com/enterprisemodules/simple_osb_demo)
-- [Simple soa demo](https://github.com/enterprisemodules/simple_soa_demo)
+- [Fusion middleware demo](https://github.com/enterprisemodules/fusion_middleware_demo)
 
 ## Limitations
 

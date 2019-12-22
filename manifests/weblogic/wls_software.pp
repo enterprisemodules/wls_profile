@@ -21,6 +21,7 @@
 #      - `12211`
 #      - `12212`
 #      - `12213`
+#      - `12214`
 #    Default value: `12213`
 #
 # @param [String[1]] file_name

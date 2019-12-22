@@ -14,5 +14,6 @@ Valid values are:
   - `12211`
   - `12212`
   - `12213`
+  - `12214`
 
 Default value: `12213`
