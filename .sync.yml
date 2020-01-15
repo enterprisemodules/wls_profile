@@ -60,3 +60,99 @@
       description: Run RSpec tests
       targets:
       - 'spec'
+.gitlab-ci.yml:
+  WebLogic 12.2.1.2  Acc test:
+    extends: .puppet_acceptance_test
+    variables:
+      type: admin_server_wls12212
+    only:
+      changes:
+        - "lib/puppet/**/*.rb"
+        - "templates/**/*.*"
+        - "manifests/**/*.pp"
+        - "specs/support/acceptance/**/*.rb"
+        - "specs/acceptance/admin_server_spec.rb"
+
+  WebLogic 12.2.1.3  Acc test:
+    extends: .puppet_acceptance_test
+    variables:
+      type: admin_server_wls12213
+    only:
+      changes:
+        - "lib/puppet/**/*.rb"
+        - "templates/**/*.*"
+        - "manifests/**/*.pp"
+        - "specs/support/acceptance/**/*.rb"
+        - "specs/acceptance/admin_server_spec.rb"
+
+.pdkignore:
+  required:
+  - '.*.sw[op]'
+  - '.metadata'
+  - '.yardoc'
+  - '.yardwarns'
+  - '*.iml'
+  - '/.bundle/'
+  - '/.idea/'
+  - '/.vagrant/'
+  - '/coverage/'
+  - '/bin/'
+  - '/doc/'
+  - '/Gemfile.local'
+  - '/Gemfile.lock'
+  - '/junit/'
+  - '/log/'
+  - '/pkg/'
+  - '/spec/fixtures/manifests/'
+  - '/spec/fixtures/modules/'
+  - '/tmp/'
+  - '/vendor/'
+  - '/convert_report.txt'
+  - '.DS_Store'
+.gitignore:
+  required:
+    - '.*.sw[op]'
+    - '.metadata'
+    - '.yardoc'
+    - '.yardwarns'
+    - '*.iml'
+    - '/.bundle/'
+    - '/.idea/'
+    - '/.vagrant/'
+    - '/coverage/'
+    - '/bin/'
+    - '/doc/'
+    - '/Gemfile.local'
+    - '/junit/'
+    - '/log/'
+    - '/pkg/'
+    - '/spec/fixtures/manifests/'
+    - '/spec/fixtures/modules/'
+    - '/tmp/'
+    - '/vendor/'
+    - '/convert_report.txt'
+    - '.DS_Store'
+    - '/inventory.yaml'
+.rspec:
+  required:
+    - --format documentation
+    - -----order defined
+Gemfile:
+  unmanaged: true
+Rakefile:
+  unmanaged: true
+data/common.yaml:
+  unmanaged: true
+spec/default_facts.yml:
+  concat_basedir: "/tmp"
+  wls_install_domains:
+    MYDOMAIN:
+      path: /opt/oracle/domains
+.rubocop.yml:
+  unmanaged: true
+  AllCops:
+    DisplayCopNames: true
+    Exclude:
+      - .vendor/**/*
+      - spec/fixtures/**/*
+    TargetRubyVersion: '2.1'
