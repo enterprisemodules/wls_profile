@@ -1,3 +1,17 @@
+/.tmp/
+/.vagrant/
+pkg/
+/spec/fixtures/
+log/
+junit/
+spec/software/
+.vendor/
+.bundle
+.DS_Store
+/.byebug_history
+/tests/.byebug_history
+convert_report.txt
+update_report.txt
 .*.sw[op]
 .metadata
 .yardoc
@@ -5,7 +19,6 @@
 *.iml
 /.bundle/
 /.idea/
-/.vagrant/
 /coverage/
 /bin/
 /doc/
@@ -18,5 +31,4 @@
 /tmp/
 /vendor/
 /convert_report.txt
-.DS_Store
 /inventory.yaml
