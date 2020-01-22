@@ -94,7 +94,7 @@
       "version_requirement": ">= 4.7.0 < 6.0.0"
     }
   ],
-  "pdk-version": "1.13.0",
+  "pdk-version": "1.14.1",
   "template-url": "https://github.com/enterprisemodules/pdksync_configs.git#master",
   "template-ref": "heads/master-0-g3ff47a6"
 }
