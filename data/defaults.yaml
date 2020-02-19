@@ -11,8 +11,6 @@ wls_profile::java_version:        8u152
 wls_profile::java_full_version:   jdk1.8.0_152
 wls_profile::weblogic_version:    12213
 wls_profile::weblogic_user:       weblogic
-wls_profile::weblogic_password:   Welcome01
-wls_profile::repository_password: Welcome01
 wls_profile::os_user:             oracle
 wls_profile::os_group:            dba
 wls_profile::source:              puppet:///modules/software
