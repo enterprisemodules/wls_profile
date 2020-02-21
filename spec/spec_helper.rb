@@ -4,6 +4,7 @@ end
 
 require 'puppetlabs_spec_helper/module_spec_helper'
 require 'rspec-puppet-facts'
+
 include RspecPuppetFacts
 
 default_facts = {
@@ -26,4 +27,18 @@ end
 RSpec.configure do |c|
   c.default_facts = default_facts
   c.default_facter_version = '3.14.0'
+end
+
+RSpec.shared_context 'specify passwords' do
+  let(:pre_condition) {
+    """
+      class { 'Wls_profile':
+        weblogic_password => Sensitive('Welcome01'),
+      }
+      class { 'wls_profile::basic_domain::wls_domain':
+        weblogic_password => Sensitive('Welcome01'),
+        repository_password => Sensitive('Welcome01'),
+      }
+    """
+  }
 end
