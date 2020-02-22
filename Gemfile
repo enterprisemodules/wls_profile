@@ -12,8 +12,7 @@ group :unit_test do
   gem 'hiera-puppet-helper'
   gem 'rspec-puppet'
   gem 'rspec-puppet-utils'
-  # gem 'rspec-puppet-facts'
-  gem 'rspec-puppet-facts', git: 'https://github.com/alexjfisher/rspec-puppet-facts.git', ref: 'issue_100'
+  gem 'rspec-puppet-facts'
   gem 'mocha', '1.3.0'
 end
 
