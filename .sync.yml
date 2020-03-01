@@ -137,8 +137,6 @@
   required:
     - --format documentation
     - -----order defined
-Gemfile:
-  unmanaged: true
 Rakefile:
   unmanaged: true
 data/common.yaml:
