@@ -2,6 +2,7 @@
 include:
 - project: enterprisemodules/gitlab_ci
   file: module-defaults.yml
+
 WebLogic 12.2.1.2  Acc test:
   extends: ".puppet_acceptance_test"
   variables:

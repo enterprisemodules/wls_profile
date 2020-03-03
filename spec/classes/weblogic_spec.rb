@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe 'wls_profile::weblogic' do
+  include_context 'specify passwords'
+
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }

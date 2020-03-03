@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe 'wls_profile::admin_server::wls_jms' do
-
   let(:pre_condition) { "wls_setting {'MYDOMAIN':}" }
+  include_context 'specify passwords'
 
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do

@@ -1,7 +1,11 @@
 shared_examples "a WebLogic installer" do | settings|
   version = settings.fetch(:version)
   file    = settings.fetch(:file)
-
+  before do
+    hiera_values_on_sut(
+      'easy_type::generate_password_mode' => 'development'
+    )
+  end
   after(:all) do
     # Cleanup all
     run_shell('killall -u oracle -w || true')
