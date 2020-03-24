@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.6.0
+
+**Features**
+
+- [core] Generated password added
+- [core] Add support for Sensitive data
+- [weblogic] Don’t install fusion software when install_type is ADF
+
+**Bugfixes**
+
+- [core] Also include original lookups of Sensitive passwords in lookup options
+
 ## Release 0.5.1
 
 **Features**
