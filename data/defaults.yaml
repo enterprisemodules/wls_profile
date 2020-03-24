@@ -18,7 +18,12 @@ lookup_options:
     convert_to: Sensitive
   wls_profile::basic_domain::wls_domain::repository_password:
     convert_to: Sensitive
-
+#
+# And the repo sys password
+#
+  wls_profile::basic_domain::wls_domain::repository_sys_password:
+    convert_to: Sensitive
+  
 wls_profile::domain_name:         MYDOMAIN
 wls_profile::cluster_name:        main
 wls_profile::java_version:        8u152
