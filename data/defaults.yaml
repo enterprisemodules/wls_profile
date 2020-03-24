@@ -1,8 +1,22 @@
 ---
 lookup_options:
+#
+# The WebLogic password
+#
   wls_profile::weblogic_password:
     convert_to: Sensitive
+  wls_profile::basic_domain::wls_domain::weblogic_password:
+    convert_to: Sensitive
+  wls_profile::node::copy_domain::weblogic_password:
+    convert_to: Sensitive
+#
+# And the repo password
+#
   wls_profile::repository_password:
+    convert_to: Sensitive
+  wls_profile::node::copy_domain::repository_password:
+    convert_to: Sensitive
+  wls_profile::basic_domain::wls_domain::repository_password:
     convert_to: Sensitive
 
 wls_profile::domain_name:         MYDOMAIN
