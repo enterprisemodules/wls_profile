@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.6.1
+
+**Bugfixes**
+
+- [wls_domain] Add repo_sys_password to list of keys to convert to Sensitive
+
 ## Release 0.6.0
 
 **Features**
