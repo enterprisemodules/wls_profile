@@ -7,3 +7,6 @@ concat_basedir: "/tmp"
 wls_install_domains:
   MYDOMAIN:
     path: "/opt/oracle/domains"
+dmi:
+  product:
+    uuid: "00000000-0000-0000-0000-000000000000"
