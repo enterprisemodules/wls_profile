@@ -5,7 +5,7 @@ wls_profile::weblogic::groups_and_users::users:
     gid:        "%{::wls_profile::os_group}"
     groups:
     - "%{::wls_profile::os_group}"
-    password:   '$1$DSJ51vh6$4XzzwyIOk6Bi/54kglGk3.'
+    password:   "%{alias('wls_profile::weblogic::os_user_password')}"
     home:       /home/oracle
     comment:    This user oracle was created by Puppet
     managehome: true

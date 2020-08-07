@@ -23,7 +23,7 @@ lookup_options:
 #
   wls_profile::basic_domain::wls_domain::repository_sys_password:
     convert_to: Sensitive
-  
+
 wls_profile::domain_name:         MYDOMAIN
 wls_profile::cluster_name:        main
 wls_profile::java_version:        8u152
@@ -144,7 +144,7 @@ wls_profile::weblogic::groups_and_users::users:
     groups:
     - "%{::wls_profile::os_group}"
     shell:      /bin/bash
-    password:   '$1$DSJ51vh6$4XzzwyIOk6Bi/54kglGk3.'
+    password:   "%{alias('wls_profile::weblogic::os_user_password')}"
     home:       /home/oracle
     comment:    This user oracle was created by Puppet
     managehome: true

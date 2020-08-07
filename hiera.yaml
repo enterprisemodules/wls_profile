@@ -12,5 +12,6 @@ hierarchy:
     lookup_key: 'easy_type::generated_passwords'
     options:
       use_for:
-        'wls_profile::weblogic_password':      'aA1#.12'
-        'wls_profile::repository_password':    'aA1#.12'
+        'wls_profile::weblogic_password':          'aA1#.12'
+        'wls_profile::repository_password':        'aA1#.12'
+        'wls_profile::weblogic::os_user_password': 'hash(aA1#.12,sha-512)'
