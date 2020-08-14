@@ -172,24 +172,35 @@ class wls_profile::basic_domain::wls_domain(
   Integer             $nodemanager_wait,
   Hash                $adminserver_settings,
   Array               $extra_properties,
-  Integer             $nodemanager_port        = $wls_profile::nodemanager_port,
-  Integer             $adminserver_port        = $wls_profile::adminserver_port,
+  Integer             $nodemanager_port                      = $wls_profile::nodemanager_port,
+  Integer             $adminserver_port                      = $wls_profile::adminserver_port,
+  Optional[Integer]   $adminserver_ssl_port                  = undef,
   Wls_install::Versions
-                      $version                 = $wls_profile::weblogic_version,
-  Optional[String[1]] $repository_database_url = undef,
-  Optional[String[1]] $rcu_database_url        = undef,
-  Optional[String[1]] $repository_prefix       = undef,
+                      $version                               = $wls_profile::weblogic_version,
+  Optional[String[1]] $repository_database_url               = undef,
+  Optional[String[1]] $rcu_database_url                      = undef,
+  Optional[String[1]] $repository_prefix                     = undef,
   Optional[Easy_type::Password]
-                      $repository_password     = undef,
+                      $repository_password                   = undef,
   Optional[Easy_type::Password]
-                      $repository_sys_password = undef,
-
+                      $repository_sys_password               = undef,
+  Boolean             $jsse_enabled                          = false,
+  Boolean             $custom_trust                          = false,
+  Optional[String[1]] $trust_keystore_file                   = undef,
+  Optional[Easy_type::Password]
+                      $trust_keystore_passphrase             = undef,
+  Boolean             $custom_identity                       = false,
+  Optional[String[1]] $custom_identity_keystore_filename     = undef,
+  Optional[Easy_type::Password]
+                      $custom_identity_keystore_passphrase   = undef,
+  Optional[String[1]] $custom_identity_alias                 = undef,
+  Optional[Easy_type::Password]
+                      $custom_identity_privatekey_passphrase = undef,
 ) inherits wls_profile {
 
   echo {"WebLogic domain for domain ${domain_name} using template for ${template_name}":
     withpath => false
   }
-
 
   if $template_name in ['forms','ohs_standalone','osb','osb_soa','osb_soa_bpm','soa','soa_bpm','bam','oim','oud','wc','wc_wcc_bpm'] {
     $optional_settings = {
@@ -207,30 +218,40 @@ class wls_profile::basic_domain::wls_domain(
   # you also decide what kind of domain you need. A bare WebLogic
   #
   wls_install::domain{$domain_name:
-    version             => $version,
-    wls_domains_dir     => $domains_dir,
-    wls_apps_dir        => "${domains_dir}/applications",
-    weblogic_home_dir   => $weblogic_home,
-    middleware_home_dir => $middleware_home,
-    log_dir             => $log_dir,
-    jdk_home_dir        => $jdk_home,
-    domain_name         => $domain_name,
-    domain_template     => $template_name,
-    bam_enabled         => $bam_enabled,
-    b2b_enabled         => $b2b_enabled,
-    ess_enabled         => $ess_enabled,
-    development_mode    => $development_mode,
-    weblogic_user       => $weblogic_user,
-    weblogic_password   => $weblogic_password,
-    repository_password => $repository_password,
-    os_user             => $os_user,
-    os_group            => $os_group,
-    nodemanager_address => $nodemanager_address,
-    nodemanager_port    => $nodemanager_port,
-    adminserver_address => $adminserver_address,
-    adminserver_port    => $adminserver_port,
-    download_dir        => $download_dir,
-    *                   => $optional_settings,
+    version                               => $version,
+    wls_domains_dir                       => $domains_dir,
+    wls_apps_dir                          => "${domains_dir}/applications",
+    weblogic_home_dir                     => $weblogic_home,
+    middleware_home_dir                   => $middleware_home,
+    log_dir                               => $log_dir,
+    jdk_home_dir                          => $jdk_home,
+    domain_name                           => $domain_name,
+    domain_template                       => $template_name,
+    bam_enabled                           => $bam_enabled,
+    b2b_enabled                           => $b2b_enabled,
+    ess_enabled                           => $ess_enabled,
+    development_mode                      => $development_mode,
+    weblogic_user                         => $weblogic_user,
+    weblogic_password                     => $weblogic_password,
+    repository_password                   => $repository_password,
+    os_user                               => $os_user,
+    os_group                              => $os_group,
+    nodemanager_address                   => $nodemanager_address,
+    nodemanager_port                      => $nodemanager_port,
+    adminserver_address                   => $adminserver_address,
+    adminserver_port                      => $adminserver_port,
+    adminserver_ssl_port                  => $adminserver_ssl_port,
+    download_dir                          => $download_dir,
+    jsse_enabled                          => $jsse_enabled,
+    custom_trust                          => $custom_trust,
+    trust_keystore_file                   => $trust_keystore_file,
+    trust_keystore_passphrase             => $trust_keystore_passphrase,
+    custom_identity                       => $custom_identity,
+    custom_identity_keystore_filename     => $custom_identity_keystore_filename,
+    custom_identity_keystore_passphrase   => $custom_identity_keystore_passphrase,
+    custom_identity_alias                 => $custom_identity_alias,
+    custom_identity_privatekey_passphrase => $custom_identity_privatekey_passphrase,
+    *                                     => $optional_settings,
   }
   #
   # Over here you define the nodemanager. Here you can specify the address
@@ -238,18 +259,27 @@ class wls_profile::basic_domain::wls_domain(
   # with multiple nodemanagers, you have to specify different addresses and/or ports.
   #
   -> wls_install::nodemanager{"nodemanager for ${domain_name}":
-    wls_domains_dir     => $domains_dir,
-    weblogic_home_dir   => $weblogic_home,
-    middleware_home_dir => $middleware_home,
-    jdk_home_dir        => $jdk_home,
-    download_dir        => $download_dir,
-    domain_name         => $domain_name,
-    version             => $version,
-    log_dir             => $log_dir,
-    nodemanager_address => $nodemanager_address,
-    os_user             => $os_user,
-    os_group            => $os_group,
-    sleep               => $nodemanager_wait,
+    wls_domains_dir                       => $domains_dir,
+    weblogic_home_dir                     => $weblogic_home,
+    middleware_home_dir                   => $middleware_home,
+    jdk_home_dir                          => $jdk_home,
+    download_dir                          => $download_dir,
+    domain_name                           => $domain_name,
+    version                               => $version,
+    log_dir                               => $log_dir,
+    nodemanager_address                   => $nodemanager_address,
+    os_user                               => $os_user,
+    os_group                              => $os_group,
+    jsse_enabled                          => $jsse_enabled,
+    custom_trust                          => $custom_trust,
+    trust_keystore_file                   => $trust_keystore_file,
+    trust_keystore_passphrase             => $trust_keystore_passphrase,
+    custom_identity                       => $custom_identity,
+    custom_identity_keystore_filename     => $custom_identity_keystore_filename,
+    custom_identity_keystore_passphrase   => $custom_identity_keystore_passphrase,
+    custom_identity_alias                 => $custom_identity_alias,
+    custom_identity_privatekey_passphrase => $custom_identity_privatekey_passphrase,
+    sleep                                 => $nodemanager_wait,
   }
   #
   # Before you can manage any WebLogic objects, you'll need to have a running admin server.
@@ -257,31 +287,38 @@ class wls_profile::basic_domain::wls_domain(
   # to specify unique addresses and ports.
   #
   -> wls_install::control{"start_adminserver_${domain_name}":
-    wls_domains_dir     => $domains_dir,
-    action              => 'start',
-    weblogic_home_dir   => $weblogic_home,
-    middleware_home_dir => $middleware_home,
-    download_dir        => $download_dir,
-    jdk_home_dir        => $jdk_home,
-    os_user             => $os_user,
-    os_group            => $os_group,
-    domain_name         => $domain_name,
-    weblogic_user       => $weblogic_user,
-    weblogic_password   => $weblogic_password,
-    adminserver_address => $adminserver_address,
-    adminserver_port    => $adminserver_port,
+    wls_domains_dir           => $domains_dir,
+    action                    => 'start',
+    weblogic_home_dir         => $weblogic_home,
+    middleware_home_dir       => $middleware_home,
+    download_dir              => $download_dir,
+    jdk_home_dir              => $jdk_home,
+    os_user                   => $os_user,
+    os_group                  => $os_group,
+    domain_name               => $domain_name,
+    weblogic_user             => $weblogic_user,
+    weblogic_password         => $weblogic_password,
+    adminserver_address       => $adminserver_address,
+    adminserver_port          => $adminserver_port,
+    jsse_enabled              => $jsse_enabled,
+    custom_trust              => $custom_trust,
+    trust_keystore_file       => $trust_keystore_file,
+    trust_keystore_passphrase => $trust_keystore_passphrase,
   }
   #
   # wls_setting is used to store the credentials and connect URL of a domain. The Puppet
   # types need this to connect to the admin server and change settings.
   #
   ->wls_setting{$domain_name:
-    user              => $os_user,
-    weblogic_user     => $weblogic_user,
-    weblogic_password => $weblogic_password,
-    connect_url       => "t3://${adminserver_address}:${adminserver_port}",
-    weblogic_home_dir => $weblogic_home,
-    extra_properties  => $extra_properties,
+    user                      => $os_user,
+    weblogic_user             => $weblogic_user,
+    weblogic_password         => $weblogic_password,
+    connect_url               => if $adminserver_ssl_port == undef { "t3://${adminserver_address}:${adminserver_port}"} else { "t3s://${adminserver_address}:${adminserver_ssl_port}" },
+    weblogic_home_dir         => $weblogic_home,
+    extra_properties          => $extra_properties,
+    custom_trust              => $custom_trust,
+    trust_keystore_file       => $trust_keystore_file,
+    trust_keystore_passphrase => if $trust_keystore_passphrase == undef {  undef } else { $trust_keystore_passphrase.unwrap },
   }
 
   #
@@ -304,18 +341,22 @@ class wls_profile::basic_domain::wls_domain(
   # when the statement before actually changed something.
   #
   ~>wls_adminserver{"${domain_name}/AdminServer":
-    ensure              => running,
-    refreshonly         => true,
-    server_name         => 'AdminServer',
-    domain_name         => $domain_name,
-    domain_path         => "${domains_dir}/${domain_name}",
-    os_user             => $os_user,
-    nodemanager_address => $nodemanager_address,
-    nodemanager_port    => $nodemanager_port,
-    weblogic_user       => $weblogic_user,
-    weblogic_password   => unwrap($weblogic_password),
-    weblogic_home_dir   => $weblogic_home,
-    subscribe           => Wls_install::Domain[$domain_name],
+    ensure                    => running,
+    refreshonly               => true,
+    server_name               => 'AdminServer',
+    domain_name               => $domain_name,
+    domain_path               => "${domains_dir}/${domain_name}",
+    os_user                   => $os_user,
+    nodemanager_address       => $nodemanager_address,
+    nodemanager_port          => $nodemanager_port,
+    weblogic_user             => $weblogic_user,
+    weblogic_password         => unwrap($weblogic_password),
+    weblogic_home_dir         => $weblogic_home,
+    subscribe                 => Wls_install::Domain[$domain_name],
+    jsse_enabled              => $jsse_enabled,
+    custom_trust              => $custom_trust,
+    trust_keystore_file       => $trust_keystore_file,
+    trust_keystore_passphrase => if $trust_keystore_passphrase == undef {  undef } else { $trust_keystore_passphrase.unwrap },
   }
 }
 # lint:endignore:variable_scope
