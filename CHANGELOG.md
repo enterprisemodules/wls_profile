@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.7.0
+
+**Features**
+
+- [wls_domain] Add support for ssl communication
+
+**Bugfixes**
+
+- [core] Remove hardcoded passwords
+
 ## Release 0.6.1
 
 **Bugfixes**
