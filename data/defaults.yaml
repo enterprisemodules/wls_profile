@@ -131,7 +131,6 @@ wls_profile::weblogic::limits::list:
 #------------------------------------------------------------------------------
 wls_profile::weblogic::packages::list:
   binutils.x86_64:  {}
-  unzip.x86_64:     {}
   net-tools:        {}
 #------------------------------------------------------------------------------
 #
@@ -166,10 +165,10 @@ wls_profile::weblogic::java_software::version:                      "%{::wls_pro
 wls_profile::weblogic::java_software::full_version:                 "%{::wls_profile::java_full_version}"
 wls_profile::weblogic::java_software::cryptography_extension_file:  jce_policy-8.zip
 wls_profile::weblogic::java_software::source:                       "%{::wls_profile::source}"
-wls_profile::weblogic::java_software::urandom_fix:                  true
-wls_profile::weblogic::java_software::rsa_key_size_fix:             true
 wls_profile::weblogic::java_software::x64:                          true
-wls_profile::weblogic::java_software::alternatives_priority:        18001
+wls_profile::weblogic::java_software::urandom_fix:                  ~
+wls_profile::weblogic::java_software::rsa_key_size_fix:             ~
+wls_profile::weblogic::java_software::alternatives_priority:        ~
 #------------------------------------------------------------------------------
 #
 # WebLogic software
