@@ -93,8 +93,10 @@ Type: `String`
 
 Enable the urandom fix.
 
+This parameter is deprecated and will be removed in a next version.
+
 Default value: `true`
-Type: `Boolean`
+Type: `Optional[Boolean]`
 
 
 [Back to overview of weblogic::java_software](#attributes)
@@ -104,7 +106,7 @@ Type: `Boolean`
 Enable the RSA keysize fix.
 
 Default value: `true`
-Type: `Boolean`
+Type: `Optional[Boolean]`
 
 
 [Back to overview of weblogic::java_software](#attributes)
@@ -124,7 +126,7 @@ Type: `Boolean`
 alternatives priority for jdk.
 
 Default value is: `18001`
-Type: `Integer`
+Type: `Optional[Integer]`
 
 
 [Back to overview of weblogic::java_software](#attributes)

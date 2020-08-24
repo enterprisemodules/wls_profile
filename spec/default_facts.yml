@@ -4,6 +4,7 @@ ipaddress6: FE80:0000:0000:0000:AAAA:AAAA:AAAA
 is_pe: false
 macaddress: AA:AA:AA:AA:AA:AA
 concat_basedir: "/tmp"
+wls_install_homes:  {}
 wls_install_domains:
   MYDOMAIN:
     path: "/opt/oracle/domains"

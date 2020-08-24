@@ -21,6 +21,6 @@
       firewall:               puppetlabs-firewall
       firewalld:              crayfishx-firewalld
       sleep:                  fiddyspence-sleep
-      jdk7:                   biemond-jdk7
+      java:                   puppetlabs-java
       sshkeys_core:           puppetlabs-sshkeys_core
   

@@ -4,7 +4,7 @@
 #
 # @summary This class is the default implementation to copy the packed domain from the Admin Server, unpack it on the current machine and start the nodemanager.
 # Using hiera, you can customize some of the aspects of this process.
-#
+# 
 # When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::node](./node.html) for an explanation on how to do this.
 #
 # @param [String[1]] domain_name
@@ -89,7 +89,7 @@
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::weblogic_user` to change it to your requested value.
 #    Default value: `weblogic`
 #
-# @param [String[1]] weblogic_password
+# @param [Easy_type::Password] weblogic_password
 #    The password for the WebLogic account.
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::weblogic_password` to change it to your requested value.
 #    Default value: `Welcome01`
