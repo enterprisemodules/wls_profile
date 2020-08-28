@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.8.0
+
+**Features**
+
+- [java_software] Start using module puppetlabs-java
+
+**Bugfixes**
+
 ## Release 0.7.0
 
 **Features**
