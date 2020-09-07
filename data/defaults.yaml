@@ -166,8 +166,8 @@ wls_profile::weblogic::java_software::full_version:                 "%{::wls_pro
 wls_profile::weblogic::java_software::cryptography_extension_file:  jce_policy-8.zip
 wls_profile::weblogic::java_software::source:                       "%{::wls_profile::source}"
 wls_profile::weblogic::java_software::x64:                          true
-wls_profile::weblogic::java_software::urandom_fix:                  ~
-wls_profile::weblogic::java_software::rsa_key_size_fix:             ~
+wls_profile::weblogic::java_software::urandom_fix:                  true
+wls_profile::weblogic::java_software::rsa_key_size_fix:             true
 wls_profile::weblogic::java_software::alternatives_priority:        ~
 #------------------------------------------------------------------------------
 #

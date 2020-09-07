@@ -57,20 +57,14 @@ class wls_profile::weblogic::java_software(
   Optional[Integer] $alternatives_priority,
 ) inherits wls_profile {
 
-  if $urandom_fix != undef {
-    deprecation (urandom_fix, "Parameter 'wls_profile::weblogic::java_software::urandom_fix' is deprecated and will be removed in a future release")
+  echo {"Java version ${version}":
+    withpath => false
   }
+
+  $java_homes = '/usr/java'
 
   if $alternatives_priority != undef {
     deprecation (alternatives_priority, "Parameter 'wls_profile::weblogic::java_software::alternatives_priority' is deprecated and will be removed in a future release")
-  }
-
-  if $rsa_key_size_fix != undef {
-    deprecation (rsa_key_size_fix, "Parameter 'wls_profile::weblogic::java_software::rsa_key_size_fix' is deprecated and will be removed in a future release")
-  }
-
-  echo {"Java version ${version}":
-    withpath => false
   }
 
   case  $::operatingsystem {
@@ -107,6 +101,28 @@ class wls_profile::weblogic::java_software(
       -> file {'/usr/bin/java':
         ensure => 'link',
         target => "/usr/java/${full_version}/bin/java"
+      }
+      if ($urandom_fix == true) {
+          exec { "set urandom ${full_version}":
+            command => "sed -i -e's/^securerandom.source=.*/securerandom.source=file:\\/dev\\/.\\/urandom/g' ${java_homes}/${full_version}/jre/lib/security/java.security",
+            unless  => "grep '^securerandom.source=file:/dev/./urandom' ${java_homes}/${full_version}/jre/lib/security/java.security",
+            require => Java::Download["jdk-${version}-linux-x64.tar.gz"],
+            path    => '/bin',
+          }
+        }
+      if ($rsa_key_size_fix == true) {
+        exec { "sleep 3 sec for urandomJavaFix ${full_version}":
+          command => '/bin/sleep 3',
+          unless  => "grep 'RSA keySize < 512' ${java_homes}/${full_version}/jre/lib/security/java.security",
+          require => Java::Download["jdk-${version}-linux-x64.tar.gz"],
+          path    => '/bin',
+        }
+        ~> exec { "set RSA keySize ${full_version}":
+          command     => "sed -i -e's/RSA keySize < 1024/RSA keySize < 512/g' ${java_homes}/${full_version}/jre/lib/security/java.security",
+          unless      => "grep 'RSA keySize < 512' ${java_homes}/${full_version}/jre/lib/security/java.security",
+          refreshonly => true,
+          path        => '/bin',
+        }
       }
     }
     'Solaris': {
