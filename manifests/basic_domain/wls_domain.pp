@@ -172,6 +172,18 @@ class wls_profile::basic_domain::wls_domain(
   Integer             $nodemanager_wait,
   Hash                $adminserver_settings,
   Array               $extra_properties,
+  Boolean             $jsse_enabled,
+  Boolean             $custom_trust,
+  Optional[String[1]] $trust_keystore_file,
+  Boolean             $custom_identity,
+  Optional[String[1]] $custom_identity_keystore_filename,
+  Optional[String[1]] $custom_identity_alias,
+  Optional[Easy_type::Password]
+                      $custom_identity_keystore_passphrase   = undef,
+  Optional[Easy_type::Password]
+                      $trust_keystore_passphrase             = undef,
+  Optional[Easy_type::Password]
+                      $custom_identity_privatekey_passphrase = undef,
   Integer             $nodemanager_port                      = $wls_profile::nodemanager_port,
   Integer             $adminserver_port                      = $wls_profile::adminserver_port,
   Optional[Integer]   $adminserver_ssl_port                  = undef,
@@ -184,18 +196,6 @@ class wls_profile::basic_domain::wls_domain(
                       $repository_password                   = undef,
   Optional[Easy_type::Password]
                       $repository_sys_password               = undef,
-  Boolean             $jsse_enabled                          = false,
-  Boolean             $custom_trust                          = false,
-  Optional[String[1]] $trust_keystore_file                   = undef,
-  Optional[Easy_type::Password]
-                      $trust_keystore_passphrase             = undef,
-  Boolean             $custom_identity                       = false,
-  Optional[String[1]] $custom_identity_keystore_filename     = undef,
-  Optional[Easy_type::Password]
-                      $custom_identity_keystore_passphrase   = undef,
-  Optional[String[1]] $custom_identity_alias                 = undef,
-  Optional[Easy_type::Password]
-                      $custom_identity_privatekey_passphrase = undef,
 ) inherits wls_profile {
 
   echo {"WebLogic domain for domain ${domain_name} using template for ${template_name}":
