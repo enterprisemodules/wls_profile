@@ -187,26 +187,33 @@ wls_profile::weblogic::wls_software::fmw_infra:                   false
 # WebLogic Domain
 #
 #------------------------------------------------------------------------------
-wls_profile::basic_domain::wls_domain::domain_name:             "%{::wls_profile::domain_name}"
-wls_profile::basic_domain::wls_domain::weblogic_home:           "%{::wls_profile::weblogic_home}"
-wls_profile::basic_domain::wls_domain::jdk_home:                "%{::wls_profile::jdk_home}"
-wls_profile::basic_domain::wls_domain::middleware_home:         "%{::wls_profile::middleware_home}"
-wls_profile::basic_domain::wls_domain::domains_dir:             "%{::wls_profile::domains_dir}"
-wls_profile::basic_domain::wls_domain::log_dir:                 "%{::wls_profile::log_dir}"
-wls_profile::basic_domain::wls_domain::template_name:           standard
-wls_profile::basic_domain::wls_domain::nodemanager_address:     "%{::wls_profile::nodemanager_address}"
-wls_profile::basic_domain::wls_domain::adminserver_address:     "%{::wls_profile::adminserver_address}"
-wls_profile::basic_domain::wls_domain::os_user:                 "%{::wls_profile::os_user}"
-wls_profile::basic_domain::wls_domain::os_group:                "%{::wls_profile::os_group}"
-wls_profile::basic_domain::wls_domain::weblogic_user:           "%{::wls_profile::weblogic_user}"
-wls_profile::basic_domain::wls_domain::weblogic_password:       "%{alias('wls_profile::weblogic_password')}"
-wls_profile::basic_domain::wls_domain::repository_password:     "%{alias('wls_profile::repository_password')}"
-wls_profile::basic_domain::wls_domain::bam_enabled:             false
-wls_profile::basic_domain::wls_domain::b2b_enabled:             false
-wls_profile::basic_domain::wls_domain::ess_enabled:             false
-wls_profile::basic_domain::wls_domain::development_mode:        false
-wls_profile::basic_domain::wls_domain::extra_properties:        []
-wls_profile::basic_domain::wls_domain::nodemanager_wait:        60
+wls_profile::basic_domain::wls_domain::domain_name:                           "%{::wls_profile::domain_name}"
+wls_profile::basic_domain::wls_domain::weblogic_home:                         "%{::wls_profile::weblogic_home}"
+wls_profile::basic_domain::wls_domain::jdk_home:                              "%{::wls_profile::jdk_home}"
+wls_profile::basic_domain::wls_domain::middleware_home:                       "%{::wls_profile::middleware_home}"
+wls_profile::basic_domain::wls_domain::domains_dir:                           "%{::wls_profile::domains_dir}"
+wls_profile::basic_domain::wls_domain::log_dir:                               "%{::wls_profile::log_dir}"
+wls_profile::basic_domain::wls_domain::template_name:                         standard
+wls_profile::basic_domain::wls_domain::nodemanager_address:                   "%{::wls_profile::nodemanager_address}"
+wls_profile::basic_domain::wls_domain::adminserver_address:                   "%{::wls_profile::adminserver_address}"
+wls_profile::basic_domain::wls_domain::os_user:                               "%{::wls_profile::os_user}"
+wls_profile::basic_domain::wls_domain::os_group:                              "%{::wls_profile::os_group}"
+wls_profile::basic_domain::wls_domain::weblogic_user:                         "%{::wls_profile::weblogic_user}"
+wls_profile::basic_domain::wls_domain::weblogic_password:                     "%{alias('wls_profile::weblogic_password')}"
+wls_profile::basic_domain::wls_domain::repository_password:                   "%{alias('wls_profile::repository_password')}"
+wls_profile::basic_domain::wls_domain::jsse_enabled:                          false
+wls_profile::basic_domain::wls_domain::custom_trust:                          false
+wls_profile::basic_domain::wls_domain::trust_keystore_file:                   ~
+wls_profile::basic_domain::wls_domain::custom_identity:                       false
+wls_profile::basic_domain::wls_domain::custom_identity_keystore_filename:     ~
+wls_profile::basic_domain::wls_domain::custom_identity_alias:                 ~
+wls_profile::basic_domain::wls_domain::custom_identity:                       false
+wls_profile::basic_domain::wls_domain::bam_enabled:                           false
+wls_profile::basic_domain::wls_domain::b2b_enabled:                           false
+wls_profile::basic_domain::wls_domain::ess_enabled:                           false
+wls_profile::basic_domain::wls_domain::development_mode:                      false
+wls_profile::basic_domain::wls_domain::extra_properties:                      []
+wls_profile::basic_domain::wls_domain::nodemanager_wait:                      60
 wls_profile::basic_domain::wls_domain::adminserver_settings:
   log_file_min_size:            2000
   log_filecount:                10
@@ -266,11 +273,14 @@ wls_profile::admin_server::wls_jms::topic_list:   {}
 # WebLogic Startup
 #
 #------------------------------------------------------------------------------
-wls_profile::basic_domain::wls_startup::domain_name:      "%{::wls_profile::domain_name}"
-wls_profile::basic_domain::wls_startup::weblogic_home:    "%{::wls_profile::weblogic_home}"
-wls_profile::basic_domain::wls_startup::domains_dir:      "%{::wls_profile::domains_dir}"
-wls_profile::basic_domain::wls_startup::log_dir:          "%{::wls_profile::log_dir}"
-wls_profile::basic_domain::wls_startup::os_user:          "%{::wls_profile::os_user}"
+wls_profile::basic_domain::wls_startup::domain_name:                 "%{::wls_profile::domain_name}"
+wls_profile::basic_domain::wls_startup::weblogic_home:               "%{::wls_profile::weblogic_home}"
+wls_profile::basic_domain::wls_startup::domains_dir:                 "%{::wls_profile::domains_dir}"
+wls_profile::basic_domain::wls_startup::log_dir:                     "%{::wls_profile::log_dir}"
+wls_profile::basic_domain::wls_startup::os_user:                     "%{::wls_profile::os_user}"
+wls_profile::basic_domain::wls_startup::jsse_enabled:                "%{alias('wls_profile::basic_domain::wls_domain::jsse_enabled')}"
+wls_profile::basic_domain::wls_startup::custom_trust:                "%{alias('wls_profile::basic_domain::wls_domain::custom_trust')}"
+wls_profile::basic_domain::wls_startup::trust_keystore_file:         "%{alias('wls_profile::basic_domain::wls_domain::trust_keystore_file')}"
 #------------------------------------------------------------------------------
 #
 # WebLogic Users and Groups

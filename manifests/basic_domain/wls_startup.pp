@@ -52,16 +52,21 @@
 #
 #--++--
 class wls_profile::basic_domain::wls_startup(
-  String[1] $domain_name,
-  Stdlib::Absolutepath
-            $weblogic_home,
-  Stdlib::Absolutepath
-            $domains_dir,
-  Stdlib::Absolutepath
-            $log_dir,
-  String[1] $os_user,
-  Wls_install::Versions
-            $version          = $wls_profile::weblogic_version,
+  String[1]                     $domain_name,
+  Stdlib::Absolutepath          $weblogic_home,
+  Stdlib::Absolutepath          $domains_dir,
+  Stdlib::Absolutepath          $log_dir,
+  String[1]                     $os_user,
+  Boolean                       $jsse_enabled,
+  Boolean                       $custom_trust,
+  Optional[String[1]]           $trust_keystore_file,
+  #
+  # We want the key trust_keystore_passphrase to connect to wls_profile::basic_domain::wls_domain::trust_keystore_passphrase. Normaly we would
+  # do this inside of the hiera data, but because the valuecan also be undef, and the lookup conversion in hiera will transform this into a Sensitive[undef]
+  # that will fail against the data type check Sensitive[String]. To work arround this issue, we do a lookup here and provide a default of undef.
+  #
+  Optional[Easy_type::Password] $trust_keystore_passphrase = lookup('wls_profile::basic_domain::wls_domain::trust_keystore_passphrase', {'default_value' => undef}),
+  Wls_install::Versions         $version                   = $wls_profile::weblogic_version,
 ) inherits wls_profile {
   echo {"WebLogic startup for domain ${domain_name}":
     withpath => false,
@@ -70,12 +75,16 @@ class wls_profile::basic_domain::wls_startup(
   case  $::operatingsystem {
     'RedHat', 'CentOS', 'OracleLinux': {
       wls_install::support::nodemanagerautostart{"${domain_name}_nodemanager":
-        version     => $version,
-        wl_home     => $weblogic_home,
-        log_dir     => $log_dir,
-        user        => $os_user,
-        domain      => $domain_name,
-        domain_path => "${domains_dir}/${domain_name}",
+        version                   => $version,
+        wl_home                   => $weblogic_home,
+        log_dir                   => $log_dir,
+        user                      => $os_user,
+        domain                    => $domain_name,
+        domain_path               => "${domains_dir}/${domain_name}",
+        jsse_enabled              => $jsse_enabled,
+        custom_trust              => $custom_trust,
+        trust_keystore_file       => $trust_keystore_file,
+        trust_keystore_passphrase => $trust_keystore_passphrase,
       }
     }
     default: {
