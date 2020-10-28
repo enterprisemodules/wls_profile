@@ -301,7 +301,7 @@ class wls_profile::weblogic (
     ['wls_profile::weblogic::packages', { 'implementation' => 'easy_type::profile::packages' }],
     'wls_profile::weblogic::groups_and_users',
     'wls_profile::weblogic::ssh_setup',
-    'wls_profile::weblogic::firewall',
+    ['wls_profile::weblogic::firewall', { 'implementation' => 'easy_type::profile::firewall' }],
     'wls_profile::weblogic::java_software',
     'wls_profile::weblogic::wls_software',
     ['wls_profile::weblogic::fmw_software', { 'onlyif' => $install_fusion}],
