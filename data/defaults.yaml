@@ -390,10 +390,21 @@ wls_profile::weblogic::ssh_setup::private_key: |
 # Firewall rules
 #
 #------------------------------------------------------------------------------
-wls_profile::weblogic::firewall::ports:
-  - 5556
-  - 7001
-  - 7002
+wls_profile::weblogic::firewall::firewalld::ports:
+  "500 accept tcp port 5556 for Oracle":
+    port: 5556
+  "500 accept tcp port 7001 for Oracle":
+    port: 7001
+  "500 accept tcp port 7002 for Oracle":
+    port: 7002
+#------------------------------------------------------------------------------
+wls_profile::weblogic::firewall::iptables::ports:
+  "500 accept tcp port 5556 for Oracle":
+    dport: 5556
+  "500 accept tcp port 7001 for Oracle":
+    dport: 7001
+  "500 accept tcp port 7002 for Oracle":
+    dport: 7002
 wls_profile::weblogic::firewall::manage_service: true
 #------------------------------------------------------------------------------
 #
