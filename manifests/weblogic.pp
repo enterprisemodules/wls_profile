@@ -250,6 +250,9 @@
 #
 #--++--
 class wls_profile::weblogic (
+  Optional[String] $before_em_license = undef,
+  Optional[String] $em_license = undef,
+  Optional[String] $after_em_license = undef,
   Optional[String] $sysctl = undef,
   Optional[String] $limits = undef,
   Optional[String] $packages = undef,
@@ -296,6 +299,7 @@ class wls_profile::weblogic (
   }
 
   easy_type::ordered_steps([
+    'wls_profile::weblogic::em_license',
     ['wls_profile::weblogic::sysctl', { 'implementation' => 'easy_type::profile::sysctl' }],
     ['wls_profile::weblogic::limits', { 'implementation' => 'easy_type::profile::limits' }],
     ['wls_profile::weblogic::packages', { 'implementation' => 'easy_type::profile::packages' }],
