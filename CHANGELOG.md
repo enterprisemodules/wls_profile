@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.10.0
+
+**Features**
+
+- [release] Add support for puppet 7 to the metadata
+
 ## Release 0.9.0
 
 **Features**
