@@ -98,7 +98,7 @@ class wls_profile::basic_domain(
   Optional[String] $after_wls_domain = undef,
   Optional[String] $after_wls_startup = undef,
 ) inherits wls_profile {
-  easy_type::staged_contain([
+  easy_type::ordered_steps([
     'wls_profile::weblogic',
     'wls_profile::basic_domain::wls_domain',
     'wls_profile::basic_domain::wls_startup',
