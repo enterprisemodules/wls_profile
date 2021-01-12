@@ -1,10 +1,15 @@
 shared_examples "a WebLogic installer" do | settings|
   version = settings.fetch(:version)
   file    = settings.fetch(:file)
+  hiera   = settings.fetch(:hiera) {{}}
+
+  final_hiera = {
+    'wls_profile::weblogic::wls_software::file_name'          => file,
+    'easy_type::generate_password_mode'                       => 'development'
+  }.merge(hiera)
+
   before do
-    hiera_values_on_sut(
-      'easy_type::generate_password_mode' => 'development'
-    )
+    hiera_values_on_sut(final_hiera)
   end
   after(:all) do
     # Cleanup all

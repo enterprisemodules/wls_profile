@@ -25,3 +25,27 @@ WebLogic 12.2.1.3  Acc test:
     - manifests/**/*.pp
     - specs/support/acceptance/**/*.rb
     - specs/acceptance/admin_server_spec.rb
+
+WebLogic 12.2.1.4  Acc test:
+  extends: ".puppet_acceptance_test"
+  variables:
+    type: admin_server_wls12214
+  only:
+    changes:
+    - lib/puppet/**/*.rb
+    - templates/**/*.*
+    - manifests/**/*.pp
+    - specs/support/acceptance/**/*.rb
+    - specs/acceptance/admin_server_spec.rb
+
+WebLogic 14.1.1.0.0  Acc test:
+  extends: ".puppet_acceptance_test"
+  variables:
+    type: admin_server_wls14110
+  only:
+    changes:
+    - lib/puppet/**/*.rb
+    - templates/**/*.*
+    - manifests/**/*.pp
+    - specs/support/acceptance/**/*.rb
+    - specs/acceptance/admin_server_spec.rb
