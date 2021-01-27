@@ -67,6 +67,7 @@ This module uses some other public Puppet forge modules. Check the metadata to e
 - WebLogic 12.2.1.2
 - WebLogic 12.2.1.3
 - WebLogic 12.2.1.4
+- WebLogic 14.1.1.0
 
 And Fusion versions:
 
