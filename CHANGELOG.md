@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.10.3
+
+**Bugs**
+
+- [groups_and_users] Fix OS password generation
+
 ## Release 0.10.2
 
 **Bugs**
