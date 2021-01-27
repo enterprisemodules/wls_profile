@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.10.1
+
+**Bugs**
+
+- [release] Add WebLogic 14.1.1.0 support to rhe README
+- [basic_domain] replace deprecated staged_contain for ordered_steps
+
 ## Release 0.10.0
 
 **Features**
