@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.10.2
+
+**Bugs**
+
+- [groups_and_users] Leave hashing of os passwords to class
+
 ## Release 0.10.1
 
 **Bugs**
