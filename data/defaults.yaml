@@ -145,6 +145,8 @@ wls_profile::weblogic::groups_and_users::groups:
 # Users to create
 #
 #------------------------------------------------------------------------------
+wls_profile::weblogic::groups_and_users::required_values:
+  - wls_profile::weblogic::os_user_password
 wls_profile::weblogic::groups_and_users::users:
   "%{::wls_profile::os_user}":
     uid:        54321
