@@ -1,7 +1,8 @@
 /.tmp/
 /.vagrant/
 pkg/
-/spec/fixtures/
+/spec/fixtures/modules
+/spec/fixtures/manifests
 log/
 junit/
 spec/software/
