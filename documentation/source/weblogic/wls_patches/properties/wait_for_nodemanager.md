@@ -1,0 +1,1 @@
+The time in seconds we wait for the nodemanager to be started in the restart phase of the patching.
