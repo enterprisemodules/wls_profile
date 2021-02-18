@@ -1,2 +1,3 @@
 ---
 wls_profile::weblogic::os_user_password:    mysecretstuff
+wls_profile::weblogic_password:             mysecretstuff
