@@ -16,11 +16,11 @@
     },
     {
       "name": "enterprisemodules/wls_install",
-      "version_requirement": ">= 3.0.5 < 4.0.0"
+      "version_requirement": ">= 3.10.0 < 4.0.0"
     },
     {
       "name": "ipcrm-echo",
-      "version_requirement": ">= 0.1.5 < 1.0.0"
+      "version_requirement": ">= 0.1.7 < 1.0.0"
     },
     {
       "name": "herculesteam-augeasproviders_core",

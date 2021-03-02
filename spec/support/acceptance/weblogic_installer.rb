@@ -4,13 +4,16 @@ shared_examples "a WebLogic installer" do | settings|
   hiera   = settings.fetch(:hiera) {{}}
 
   final_hiera = {
-    'wls_profile::weblogic::wls_software::file_name'          => file,
-    'easy_type::generate_password_mode'                       => 'development'
+    'wls_profile::source'                            => '/software',
+    'wls_profile::weblogic::sysctl'                  => 'skip',
+    'wls_profile::weblogic::wls_software::file_name' => file,
+    'easy_type::generate_password_mode'              => 'development'
   }.merge(hiera)
 
   before do
     hiera_values_on_sut(final_hiera)
   end
+
   after(:all) do
     # Cleanup all
     run_shell('killall -u oracle -w || true')
@@ -18,15 +21,8 @@ shared_examples "a WebLogic installer" do | settings|
   end
 
   manifest = <<-MANIFEST
-    class {wls_profile:
-      source => '/software',
-    }
-    class {wls_profile::weblogic:
-      sysctl => 'skip',
-    }
-
     contain wls_profile::admin_server
-MANIFEST
+  MANIFEST
 
   it 'installs the WebLogic software' do
     apply_manifest(manifest, expect_changes: true)
