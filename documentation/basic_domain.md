@@ -16,21 +16,21 @@ contain wls_profile::basic_domain
 
 Is enough to get an empty WebLogic 12.2.1.3. WebLogic domain running on your system. 
 
-But sometimes you have specific use cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.
+But sometimes you have specific uses cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.
 
-## Steps
+## Stages
 
-Defining and starting an empty basic WebLogic domain on you system goes through several steps:
+Defining and starting an empty basic WebLogic domain on you system goes through several stages(These are not puppet stages):
 
 - [`weblogic`](./weblogic.html) Install and patch the WebLogic software
 - [`wls_domain`](./wls_domain.html)    Create an empty WebLogic domain
 - [`wls_startup`](./wls_startup.html)   Make sure the domain restarts after a system reboot.
 
-All these steps have a default implementation. This implementation is suitable to get off to an easy start. These classed all have parameters you can customize through hiera values. The defaults are specified in the module's `data/default.yaml` file. 
+All these stages have a default implementation. This implementation is suitable to get off to an easy start. These classed all have parameters you can customize through hiera values. The defaults are specified in the module's `data/default.yaml` file. 
 
 ## before classes
 
-But sometimes this is not enough, and you would like to add some extra definitions, you can, for example, add a Puppet class to be executed after the `weblogic` step is done and before the `wls_domain` is done. You can do this by adding the next line to your yaml data:
+But sometimes this is not enough, and you would like to add some extra definitions, you can, for example, add a Puppet class to be executed after the `weblogic` stage is done and before the `wls_domain` is done. You can do this by adding the next line to your yaml data:
 
 ```yaml
 wls_profile::basic_domain::before_wls_domain:   my_profile::my_extra_class
@@ -38,7 +38,7 @@ wls_profile::basic_domain::before_wls_domain:   my_profile::my_extra_class
 
 ## after classes
 
-You can do the same when you want to add code after one of the step classes:
+You can do the same when you want to add code after one of the stage classes:
 
 ```yaml
 wls_profile::basic_domain::after_wls_domain:   my_profile::my_extra_class
@@ -60,9 +60,9 @@ Or provide your own implementation:
 wls_profile::basic_domain::wls_domain:   my_profile::my_own_implementation
 ```
 
-This mechanism can be used for all named steps and makes it easy to move from an easy setup with a running standard WebLogic installation to a fully customized setup using a lot of your own classes plugged in.
+This mechanism can be used for all named stages and makes it easy to move from an easy setup with a running standard WebLogic installation to a fully customized setup using a lot of your own classes plugged in.
 
-Look at the description of the steps and their properties.
+Look at the description of the stages and their properties.
 
 
 
@@ -81,16 +81,16 @@ Attribute Name                                         | Short Description      
 [before_weblogic](#basic_domain_before_weblogic)       | The name of the class you want to execute directly **before** the `weblogic` class.    |
 [before_wls_domain](#basic_domain_before_wls_domain)   | The name of the class you want to execute directly **before** the `wls_domain` class.  |
 [before_wls_startup](#basic_domain_before_wls_startup) | The name of the class you want to execute directly **before** the `wls_startup` class. |
-[weblogic](#basic_domain_weblogic)                     | Use this value if you want to skip or use your own class for step `weblogic`.         |
-[wls_domain](#basic_domain_wls_domain)                 | Use this value if you want to skip or use your own class for step `wls_domain`.       |
-[wls_startup](#basic_domain_wls_startup)               | Use this value if you want to skip or use your own class for step `wls_startup`.      |
+[weblogic](#basic_domain_weblogic)                     | Use this value if you want to skip or use your own class for stage `weblogic`.         |
+[wls_domain](#basic_domain_wls_domain)                 | Use this value if you want to skip or use your own class for stage `wls_domain`.       |
+[wls_startup](#basic_domain_wls_startup)               | Use this value if you want to skip or use your own class for stage `wls_startup`.      |
 
 
 
 
 ### weblogic<a name='basic_domain_weblogic'>
 
-Use this value if you want to skip or use your own class for step `weblogic`.
+Use this value if you want to skip or use your own class for stage `weblogic`.
 
 ## Use your own class
 
@@ -116,7 +116,7 @@ Default:`undef`
 
 ### wls_domain<a name='basic_domain_wls_domain'>
 
-Use this value if you want to skip or use your own class for step `wls_domain`.
+Use this value if you want to skip or use your own class for stage `wls_domain`.
 
 ## Use your own class
 
@@ -142,7 +142,7 @@ Default:`undef`
 
 ### wls_startup<a name='basic_domain_wls_startup'>
 
-Use this value if you want to skip or use your own class for step `wls_startup`.
+Use this value if you want to skip or use your own class for stage `wls_startup`.
 
 ## Use your own class
 
