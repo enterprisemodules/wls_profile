@@ -35,7 +35,7 @@ define wls_profile::weblogic::private::start_domain(
   } else {
     $trust_keystore_passphrase = undef
   }
- 
+
   case $::kernel {
     'AIX': {
       $netstat_statement = "/bin/netstat -an | /bin/grep LISTEN | /bin/grep '.${nodemanager_port}'"
@@ -119,8 +119,9 @@ define wls_profile::weblogic::private::start_domain(
   }
 
   -> wls_exec {"${domain}/@/tmp/start_managed_servers_for_${domain}.py":
-    schedule  => $schedule_name,
-    logoutput => $logoutput,
+    schedule            => $schedule_name,
+    disable_autorequire => true,
+    logoutput           => $logoutput,
   }
 
   -> exec {"cleanup startscript ${domain}":
