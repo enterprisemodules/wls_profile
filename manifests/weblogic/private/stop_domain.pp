@@ -58,8 +58,9 @@ define wls_profile::weblogic::private::stop_domain(
   }
 
   -> wls_exec {"${domain}/@/tmp/stop_managed_servers_for_${domain}.py":
-    schedule  => $schedule_name,
-    logoutput => $logoutput,
+    schedule            => $schedule_name,
+    disable_autorequire => true,
+    logoutput           => $logoutput,
   }
 
   -> exec {"cleanup stopscript ${domain}":
