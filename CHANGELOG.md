@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.11.0
+
+**Features**
+
+- [apply_patches] Add initial bolt plan to apply WebLogic patches from bolt
+- [wls_patches] Add patchlevel functionality
+
+
 ## Release 0.10.3
 
 **Bugs**
