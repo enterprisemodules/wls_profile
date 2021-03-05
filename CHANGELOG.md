@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.11.1
+
+**Chore**
+
+- [data] Remove default managed servers
+
 ## Release 0.11.0
 
 **Features**
