@@ -54,15 +54,7 @@ wls_profile::adminserver_address: "%{::fqdn}"
 wls_profile::nodemanager_address: "%{::fqdn}"
 wls_profile::adminserver_port:    7001
 wls_profile::nodemanager_port:    5556
-wls_profile::servers:
-  "%{::fqdn}":
-    machine_name:     "%{::fqdn}"
-    listenaddress:    "%{::fqdn}"
-    server_arguments: []
-  wls2.example.com:
-    machine_name:     wls2.example.com
-    listenaddress:    wls2.example.com
-    server_arguments: []
+wls_profile::servers:             {}
 
 #------------------------------------------------------------------------------
 #
