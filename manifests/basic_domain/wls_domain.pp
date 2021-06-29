@@ -1,10 +1,10 @@
 #++--++
 #
-# wls_profile::wls_domain
+# wls_profile::basic_domain::wls_domain
 #
 # @summary This class is the default implementation for defining a domain on your system.
 # Using hiera, you can customize some of the aspects of this process.
-#
+# 
 # When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::basic_domain](./basic_domain.html) for an explanation on how to do this.
 #
 # @param [String[1]] domain_name
@@ -12,6 +12,10 @@
 #    This will be used both as the REAL WebLogic domain name, and also be used by Puppet as a designator for Puppet resources. (e.g. the name before the slash `my_domain/wls_queue1`).
 #    The change the domain name, use the hiera key: `wls_profile::domain_name`. This will make sure the correct domain name gets used in all classes.
 #    The default value is: `MYDOMAIN`
+#
+# @param [String[1]] domain_alias
+#    The domain alias.
+#    This is the name puppet uses to identify this domain. When you leave this parameter undefined, it will default to the current WebLogic domain name. When you specify the string 'default', Puppet will use this domain by default when you don't specify a resource for all of the `wls_config` resources.
 #
 # @param [Wls_install::Versions] version
 #    The version of WebLogic you want to use.
@@ -27,6 +31,7 @@
 #      - `12211`
 #      - `12212`
 #      - `12213`
+#      - `12214`
 #    Default value: `12213`
 #
 # @param [Stdlib::Absolutepath] weblogic_home
@@ -44,7 +49,21 @@
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::log_dir` to change it to your requested value.
 #    Default value: `/opt/oracle/domains/log`
 #
-# @param [Enum['standard', 'ohs_standalone', 'adf_restricted', 'osb', 'osb_soa', 'osb_soa_bpm', 'soa', 'soa_bpm', 'bam', 'adf', 'oim', 'oud', 'wc', 'wc_wcc_bpm']] template_name
+# @param [Enum['standard',
+#     'forms',
+#     'ohs_standalone',
+#     'adf_restricted',
+#     'osb',
+#     'osb_soa',
+#     'osb_soa_bpm',
+#     'soa',
+#     'soa_bpm',
+#     'bam',
+#     'adf',
+#     'oim',
+#     'oud',
+#     'wc',
+#     'wc_wcc_bpm']] template_name
 #    The domain template to use when creating the domain.
 #    The default value is `standard`.
 #    Valid values are:
@@ -98,7 +117,7 @@
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::weblogic_user` to change it to your requested value.
 #    Default value: `weblogic`
 #
-# @param [String[1]] weblogic_password
+# @param [Easy_type::Password] weblogic_password
 #    The password for the WebLogic account.
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::weblogic_password` to change it to your requested value.
 #    Default value: `Welcome01`
@@ -178,6 +197,7 @@ class wls_profile::basic_domain::wls_domain(
   Boolean             $custom_identity,
   Optional[String[1]] $custom_identity_keystore_filename,
   Optional[String[1]] $custom_identity_alias,
+  String[1]           $domain_alias                          = $domain_name,
   Optional[Easy_type::Password]
                       $custom_identity_keystore_passphrase   = undef,
   Optional[Easy_type::Password]
@@ -309,7 +329,7 @@ class wls_profile::basic_domain::wls_domain(
   # wls_setting is used to store the credentials and connect URL of a domain. The Puppet
   # types need this to connect to the admin server and change settings.
   #
-  ->wls_setting{$domain_name:
+  ->wls_setting{$domain_alias:
     user                      => $os_user,
     weblogic_user             => $weblogic_user,
     weblogic_password         => $weblogic_password,

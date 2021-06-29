@@ -6,6 +6,7 @@ When these customizations aren't enough, you can replace the class with your own
 
 <%- include_attributes [
   :domain_name,
+  :domain_alias,
   :version,
   :weblogic_home,
   :domains_dir,
