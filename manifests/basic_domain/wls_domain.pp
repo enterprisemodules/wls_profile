@@ -346,7 +346,7 @@ class wls_profile::basic_domain::wls_domain(
   # Admin server. because the AdminServer is restarted by wls_adminserver{'soa/AdminServer':}
   # These settings are immediately applied
   #
-  ->wls_server{"${domain_name}/AdminServer":
+  ->wls_server{"${domain_alias}/AdminServer":
     ensure                  => 'present',
     listenaddress           => $adminserver_address,
     listenport              => $adminserver_port,
@@ -360,7 +360,7 @@ class wls_profile::basic_domain::wls_domain(
   # This definition restarts the Admin server. It is a refresh-only, so it is only done
   # when the statement before actually changed something.
   #
-  ~>wls_adminserver{"${domain_name}/AdminServer":
+  ~>wls_adminserver{"${domain_alias}/AdminServer":
     ensure                    => running,
     refreshonly               => true,
     server_name               => 'AdminServer',
