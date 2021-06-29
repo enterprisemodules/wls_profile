@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.12.0
+
+**Features**
+
+- [wls_domain] Add support for specifying a puppet domain alias
+
+**Bugs**
+
+- [wls_domain] Use domain alias for identifying Adminserver
+
+
 ## Release 0.11.1
 
 **Chore**
