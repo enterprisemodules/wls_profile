@@ -17,6 +17,14 @@ When these customizations aren't enough, you can replace the class with your own
 
 
 
+
+## Experience the Power of Puppet for WebLogic
+
+If you want to play and experiment with Puppet and WebLogic, please take a look at our playgrounds. At our playgrounds, we provide you with a pre-installed environment, where you experiment fast and easy.
+
+{% include super_hero.html title="For WebLogic" ref="/playgrounds#weblogic" %}
+
+
 ## Attributes
 
 
@@ -51,7 +59,5 @@ wls_profile::weblogic::limits::list:
     soft: 1048576
     hard: 1048576
 ```
-Type: `Hash`
-
 
 [Back to overview of weblogic::limits](#attributes)

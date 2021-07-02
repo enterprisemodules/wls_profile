@@ -5,13 +5,14 @@
 
 1. [Overview](#overview)
 2. [License](#license)
-3. [Description - What the module does and why it is useful](#description)
-4. [Setup](#setup)
+3. [Experience the Power of Puppet for Oracle WebLogic](experience-the-power-of-puppet-for-oracle-weblogic)
+4. [Description - What the module does and why it is useful](#description)
+5. [Setup](#setup)
   * [Requirements](#requirements)
   * [Installing the wls_install module](#installing-the-wls_install-module)
-5. [Usage - Configuration options and additional functionality](#usage)
-6. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-7. [Limitations - OS compatibility, etc.](#limitations)
+6. [Usage - Configuration options and additional functionality](#usage)
+7. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+8. [Limitations - OS compatibility, etc.](#limitations)
 
 ## Overview
 
@@ -20,9 +21,17 @@ The `wls_profile` module allows an easy path from first simple installation to a
 - [wls_config](https://www.enterprisemodules.com/shop/products/puppet-wls_config-module) For configuring an Oracle WebLogic and other Fusion products
 - [wls_install](https://www.enterprisemodules.com/shop/products/puppet-wls_install-module) For installing an Oracle WebLogic and other Fusion products
 
+## Experience the Power of Puppet for Oracle WebLogic
+
+Installing Oracle WebLogic and/or Fusion software and managing your WebLogic domain configuration can be hard. With Puppet at your side, you get super-powers when installing and managing Oracle WebLogic. If you want to play and experiment with this [please take a look at our playgrounds](https://www.enterprisemodules.com/playgrounds#weblogic). 
+
+[![Experience the Power](https://raw.githubusercontent.com/enterprisemodules/public_images/master/superpowers-33-blanc.jpg)](https://www.enterprisemodules.com/playgrounds#weblogic)
+
+
 ## License
 
 Most of the [Enterprise Modules](https://www.enterprisemodules.com) modules are commercial modules. This one is **NOT**. It is an Open Source module. You are free to use it any way you like. It, however, is based on our commercial Puppet WebLogic modules.
+
 
 ## Description
 
