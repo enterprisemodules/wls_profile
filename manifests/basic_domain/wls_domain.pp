@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::basic_domain::wls_domain
 #
@@ -146,8 +145,9 @@
 #    A Hash containing settings (of type `wls_server`) to define for the Admin server.
 #    The default value is: `{}`
 #
-#--++--
-# lint:ignore:variable_scope
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::basic_domain::wls_domain(
   String[1]           $domain_name,
   Stdlib::Absolutepath

@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::admin_server::managed_server
 #
@@ -33,7 +32,9 @@
 #    a Hash describing the defauls to use when creating WebLogic machines.
 #    Default value : `{}`
 #
-#--++--
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 define wls_profile::admin_server::managed_server(
   String[1] $machine_name,
   String[1] $listenaddress,

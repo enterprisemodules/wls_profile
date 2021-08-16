@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::admin_server::pack_domain
 #
@@ -45,7 +44,9 @@
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_group` to change it to your requested value.
 #    Default value: `dba`
 #
-#--++--
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::admin_server::pack_domain(
   String[1] $domain_name,
   Stdlib::Absolutepath

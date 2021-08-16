@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::node
 #
@@ -86,7 +85,9 @@
 #    wls_profile::node::after_wls_startup:  my_module::my_class
 #    ```
 #
-#--++--
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::node (
   Optional[String] $weblogic = undef,
   Optional[String] $copy_domain = undef,

@@ -1,6 +1,3 @@
-#++--++
-#
-# wls_profile::wls_users_and_groups
 #
 # @summary This class is the default implementation for ensuring the correct WebLogic users and groups are available on the system.
 # Using hiera, you can customize some of the aspects of this process.
@@ -17,7 +14,6 @@
 #    The default value is: `{}`
 #    This is a simple way to get started. It is easy to get started, but soon your hiera yaml become a nightmare. Our advice is when you need to let puppet manage your Oracle profiles, to override this class and add your own puppet implementation. This is much better maintainable and adds more consistency.
 #
-#--++--
 class wls_profile::admin_server::wls_users_and_groups (
   Hash $group_list,
   Hash $user_list,

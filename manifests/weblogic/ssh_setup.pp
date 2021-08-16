@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::weblogic::ssh_setup
 #
@@ -27,7 +26,9 @@
 #    The public key to create for the `os_user`  account.
 #    The defaults contain a valid pair. It is recommended to specify your own values.
 #
-#--++--
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::weblogic::ssh_setup (
   String[1] $os_user,
   String[1] $os_group,

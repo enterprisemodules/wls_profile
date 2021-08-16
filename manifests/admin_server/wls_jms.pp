@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::admin_server::wls_jms
 #
@@ -22,7 +21,9 @@
 #    The default value is: `{}`
 #    This is a simple way to get started. It is easy to get started, but soon your hiera yaml become a nightmare. Our advice is when you need to let puppet manage your Oracle profiles, to override this class and add your own puppet implementation. This is much better maintainable and adds more consistency.
 #
-#--++--
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::admin_server::wls_jms(
   Hash  $module_list,
   Hash  $queue_list,

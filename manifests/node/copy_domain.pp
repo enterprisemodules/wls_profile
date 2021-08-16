@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::node::copy_domain
 #
@@ -94,8 +93,9 @@
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::weblogic_password` to change it to your requested value.
 #    Default value: `Welcome01`
 #
-#--++--
-# lint:ignore:variable_scope
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::node::copy_domain(
   String[1] $domain_name,
   Stdlib::Absolutepath
