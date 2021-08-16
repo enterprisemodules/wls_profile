@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::basic_domain::wls_startup
 #
@@ -50,7 +49,9 @@
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_user` to change it to your requested value.
 #    Default value: `oracle`
 #
-#--++--
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::basic_domain::wls_startup(
   String[1]                     $domain_name,
   Stdlib::Absolutepath          $weblogic_home,

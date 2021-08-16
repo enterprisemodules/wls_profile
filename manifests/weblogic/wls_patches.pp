@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::weblogic::wls_patches
 #
@@ -125,7 +124,9 @@
 #    - `false`
 #    - `on_failure`
 #
-#--++--
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::weblogic::wls_patches(
   String[1]           $level,
   Integer             $version,

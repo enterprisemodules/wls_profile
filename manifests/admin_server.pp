@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::admin_server
 #
@@ -252,7 +251,9 @@
 #    wls_profile::admin_server::after_pack_domain:  my_module::my_class
 #    ```
 #
-#--++--
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::admin_server(
   Optional[String] $basic_domain = undef,
   Optional[String] $wls_servers = undef,

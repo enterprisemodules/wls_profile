@@ -1,7 +1,3 @@
-#
-# See the file "LICENSE" for the full license governing this code.
-#
-#++--++
 # @summary Apply the in hiera specified WebLogic patches to the specified target
 #
 # @example
@@ -18,8 +14,10 @@
 # @param [TargetSpec] targets
 #   The WebLogic node(s) you want to patch
 #
-#--++--
-plan wls_profile::weblogic::apply_patches(
+#
+# See the file "LICENSE" for the full license governing this code.
+#
+wls_plan wls_profile::weblogic::apply_patches(
   TargetSpec $targets,
 ) {
   #

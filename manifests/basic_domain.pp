@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::basic_domain
 #
@@ -86,7 +85,9 @@
 #    wls_profile::basic_domain::after_wls_startup:  my_module::my_class
 #    ```
 #
-#--++--
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::basic_domain(
   Optional[String] $weblogic = undef,
   Optional[String] $wls_domain = undef,

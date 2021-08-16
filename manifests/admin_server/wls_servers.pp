@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::admin_server::wls_servers
 #
@@ -22,7 +21,9 @@
 # @param [Hash] machine_defaults
 #    
 #
-#--++--
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::admin_server::wls_servers(
   String[1] $domain_name,
   Hash      $server_defaults,

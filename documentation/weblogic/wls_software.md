@@ -31,7 +31,7 @@ If you want to play and experiment with Puppet and WebLogic, please take a look 
 
 Attribute Name                                             | Short Description                                                          |
 ---------------------------------------------------------- | -------------------------------------------------------------------------- |
-[file_name](#weblogic::wls_software_file_name)             | The file name containing the WebLogic software to install.                 |
+[file_name](#weblogic::wls_software_file_name)             | The file name containing the Fusion middleware software to install.        |
 [fmw_infra](#weblogic::wls_software_fmw_infra)             | Boolean specifying if you want WebLogic Fusion Middleware Infra installed. |
 [jdk_home](#weblogic::wls_software_jdk_home)               | The location where the JDK is installed.                                   |
 [middleware_home](#weblogic::wls_software_middleware_home) | The Oracle middleware home directory.                                      |
@@ -73,11 +73,11 @@ Default:`$wls_profile::weblogic_version`
 
 ### file_name<a name='weblogic::wls_software_file_name'>
 
-The file name containing the WebLogic software to install.
+The file name containing the Fusion middleware software to install.
 
 This file is fetched from the location specified by the property `source`.
 
-The default value is: `fmw_12.2.1.3.0_wls.jar`
+
 Type: `String[1]`
 
 

@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::weblogic::java_software
 #
@@ -44,8 +43,9 @@
 #    alternatives priority for jdk.
 #    Default value is: `18001`
 #
-#--++--
-# lint:ignore:variable_scope
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::weblogic::java_software(
   String            $version,
   String            $full_version,

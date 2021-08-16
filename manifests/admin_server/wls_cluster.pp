@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::admin_server::wls_cluster
 #
@@ -31,7 +30,9 @@
 #      migrationbasis: consensus
 #    ```
 #
-#--++--
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::admin_server::wls_cluster(
   String[1] $domain_name,
   String[1] $cluster_name,

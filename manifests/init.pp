@@ -1,6 +1,10 @@
-#++--++
-#--++--
+#
+# wls_profile
+#
 class wls_profile(
+  #
+  # See the file "LICENSE" for the full license governing this code.
+  #
   String[1] $domain_name,
   String[1] $cluster_name,
   String[1] $java_version,

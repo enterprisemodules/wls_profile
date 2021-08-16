@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::weblogic::wls_software
 #
@@ -25,9 +24,8 @@
 #    Default value: `12213`
 #
 # @param [String[1]] file_name
-#    The file name containing the WebLogic software to install.
+#    The file name containing the Fusion middleware software to install.
 #    This file is fetched from the location specified by the property `source`.
-#    The default value is: `fmw_12.2.1.3.0_wls.jar`
 #
 # @param [Stdlib::Absolutepath] oracle_base
 #    The directory used as the base for all Oracle weblogic files.
@@ -64,8 +62,9 @@
 #    Boolean specifying if you want WebLogic Fusion Middleware Infra installed.
 #    Default value: `false`
 #
-#--++--
-# lint:ignore:variable_scope
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::weblogic::wls_software(
   String[1] $file_name,
   Stdlib::Absolutepath

@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::weblogic::wls_opatch
 #
@@ -11,7 +10,9 @@
 #    A Hash describing the WebLogic opatchupgrade you want be installed.
 #    Default value is: `{}`
 #
-#--++--
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::weblogic::wls_opatch(
   Hash $list
 ) inherits wls_profile {

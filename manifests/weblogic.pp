@@ -1,4 +1,3 @@
-#++--++
 #
 # wls_profile::weblogic
 #
@@ -248,7 +247,9 @@
 #    wls_profile::weblogic::after_wls_patches:  my_module::my_class
 #    ```
 #
-#--++--
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 class wls_profile::weblogic (
   Optional[String] $before_em_license = undef,
   Optional[String] $em_license = undef,
