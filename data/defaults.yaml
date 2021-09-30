@@ -147,7 +147,7 @@ wls_profile::weblogic::groups_and_users::users:
     - "%{lookup('wls_profile::os_group')}"
     shell:      /bin/bash
     password:   "%{alias('wls_profile::weblogic::os_user_password')}"
-    home:       /home/oracle
+    home:       "/home/%{lookup('wls_profile::os_user')}"
     comment:    This user oracle was created by Puppet
     managehome: true
 #------------------------------------------------------------------------------
