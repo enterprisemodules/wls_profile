@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.12.1
+
+**Bugs**
+
+- [groups_and_users] Use defined os_user for directory too
+
 ## Release 0.12.0
 
 **Features**
