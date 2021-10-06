@@ -47,14 +47,14 @@
 # See the file "LICENSE" for the full license governing this code.
 #
 class wls_profile::weblogic::java_software(
-  String            $version,
-  String            $full_version,
-  String            $cryptography_extension_file,
-  String            $source,
-  Optional[Boolean] $urandom_fix,
-  Optional[Boolean] $rsa_key_size_fix,
-  Boolean           $x64,
-  Optional[Integer] $alternatives_priority,
+  String[1]           $version,
+  String[1]           $full_version,
+  String[1]           $source,
+  Optional[Boolean]   $urandom_fix,
+  Optional[Boolean]   $rsa_key_size_fix,
+  Boolean             $x64,
+  Optional[Integer]   $alternatives_priority,
+  Optional[String[1]] $cryptography_extension_file = undef,
 ) inherits wls_profile {
 
   echo {"Java version ${version}":
@@ -65,6 +65,10 @@ class wls_profile::weblogic::java_software(
 
   if $alternatives_priority != undef {
     deprecation (alternatives_priority, "Parameter 'wls_profile::weblogic::java_software::alternatives_priority' is deprecated and will be removed in a future release")
+  }
+
+  if $cryptography_extension_file != undef {
+    $jce = true
   }
 
   case  $::operatingsystem {
@@ -94,10 +98,11 @@ class wls_profile::weblogic::java_software(
         version_minor  => '',
         url            => "${source}/jdk-${version}-linux-x64.tar.gz",
         package_type   => 'tar.gz',
-        jce            => true,
+        jce            => $jce,
         jce_url        => "${source}/${cryptography_extension_file}",
         manage_basedir => true,
       }
+
       -> file {'/usr/bin/java':
         ensure => 'link',
         target => "/usr/java/${full_version}/bin/java"
