@@ -69,6 +69,8 @@ class wls_profile::weblogic::java_software(
 
   if $cryptography_extension_file != undef {
     $jce = true
+  } else {
+    $jce = false
   }
 
   case  $::operatingsystem {
