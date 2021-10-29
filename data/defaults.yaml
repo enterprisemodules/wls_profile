@@ -32,6 +32,12 @@ lookup_options:
     convert_to: Sensitive
   wls_profile::basic_domain::wls_domain::custom_identity_privatekey_passphrase:
     convert_to: Sensitive
+  wls_profile::node::copy_domain::trust_keystore_passphrase:
+    convert_to: Sensitive
+  wls_profile::node::copy_domain::custom_identity_keystore_passphrase:
+    convert_to: Sensitive
+  wls_profile::node::copy_domain::custom_identity_privatekey_passphrase:
+    convert_to: Sensitive
 
 wls_profile::domain_name:         MYDOMAIN
 wls_profile::cluster_name:        main
@@ -198,7 +204,6 @@ wls_profile::basic_domain::wls_domain::repository_password:                   "%
 wls_profile::basic_domain::wls_domain::jsse_enabled:                          false
 wls_profile::basic_domain::wls_domain::custom_trust:                          false
 wls_profile::basic_domain::wls_domain::trust_keystore_file:                   ~
-wls_profile::basic_domain::wls_domain::custom_identity:                       false
 wls_profile::basic_domain::wls_domain::custom_identity_keystore_filename:     ~
 wls_profile::basic_domain::wls_domain::custom_identity_alias:                 ~
 wls_profile::basic_domain::wls_domain::custom_identity:                       false
@@ -305,20 +310,29 @@ wls_profile::admin_server::pack_domain::os_group:           "%{lookup('wls_profi
 # WebLogic Copy Domain
 #
 #------------------------------------------------------------------------------
-wls_profile::node::copy_domain::domain_name:                "%{lookup('wls_profile::domain_name')}"
-wls_profile::node::copy_domain::weblogic_home:              "%{lookup('wls_profile::weblogic_home')}"
-wls_profile::node::copy_domain::log_dir:                    "%{lookup('wls_profile::log_dir')}"
-wls_profile::node::copy_domain::middleware_home:            "%{lookup('wls_profile::middleware_home')}"
-wls_profile::node::copy_domain::jdk_home:                   "%{lookup('wls_profile::jdk_home')}"
-wls_profile::node::copy_domain::domains_dir:                "%{lookup('wls_profile::domains_dir')}"
-wls_profile::node::copy_domain::os_user:                    "%{lookup('wls_profile::os_user')}"
-wls_profile::node::copy_domain::os_group:                   "%{lookup('wls_profile::os_group')}"
-wls_profile::node::copy_domain::adminserver_address:        "%{lookup('wls_profile::adminserver_address')}"
-wls_profile::node::copy_domain::weblogic_user:              "%{lookup('wls_profile::weblogic_user')}"
-wls_profile::node::copy_domain::weblogic_password:          "%{alias('wls_profile::weblogic_password')}"
-wls_profile::node::copy_domain::repository_password:        "%{alias('wls_profile::repository_password')}"
-wls_profile::node::copy_domain::nodemanager_address:        "%{lookup('wls_profile::nodemanager_address')}"
-wls_profile::node::copy_domain::nodemanager_wait:           60
+wls_profile::node::copy_domain::domain_name:                            "%{lookup('wls_profile::domain_name')}"
+wls_profile::node::copy_domain::weblogic_home:                          "%{lookup('wls_profile::weblogic_home')}"
+wls_profile::node::copy_domain::log_dir:                                "%{lookup('wls_profile::log_dir')}"
+wls_profile::node::copy_domain::middleware_home:                        "%{lookup('wls_profile::middleware_home')}"
+wls_profile::node::copy_domain::jdk_home:                               "%{lookup('wls_profile::jdk_home')}"
+wls_profile::node::copy_domain::domains_dir:                            "%{lookup('wls_profile::domains_dir')}"
+wls_profile::node::copy_domain::os_user:                                "%{lookup('wls_profile::os_user')}"
+wls_profile::node::copy_domain::os_group:                               "%{lookup('wls_profile::os_group')}"
+wls_profile::node::copy_domain::adminserver_address:                    "%{lookup('wls_profile::adminserver_address')}"
+wls_profile::node::copy_domain::weblogic_user:                          "%{lookup('wls_profile::weblogic_user')}"
+wls_profile::node::copy_domain::weblogic_password:                      "%{alias('wls_profile::weblogic_password')}"
+wls_profile::node::copy_domain::repository_password:                    "%{alias('wls_profile::repository_password')}"
+wls_profile::node::copy_domain::nodemanager_address:                    "%{lookup('wls_profile::nodemanager_address')}"
+wls_profile::node::copy_domain::jsse_enabled:                           "%{alias('wls_profile::basic_domain::wls_domain::jsse_enabled')}"
+wls_profile::node::copy_domain::custom_trust:                           "%{alias('wls_profile::basic_domain::wls_domain::custom_trust')}"
+wls_profile::node::copy_domain::trust_keystore_file:                    "%{alias('wls_profile::basic_domain::wls_domain::trust_keystore_file')}"
+wls_profile::node::copy_domain::trust_keystore_passphrase:              "%{alias('wls_profile::basic_domain::wls_domain::trust_keystore_passphrase')}"
+wls_profile::node::copy_domain::custom_identity:                        "%{alias('wls_profile::basic_domain::wls_domain::custom_identity')}"
+wls_profile::node::copy_domain::custom_identity_keystore_filename:      "%{alias('wls_profile::basic_domain::wls_domain::custom_identity_keystore_filename')}"
+wls_profile::node::copy_domain::custom_identity_alias:                  "%{alias('wls_profile::basic_domain::wls_domain::custom_identity_alias')}"
+wls_profile::node::copy_domain::custom_identity_keystore_passphrase:    "%{alias('wls_profile::basic_domain::wls_domain::custom_identity_keystore_passphrase')}"
+wls_profile::node::copy_domain::custom_identity_privatekey_passphrase:  "%{alias('wls_profile::basic_domain::wls_domain::custom_identity_privatekey_passphrase')}"
+wls_profile::node::copy_domain::nodemanager_wait:                       60
 #------------------------------------------------------------------------------
 #
 # WebLogic SSH setup

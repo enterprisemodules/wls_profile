@@ -1,0 +1,1 @@
+Set to true if you want to enable the use of custom identities.

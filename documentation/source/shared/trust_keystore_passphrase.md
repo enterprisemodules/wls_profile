@@ -1,0 +1,1 @@
+The passphrase for access to the keystore.
