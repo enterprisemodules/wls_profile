@@ -20,6 +20,15 @@ When these customizations aren't enough, you can replace the class with your own
   :nodemanager_wait,
   :weblogic_user,
   :weblogic_password,
+  :jsse_enabled,
+  :custom_trust,
+  :trust_keystore_file,
+  :trust_keystore_passphrase,
+  :custom_identity,
+  :custom_identity_keystore_filename,
+  :custom_identity_alias,
+  :custom_identity_keystore_passphrase,
+  :custom_identity_privatekey_passphrase,
 ] %>
 
 

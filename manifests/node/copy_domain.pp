@@ -93,54 +93,88 @@
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::weblogic_password` to change it to your requested value.
 #    Default value: `Welcome01`
 #
+# @param [Boolean] jsse_enabled
+#    Determine if you want to enable JSSE security.
+#
+# @param [Boolean] custom_trust
+#    Determine if you want to use a custom trust or not.
+#
+# @param [Optional[String[1]]] trust_keystore_file
+#    File specification of the trust keystore.
+#
+# @param [Optional[Easy_type::Password]] trust_keystore_passphrase
+#    The passphrase for access to the keystore.
+#
+# @param [Boolean] custom_identity
+#    Set to true if you want to enable the use of custom identities.
+#
+# @param [Optional[String[1]]] custom_identity_keystore_filename
+#    The name of the file containing the custom identities.
+#
+# @param [Optional[String[1]]] custom_identity_alias
+#    The alias of the entry in the custom identity keystore that we want to use.
+#
+# @param [Optional[Easy_type::Password]] custom_identity_keystore_passphrase
+#    The passphrase for the custom identity keystore.
+#
+# @param [Optional[Easy_type::Password]] custom_identity_privatekey_passphrase
+#    The passphrase for the private key in the custom identity keystore.
+#
 #
 # See the file "LICENSE" for the full license governing this code.
 #
 class wls_profile::node::copy_domain(
-  String[1] $domain_name,
-  Stdlib::Absolutepath
-            $weblogic_home,
-  Stdlib::Absolutepath
-            $log_dir,
-  Stdlib::Absolutepath
-            $middleware_home,
-  Stdlib::Absolutepath
-            $jdk_home,
-  Stdlib::Absolutepath
-            $domains_dir,
-  String[1] $os_user,
-  String[1] $os_group,
-  String[1] $adminserver_address,
-  String[1] $nodemanager_address,
-  Integer   $nodemanager_wait,
-  String[1] $weblogic_user,
-  Easy_type::Password $weblogic_password,
-  Wls_install::Versions
-            $version               = $wls_profile::weblogic_version,
-  Integer   $adminserver_port      = $wls_profile::adminserver_port,
+  String[1]                     $domain_name,
+  Stdlib::Absolutepath          $weblogic_home,
+  Stdlib::Absolutepath          $log_dir,
+  Stdlib::Absolutepath          $middleware_home,
+  Stdlib::Absolutepath          $jdk_home,
+  Stdlib::Absolutepath          $domains_dir,
+  String[1]                     $os_user,
+  String[1]                     $os_group,
+  String[1]                     $adminserver_address,
+  String[1]                     $nodemanager_address,
+  Integer                       $nodemanager_wait,
+  String[1]                     $weblogic_user,
+  Easy_type::Password           $weblogic_password,
+  Boolean                       $jsse_enabled,
+  Boolean                       $custom_trust,
+  Optional[String[1]]           $trust_keystore_file,
+  Optional[Easy_type::Password] $trust_keystore_passphrase,
+  Boolean                       $custom_identity,
+  Optional[String[1]]           $custom_identity_keystore_filename,
+  Optional[String[1]]           $custom_identity_alias,
+  Optional[Easy_type::Password] $custom_identity_keystore_passphrase,
+  Optional[Easy_type::Password] $custom_identity_privatekey_passphrase,
+  Wls_install::Versions         $version               = $wls_profile::weblogic_version,
+  Integer                       $adminserver_port      = $wls_profile::adminserver_port,
 ) inherits wls_profile {
   echo {"WebLogic copy domain ${domain_name} from ${adminserver_address}:${domains_dir}/${domain_name}":
     withpath => false,
   }
 
   wls_install::copydomain{$domain_name:
-    domain_name         => $domain_name,
-    version             => $version,
-    weblogic_home_dir   => $weblogic_home,
-    middleware_home_dir => $middleware_home,
-    jdk_home_dir        => $jdk_home,
-    wls_domains_dir     => $domains_dir,
-    wls_apps_dir        => "${domains_dir}/applications",
-    os_user             => $os_user,
-    os_group            => $os_group,
-    download_dir        => $download_dir,
-    log_dir             => $log_dir,
-    use_ssh             => true,
-    domain_pack_dir     => "${domains_dir}/${domain_name}",
-    adminserver_address => $adminserver_address,
-    adminserver_port    => $adminserver_port,
-    weblogic_user       => $weblogic_user,
-    weblogic_password   => $weblogic_password,
+    domain_name               => $domain_name,
+    version                   => $version,
+    weblogic_home_dir         => $weblogic_home,
+    middleware_home_dir       => $middleware_home,
+    jdk_home_dir              => $jdk_home,
+    wls_domains_dir           => $domains_dir,
+    wls_apps_dir              => "${domains_dir}/applications",
+    os_user                   => $os_user,
+    os_group                  => $os_group,
+    download_dir              => $download_dir,
+    log_dir                   => $log_dir,
+    use_ssh                   => true,
+    domain_pack_dir           => "${domains_dir}/${domain_name}",
+    adminserver_address       => $adminserver_address,
+    adminserver_port          => $adminserver_port,
+    weblogic_user             => $weblogic_user,
+    weblogic_password         => $weblogic_password,
+    jsse_enabled              => $jsse_enabled,
+    custom_trust              => $custom_trust,
+    trust_keystore_file       => $trust_keystore_file,
+    trust_keystore_passphrase => $trust_keystore_passphrase,
   }
   #
   # Over here you define the nodemanager. Here you can specify the address
@@ -148,20 +182,27 @@ class wls_profile::node::copy_domain(
   # with multiple nodemanagers, you have to specify different addresses and/or ports.
   #
   -> wls_install::nodemanager{"nodemanager for ${domain_name}":
-    weblogic_home_dir   => $weblogic_home,
-    middleware_home_dir => $middleware_home,
-    wls_domains_dir     => $domains_dir,
-    jdk_home_dir        => $jdk_home,
-    download_dir        => $download_dir,
-    domain_name         => $domain_name,
-    version             => $version,
-    log_dir             => $log_dir,
-    nodemanager_address => $nodemanager_address,
-    os_user             => $os_user,
-    os_group            => $os_group,
-    sleep               => $nodemanager_wait,
+    weblogic_home_dir                     => $weblogic_home,
+    middleware_home_dir                   => $middleware_home,
+    wls_domains_dir                       => $domains_dir,
+    jdk_home_dir                          => $jdk_home,
+    download_dir                          => $download_dir,
+    domain_name                           => $domain_name,
+    version                               => $version,
+    log_dir                               => $log_dir,
+    nodemanager_address                   => $nodemanager_address,
+    os_user                               => $os_user,
+    os_group                              => $os_group,
+    jsse_enabled                          => $jsse_enabled,
+    custom_trust                          => $custom_trust,
+    trust_keystore_file                   => $trust_keystore_file,
+    trust_keystore_passphrase             => $trust_keystore_passphrase,
+    custom_identity                       => $custom_identity,
+    custom_identity_keystore_filename     => $custom_identity_keystore_filename,
+    custom_identity_keystore_passphrase   => $custom_identity_keystore_passphrase,
+    custom_identity_alias                 => $custom_identity_alias,
+    custom_identity_privatekey_passphrase => $custom_identity_privatekey_passphrase,
+    sleep                                 => $nodemanager_wait,
   }
-
-
 }
 # lint:endignore:variable_scope

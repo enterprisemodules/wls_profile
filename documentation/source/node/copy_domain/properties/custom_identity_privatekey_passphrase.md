@@ -1,0 +1,1 @@
+The passphrase for the private key in the custom identity keystore.
