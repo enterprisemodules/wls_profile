@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.14.0
+
+**Features**
+
+- [java_software] Support skipping JCE installation
+
 ## Release 0.13.0
 
 **Features**
