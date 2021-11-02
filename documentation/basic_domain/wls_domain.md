@@ -28,30 +28,32 @@ If you want to play and experiment with Puppet and WebLogic, please take a look 
 
 
 
-Attribute Name                                                         | Short Description                                                                        |
----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-[adminserver_address](#basic_domain::wls_domain_adminserver_address)   | The address the admin server process will run and listen on.                             |
-[adminserver_port](#basic_domain::wls_domain_adminserver_port)         | The IP port the admin server process will run and listen on.                             |
-[adminserver_settings](#basic_domain::wls_domain_adminserver_settings) | A Hash containing settings (of type `wls_server`) to define for the Admin server.        |
-[b2b_enabled](#basic_domain::wls_domain_b2b_enabled)                   | A boolean value specifying if you want to enable b2b.                                    |
-[bam_enabled](#basic_domain::wls_domain_bam_enabled)                   | A boolean value specifying if you want to enable bam.                                    |
-[development_mode](#basic_domain::wls_domain_development_mode)         | A boolean value specifying if you want to enable development mode.                       |
-[domain_alias](#basic_domain::wls_domain_domain_alias)                 | The domain alias.                                                                        |
-[domain_name](#basic_domain::wls_domain_domain_name)                   | The name of the WebLogic domain.                                                         |
-[domains_dir](#basic_domain::wls_domain_domains_dir)                   | The top-level directory where the domain directories will reside in.                     |
-[ess_enabled](#basic_domain::wls_domain_ess_enabled)                   | A boolean value specifying if you want to enable ess.                                    |
-[log_dir](#basic_domain::wls_domain_log_dir)                           | The directory used for log files.                                                        |
-[nodemanager_address](#basic_domain::wls_domain_nodemanager_address)   | The IP address the nodemanager will run and listen on.                                   |
-[nodemanager_port](#basic_domain::wls_domain_nodemanager_port)         | The IP port the nodemanager listens on.                                                  |
-[nodemanager_wait](#basic_domain::wls_domain_nodemanager_wait)         | The time in seconds Puppet waits for the nodemanager to start before declaring an error. |
-[os_group](#basic_domain::wls_domain_os_group)                         | The os group to use for WebLogic.                                                        |
-[os_user](#basic_domain::wls_domain_os_user)                           | The os user to use for WebLogic.                                                         |
-[template_name](#basic_domain::wls_domain_template_name)               | The domain template to use when creating the domain.                                     |
-[version](#basic_domain::wls_domain_version)                           | The version of WebLogic you want to use.                                                 |
-[weblogic_home](#basic_domain::wls_domain_weblogic_home)               | The directory used as WebLogic home
-                                                     |
-[weblogic_password](#basic_domain::wls_domain_weblogic_password)       | The password for the WebLogic account.                                                   |
-[weblogic_user](#basic_domain::wls_domain_weblogic_user)               | The WebLogic user account to bear all administration rights.                             |
+Attribute Name                                                                       | Short Description                                                                                        |
+------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+[administration_port](#basic_domain::wls_domain_administration_port)                 | The common secure administration port for this WebLogic Server domain.                                   |
+[administration_port_enabled](#basic_domain::wls_domain_administration_port_enabled) | Specifies whether the domain-wide administration port should be enabled for this WebLogic Server domain. |
+[adminserver_address](#basic_domain::wls_domain_adminserver_address)                 | The address the admin server process will run and listen on.                                             |
+[adminserver_port](#basic_domain::wls_domain_adminserver_port)                       | The IP port the admin server process will run and listen on.                                             |
+[adminserver_settings](#basic_domain::wls_domain_adminserver_settings)               | A Hash containing settings (of type `wls_server`) to define for the Admin server.                        |
+[b2b_enabled](#basic_domain::wls_domain_b2b_enabled)                                 | A boolean value specifying if you want to enable b2b.                                                    |
+[bam_enabled](#basic_domain::wls_domain_bam_enabled)                                 | A boolean value specifying if you want to enable bam.                                                    |
+[development_mode](#basic_domain::wls_domain_development_mode)                       | A boolean value specifying if you want to enable development mode.                                       |
+[domain_alias](#basic_domain::wls_domain_domain_alias)                               | The domain alias.                                                                                        |
+[domain_name](#basic_domain::wls_domain_domain_name)                                 | The name of the WebLogic domain.                                                                         |
+[domains_dir](#basic_domain::wls_domain_domains_dir)                                 | The top-level directory where the domain directories will reside in.                                     |
+[ess_enabled](#basic_domain::wls_domain_ess_enabled)                                 | A boolean value specifying if you want to enable ess.                                                    |
+[log_dir](#basic_domain::wls_domain_log_dir)                                         | The directory used for log files.                                                                        |
+[nodemanager_address](#basic_domain::wls_domain_nodemanager_address)                 | The IP address the nodemanager will run and listen on.                                                   |
+[nodemanager_port](#basic_domain::wls_domain_nodemanager_port)                       | The IP port the nodemanager listens on.                                                                  |
+[nodemanager_wait](#basic_domain::wls_domain_nodemanager_wait)                       | The time in seconds Puppet waits for the nodemanager to start before declaring an error.                 |
+[os_group](#basic_domain::wls_domain_os_group)                                       | The os group to use for WebLogic.                                                                        |
+[os_user](#basic_domain::wls_domain_os_user)                                         | The os user to use for WebLogic.                                                                         |
+[template_name](#basic_domain::wls_domain_template_name)                             | The domain template to use when creating the domain.                                                     |
+[version](#basic_domain::wls_domain_version)                                         | The version of WebLogic you want to use.                                                                 |
+[weblogic_home](#basic_domain::wls_domain_weblogic_home)                             | The directory used as WebLogic home
+                                                                     |
+[weblogic_password](#basic_domain::wls_domain_weblogic_password)                     | The password for the WebLogic account.                                                                   |
+[weblogic_user](#basic_domain::wls_domain_weblogic_user)                             | The WebLogic user account to bear all administration rights.                                             |
 
 
 
@@ -235,6 +237,36 @@ The default value is:  `7001`
 Type: `Integer`
 
 Default:`$wls_profile::adminserver_port`
+
+[Back to overview of basic_domain::wls_domain](#attributes)
+
+### administration_port_enabled<a name='basic_domain::wls_domain_administration_port_enabled'>
+
+Specifies whether the domain-wide administration port should be enabled for this WebLogic Server domain. Because the administration port uses SSL, enabling the administration port requires that SSL must be configured for all servers in the domain.
+
+The domain-wide administration port enables you to start a WebLogic Server instance in STANDBY state. It also allows you to separate administration traffic from application traffic in your domain. Because all servers in the domain must enable or disable the administration port at once, you configure the default administration port settings at the domain level.
+
+If you enable the administration port:
+
+The administration port accepts only connections that specify administrator credentials.
+
+Connections that specify administrator credentials can use only the administration port.
+
+The command that starts managed servers must specify a secure protocol and the administration port: -Dweblogic.management.server=https://admin_server:administration_port
+
+
+Type: `Boolean`
+
+Default:`false`
+
+[Back to overview of basic_domain::wls_domain](#attributes)
+
+### administration_port<a name='basic_domain::wls_domain_administration_port'>
+
+The common secure administration port for this WebLogic Server domain. (Requires you to enable the administration port.)
+Type: `Optional[Integer]`
+
+Default:`undef`
 
 [Back to overview of basic_domain::wls_domain](#attributes)
 

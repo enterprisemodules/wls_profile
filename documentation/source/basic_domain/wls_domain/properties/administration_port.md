@@ -1,0 +1,1 @@
+The common secure administration port for this WebLogic Server domain. (Requires you to enable the administration port.)

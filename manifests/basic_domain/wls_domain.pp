@@ -101,6 +101,19 @@
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::adminserver_port` to change it to your requested value.
 #    The default value is:  `7001`
 #
+# @param [Boolean] administration_port_enabled
+#    Specifies whether the domain-wide administration port should be enabled for this WebLogic Server domain.
+#    Because the administration port uses SSL, enabling the administration port requires that SSL must be configured for all servers in the domain.
+#    The domain-wide administration port enables you to start a WebLogic Server instance in STANDBY state. It also allows you to separate administration traffic from application traffic in your domain. Because all servers in the domain must enable or disable the administration port at once, you configure the default administration port settings at the domain level.
+#    If you enable the administration port:
+#    The administration port accepts only connections that specify administrator credentials.
+#    Connections that specify administrator credentials can use only the administration port.
+#    The command that starts managed servers must specify a secure protocol and the administration port: -Dweblogic.management.server=https://admin_server:administration_port
+#
+# @param [Optional[Integer]] administration_port
+#    The common secure administration port for this WebLogic Server domain.
+#    (Requires you to enable the administration port.)
+#
 # @param [String[1]] os_user
 #    The os user to use for WebLogic.
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_user` to change it to your requested value.
@@ -207,6 +220,8 @@ class wls_profile::basic_domain::wls_domain(
   Integer             $nodemanager_port                      = $wls_profile::nodemanager_port,
   Integer             $adminserver_port                      = $wls_profile::adminserver_port,
   Optional[Integer]   $adminserver_ssl_port                  = undef,
+  Optional[Integer]   $administration_port                   = undef,
+  Boolean             $administration_port_enabled           = false,
   Wls_install::Versions
                       $version                               = $wls_profile::weblogic_version,
   Optional[String[1]] $repository_database_url               = undef,
@@ -231,6 +246,18 @@ class wls_profile::basic_domain::wls_domain(
     }
   } else {
     $optional_settings = {}
+  }
+
+  #
+  # Depending on the options we specify we need to connect to a different URL for management 
+  # of the domain.
+  #
+  $connect_url = if $administration_port_enabled == true {
+    "t3s://${adminserver_address}:${administration_port}"
+  } elsif $administration_port_enabled == false and $adminserver_ssl_port != undef {
+    "t3s://${adminserver_address}:${adminserver_ssl_port}"
+  } else {
+    "t3://${adminserver_address}:${adminserver_port}"
   }
 
   #
@@ -261,6 +288,8 @@ class wls_profile::basic_domain::wls_domain(
     adminserver_address                   => $adminserver_address,
     adminserver_port                      => $adminserver_port,
     adminserver_ssl_port                  => $adminserver_ssl_port,
+    administration_port                   => $administration_port,
+    administration_port_enabled           => $administration_port_enabled,
     download_dir                          => $download_dir,
     jsse_enabled                          => $jsse_enabled,
     custom_trust                          => $custom_trust,
@@ -333,7 +362,7 @@ class wls_profile::basic_domain::wls_domain(
     user                      => $os_user,
     weblogic_user             => $weblogic_user,
     weblogic_password         => $weblogic_password,
-    connect_url               => if $adminserver_ssl_port == undef { "t3://${adminserver_address}:${adminserver_port}"} else { "t3s://${adminserver_address}:${adminserver_ssl_port}" },
+    connect_url               => $connect_url,
     weblogic_home_dir         => $weblogic_home,
     extra_properties          => $extra_properties,
     custom_trust              => $custom_trust,

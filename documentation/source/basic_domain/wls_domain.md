@@ -16,6 +16,8 @@ When these customizations aren't enough, you can replace the class with your own
   :nodemanager_port,
   :adminserver_address,
   :adminserver_port,
+  :administration_port_enabled,
+  :administration_port,
   :os_user,
   :os_group,
   :weblogic_user,
