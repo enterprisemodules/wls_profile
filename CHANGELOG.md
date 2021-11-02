@@ -2,11 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.15.0
+
+**Features**
+
+- [wls_domain] Add support for administration_port_enabled
+
 ## Release 0.14.0
 
 **Features**
 
-- [java_software] Support skipping JCE installation
+- [copy_domain] Add support for custom identities
 
 ## Release 0.13.0
 
