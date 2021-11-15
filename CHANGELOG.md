@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.15.1
+
+**Bugs**
+
+- [wls_patches] Stop the wlst daemon for sane restarts
+
 ## Release 0.15.0
 
 **Features**
