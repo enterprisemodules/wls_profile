@@ -1,8 +1,7 @@
 #
 define wls_profile::weblogic::private::stop_domain(
-  String[1] $schedule_name,
-  Variant[Boolean,Enum['on_failure']]
-                      $logoutput = lookup({name => 'logoutput', default_value => 'on_failure'}),
+  String[1]                           $schedule_name,
+  Variant[Boolean,Enum['on_failure']] $logoutput = lookup({name => 'logoutput', default_value => 'on_failure'}),
 )
 {
   $domain = $title
@@ -68,9 +67,7 @@ define wls_profile::weblogic::private::stop_domain(
     schedule => $schedule_name,
   }
 
-  -> exec {"Stop nodemanager for ${domain}":
-    command   => "/usr/bin/systemctl stop nodemanager_${domain}",
-    schedule  => $schedule_name,
-    logoutput => $logoutput,
+  -> wls_daemon { $domain:
+    ensure => 'absent',
   }
 }
