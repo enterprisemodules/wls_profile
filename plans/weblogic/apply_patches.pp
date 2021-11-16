@@ -17,7 +17,7 @@
 #
 # See the file "LICENSE" for the full license governing this code.
 #
-wls_plan wls_profile::weblogic::apply_patches(
+plan wls_profile::weblogic::apply_patches(
   TargetSpec $targets,
 ) {
   #
