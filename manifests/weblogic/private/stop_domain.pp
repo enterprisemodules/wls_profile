@@ -67,6 +67,12 @@ define wls_profile::weblogic::private::stop_domain(
     schedule => $schedule_name,
   }
 
+  -> exec {"Stop nodemanager for ${domain}":
+    command   => "/usr/bin/systemctl stop nodemanager_${domain}",
+    schedule  => $schedule_name,
+    logoutput => $logoutput,
+  }
+
   -> wls_daemon { $domain:
     ensure => 'absent',
   }

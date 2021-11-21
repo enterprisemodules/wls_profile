@@ -9,6 +9,8 @@ lookup_options:
     convert_to: Sensitive
   wls_profile::node::copy_domain::weblogic_password:
     convert_to: Sensitive
+  wls_profile::weblogic::wls_patches::weblogic_password:
+    convert_to: Sensitive
 #
 # And the repo password
 #

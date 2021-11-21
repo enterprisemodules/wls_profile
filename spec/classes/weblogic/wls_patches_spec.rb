@@ -177,7 +177,12 @@ describe 'wls_profile::weblogic::wls_patches' do
             .with('command'  => '/usr/bin/systemctl stop nodemanager_dom01')
             .with('schedule' => 'wls_patch_window')
           }
-          
+
+          it { is_expected.to contain_wls_daemon('dom01')
+            .with('ensure'                  => 'absent')
+            .that_requires('Exec[Stop nodemanager for dom01]')
+          }
+
           it { is_expected.to contain_echo('Restarting AdminServer, nodemanager and managed servers in domain dom01')
             .with('schedule' => 'wls_patch_window')
           }
