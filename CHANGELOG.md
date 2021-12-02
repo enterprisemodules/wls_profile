@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+
+## Release 0.15.3
+
+**Bugs**
+
+- [copy_domain] Add support for different adminserver ports
+- [wls_patches] Fix stopping nodemanager
+
+## Release 0.15.2
+
+**Bugs**
+
+- [plan/apply_patches] Fix typo
+
 ## Release 0.15.1
 
 **Bugs**
