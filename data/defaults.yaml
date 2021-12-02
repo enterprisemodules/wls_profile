@@ -198,6 +198,9 @@ wls_profile::basic_domain::wls_domain::log_dir:                               "%
 wls_profile::basic_domain::wls_domain::template_name:                         standard
 wls_profile::basic_domain::wls_domain::nodemanager_address:                   "%{lookup('wls_profile::nodemanager_address')}"
 wls_profile::basic_domain::wls_domain::adminserver_address:                   "%{lookup('wls_profile::adminserver_address')}"
+wls_profile::basic_domain::wls_domain::administration_port_enabled:           false
+wls_profile::basic_domain::wls_domain::administration_port:                   ~
+wls_profile::basic_domain::wls_domain::adminserver_ssl_port:                  ~
 wls_profile::basic_domain::wls_domain::os_user:                               "%{lookup('wls_profile::os_user')}"
 wls_profile::basic_domain::wls_domain::os_group:                              "%{lookup('wls_profile::os_group')}"
 wls_profile::basic_domain::wls_domain::weblogic_user:                         "%{lookup('wls_profile::weblogic_user')}"
@@ -321,6 +324,9 @@ wls_profile::node::copy_domain::domains_dir:                            "%{looku
 wls_profile::node::copy_domain::os_user:                                "%{lookup('wls_profile::os_user')}"
 wls_profile::node::copy_domain::os_group:                               "%{lookup('wls_profile::os_group')}"
 wls_profile::node::copy_domain::adminserver_address:                    "%{lookup('wls_profile::adminserver_address')}"
+wls_profile::node::copy_domain::administration_port:                    "%{alias('wls_profile::basic_domain::wls_domain::administration_port')}"
+wls_profile::node::copy_domain::administration_port_enabled:            "%{alias('wls_profile::basic_domain::wls_domain::administration_port_enabled')}"
+wls_profile::node::copy_domain::adminserver_ssl_port:                   "%{alias('wls_profile::basic_domain::wls_domain::adminserver_ssl_port')}"
 wls_profile::node::copy_domain::weblogic_user:                          "%{lookup('wls_profile::weblogic_user')}"
 wls_profile::node::copy_domain::weblogic_password:                      "%{alias('wls_profile::weblogic_password')}"
 wls_profile::node::copy_domain::repository_password:                    "%{alias('wls_profile::repository_password')}"

@@ -74,6 +74,22 @@
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::adminserver_port` to change it to your requested value.
 #    The default value is:  `7001`
 #
+# @param [Optional[Integer]] administration_port
+#    The common secure administration port for this WebLogic Server domain.
+#    (Requires you to enable the administration port.)
+#
+# @param [Boolean] administration_port_enabled
+#    Specifies whether the domain-wide administration port should be enabled for this WebLogic Server domain.
+#    Because the administration port uses SSL, enabling the administration port requires that SSL must be configured for all servers in the domain.
+#    The domain-wide administration port enables you to start a WebLogic Server instance in STANDBY state. It also allows you to separate administration traffic from application traffic in your domain. Because all servers in the domain must enable or disable the administration port at once, you configure the default administration port settings at the domain level.
+#    If you enable the administration port:
+#    The administration port accepts only connections that specify administrator credentials.
+#    Connections that specify administrator credentials can use only the administration port.
+#    The command that starts managed servers must specify a secure protocol and the administration port: -Dweblogic.management.server=https://admin_server:administration_port
+#
+# @param [Optional[Integer]] adminserver_ssl_port
+#    SSL port to use for the Admin server.
+#
 # @param [String[1]] nodemanager_address
 #    The IP address the nodemanager will run and listen on.
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::wls_domain::log_dir` to change it to your requested value.
@@ -134,6 +150,9 @@ class wls_profile::node::copy_domain(
   String[1]                     $os_group,
   String[1]                     $adminserver_address,
   String[1]                     $nodemanager_address,
+  Optional[Integer]             $administration_port,
+  Boolean                       $administration_port_enabled,
+  Optional[Integer]             $adminserver_ssl_port,
   Integer                       $nodemanager_wait,
   String[1]                     $weblogic_user,
   Easy_type::Password           $weblogic_password,
@@ -153,28 +172,33 @@ class wls_profile::node::copy_domain(
     withpath => false,
   }
 
-  wls_install::copydomain{$domain_name:
-    domain_name               => $domain_name,
-    version                   => $version,
-    weblogic_home_dir         => $weblogic_home,
-    middleware_home_dir       => $middleware_home,
-    jdk_home_dir              => $jdk_home,
-    wls_domains_dir           => $domains_dir,
-    wls_apps_dir              => "${domains_dir}/applications",
-    os_user                   => $os_user,
-    os_group                  => $os_group,
-    download_dir              => $download_dir,
-    log_dir                   => $log_dir,
-    use_ssh                   => true,
-    domain_pack_dir           => "${domains_dir}/${domain_name}",
-    adminserver_address       => $adminserver_address,
-    adminserver_port          => $adminserver_port,
-    weblogic_user             => $weblogic_user,
-    weblogic_password         => $weblogic_password,
-    jsse_enabled              => $jsse_enabled,
-    custom_trust              => $custom_trust,
-    trust_keystore_file       => $trust_keystore_file,
-    trust_keystore_passphrase => $trust_keystore_passphrase,
+  easy_type::debug_evaluation() # Show local variable on extended debug
+
+  wls_install::copydomain { $domain_name:
+    domain_name                 => $domain_name,
+    version                     => $version,
+    weblogic_home_dir           => $weblogic_home,
+    middleware_home_dir         => $middleware_home,
+    jdk_home_dir                => $jdk_home,
+    wls_domains_dir             => $domains_dir,
+    wls_apps_dir                => "${domains_dir}/applications",
+    os_user                     => $os_user,
+    os_group                    => $os_group,
+    download_dir                => $download_dir,
+    log_dir                     => $log_dir,
+    use_ssh                     => true,
+    domain_pack_dir             => "${domains_dir}/${domain_name}",
+    adminserver_address         => $adminserver_address,
+    adminserver_port            => $adminserver_port,
+    administration_port_enabled => $administration_port_enabled,
+    administration_port         => $administration_port,
+    adminserver_ssl_port        => $adminserver_ssl_port,
+    weblogic_user               => $weblogic_user,
+    weblogic_password           => $weblogic_password,
+    jsse_enabled                => $jsse_enabled,
+    custom_trust                => $custom_trust,
+    trust_keystore_file         => $trust_keystore_file,
+    trust_keystore_passphrase   => $trust_keystore_passphrase,
   }
   #
   # Over here you define the nodemanager. Here you can specify the address

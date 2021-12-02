@@ -18,6 +18,7 @@ When these customizations aren't enough, you can replace the class with your own
   :adminserver_port,
   :administration_port_enabled,
   :administration_port,
+  :adminserver_ssl_port,
   :os_user,
   :os_group,
   :weblogic_user,

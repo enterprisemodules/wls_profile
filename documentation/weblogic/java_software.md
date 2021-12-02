@@ -53,7 +53,7 @@ This value is used in multiple places. To make sure in all classed the correct v
 Default value: `8u152`
 
 
-Type: `String`
+Type: `String[1]`
 
 
 [Back to overview of weblogic::java_software](#attributes)
@@ -67,7 +67,7 @@ This value is used in multiple places. To make sure in all classed the correct v
 Default value: `jdk1.8.0_152`
 
 
-Type: `String`
+Type: `String[1]`
 
 
 [Back to overview of weblogic::java_software](#attributes)
@@ -77,8 +77,9 @@ Type: `String`
 Cryptographic extension file to use.
 
 Default value: `jce_policy-8.zip`
-Type: `String`
+Type: `Optional[String[1]]`
 
+Default:`undef`
 
 [Back to overview of weblogic::java_software](#attributes)
 
@@ -92,7 +93,7 @@ This value is used in multiple places. To make sure in all classed the correct v
 
 The default is : `puppet:///modules/software/`
 
-Type: `String`
+Type: `String[1]`
 
 
 [Back to overview of weblogic::java_software](#attributes)
