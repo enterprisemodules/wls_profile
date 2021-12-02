@@ -30,33 +30,36 @@ If you want to play and experiment with Puppet and WebLogic, please take a look 
 
 
 
-Attribute Name                                                                                    | Short Description                                                                        |
-------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-[adminserver_address](#node::copy_domain_adminserver_address)                                     | The address the admin server process will run and listen on.                             |
-[adminserver_port](#node::copy_domain_adminserver_port)                                           | The IP port the admin server process will run and listen on.                             |
-[custom_identity](#node::copy_domain_custom_identity)                                             |                                                                                          |
-[custom_identity_alias](#node::copy_domain_custom_identity_alias)                                 |                                                                                          |
-[custom_identity_keystore_filename](#node::copy_domain_custom_identity_keystore_filename)         |                                                                                          |
-[custom_identity_keystore_passphrase](#node::copy_domain_custom_identity_keystore_passphrase)     |                                                                                          |
-[custom_identity_privatekey_passphrase](#node::copy_domain_custom_identity_privatekey_passphrase) |                                                                                          |
-[custom_trust](#node::copy_domain_custom_trust)                                                   | Determine if you want to use a custom trust or not.                                      |
-[domain_name](#node::copy_domain_domain_name)                                                     | The name of the WebLogic domain.                                                         |
-[domains_dir](#node::copy_domain_domains_dir)                                                     | The top-level directory where the domain directories will reside in.                     |
-[jdk_home](#node::copy_domain_jdk_home)                                                           | The location where the JDK is installed.                                                 |
-[jsse_enabled](#node::copy_domain_jsse_enabled)                                                   | Determine if you want to enable JSSE security.                                           |
-[log_dir](#node::copy_domain_log_dir)                                                             | The directory used for log files.                                                        |
-[middleware_home](#node::copy_domain_middleware_home)                                             | The Oracle middleware home directory.                                                    |
-[nodemanager_address](#node::copy_domain_nodemanager_address)                                     | The IP address the nodemanager will run and listen on.                                   |
-[nodemanager_wait](#node::copy_domain_nodemanager_wait)                                           | The time in seconds Puppet waits for the nodemanager to start before declaring an error. |
-[os_group](#node::copy_domain_os_group)                                                           | The os group to use for WebLogic.                                                        |
-[os_user](#node::copy_domain_os_user)                                                             | The os user to use for WebLogic.                                                         |
-[trust_keystore_file](#node::copy_domain_trust_keystore_file)                                     | File specification of the trust keystore.                                                |
-[trust_keystore_passphrase](#node::copy_domain_trust_keystore_passphrase)                         |                                                                                          |
-[version](#node::copy_domain_version)                                                             | The version of WebLogic you want to use.                                                 |
+Attribute Name                                                                                    | Short Description                                                                                        |
+------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+[administration_port](#node::copy_domain_administration_port)                                     | The common secure administration port for this WebLogic Server domain.                                   |
+[administration_port_enabled](#node::copy_domain_administration_port_enabled)                     | Specifies whether the domain-wide administration port should be enabled for this WebLogic Server domain. |
+[adminserver_address](#node::copy_domain_adminserver_address)                                     | The address the admin server process will run and listen on.                                             |
+[adminserver_port](#node::copy_domain_adminserver_port)                                           | The IP port the admin server process will run and listen on.                                             |
+[adminserver_ssl_port](#node::copy_domain_adminserver_ssl_port)                                   | SSL port to use for the Admin server.                                                                    |
+[custom_identity](#node::copy_domain_custom_identity)                                             |                                                                                                          |
+[custom_identity_alias](#node::copy_domain_custom_identity_alias)                                 |                                                                                                          |
+[custom_identity_keystore_filename](#node::copy_domain_custom_identity_keystore_filename)         |                                                                                                          |
+[custom_identity_keystore_passphrase](#node::copy_domain_custom_identity_keystore_passphrase)     |                                                                                                          |
+[custom_identity_privatekey_passphrase](#node::copy_domain_custom_identity_privatekey_passphrase) |                                                                                                          |
+[custom_trust](#node::copy_domain_custom_trust)                                                   | Determine if you want to use a custom trust or not.                                                      |
+[domain_name](#node::copy_domain_domain_name)                                                     | The name of the WebLogic domain.                                                                         |
+[domains_dir](#node::copy_domain_domains_dir)                                                     | The top-level directory where the domain directories will reside in.                                     |
+[jdk_home](#node::copy_domain_jdk_home)                                                           | The location where the JDK is installed.                                                                 |
+[jsse_enabled](#node::copy_domain_jsse_enabled)                                                   | Determine if you want to enable JSSE security.                                                           |
+[log_dir](#node::copy_domain_log_dir)                                                             | The directory used for log files.                                                                        |
+[middleware_home](#node::copy_domain_middleware_home)                                             | The Oracle middleware home directory.                                                                    |
+[nodemanager_address](#node::copy_domain_nodemanager_address)                                     | The IP address the nodemanager will run and listen on.                                                   |
+[nodemanager_wait](#node::copy_domain_nodemanager_wait)                                           | The time in seconds Puppet waits for the nodemanager to start before declaring an error.                 |
+[os_group](#node::copy_domain_os_group)                                                           | The os group to use for WebLogic.                                                                        |
+[os_user](#node::copy_domain_os_user)                                                             | The os user to use for WebLogic.                                                                         |
+[trust_keystore_file](#node::copy_domain_trust_keystore_file)                                     | File specification of the trust keystore.                                                                |
+[trust_keystore_passphrase](#node::copy_domain_trust_keystore_passphrase)                         |                                                                                                          |
+[version](#node::copy_domain_version)                                                             | The version of WebLogic you want to use.                                                                 |
 [weblogic_home](#node::copy_domain_weblogic_home)                                                 | The directory used as WebLogic home
-                                                     |
-[weblogic_password](#node::copy_domain_weblogic_password)                                         | The password for the WebLogic account.                                                   |
-[weblogic_user](#node::copy_domain_weblogic_user)                                                 | The WebLogic user account to bear all administration rights.                             |
+                                                                     |
+[weblogic_password](#node::copy_domain_weblogic_password)                                         | The password for the WebLogic account.                                                                   |
+[weblogic_user](#node::copy_domain_weblogic_user)                                                 | The WebLogic user account to bear all administration rights.                                             |
 
 
 
@@ -208,6 +211,46 @@ The default value is:  `7001`
 Type: `Integer`
 
 Default:`$wls_profile::adminserver_port`
+
+[Back to overview of node::copy_domain](#attributes)
+
+### administration_port<a name='node::copy_domain_administration_port'>
+
+The common secure administration port for this WebLogic Server domain. (Requires you to enable the administration port.)
+Type: `Optional[Integer]`
+
+Default:`undef`
+
+[Back to overview of node::copy_domain](#attributes)
+
+### administration_port_enabled<a name='node::copy_domain_administration_port_enabled'>
+
+Specifies whether the domain-wide administration port should be enabled for this WebLogic Server domain. Because the administration port uses SSL, enabling the administration port requires that SSL must be configured for all servers in the domain.
+
+The domain-wide administration port enables you to start a WebLogic Server instance in STANDBY state. It also allows you to separate administration traffic from application traffic in your domain. Because all servers in the domain must enable or disable the administration port at once, you configure the default administration port settings at the domain level.
+
+If you enable the administration port:
+
+The administration port accepts only connections that specify administrator credentials.
+
+Connections that specify administrator credentials can use only the administration port.
+
+The command that starts managed servers must specify a secure protocol and the administration port: -Dweblogic.management.server=https://admin_server:administration_port
+
+
+Type: `Boolean`
+
+Default:`false`
+
+[Back to overview of node::copy_domain](#attributes)
+
+### adminserver_ssl_port<a name='node::copy_domain_adminserver_ssl_port'>
+
+SSL port to use for the Admin server.
+
+Type: `Optional[Integer]`
+
+Default:`undef`
 
 [Back to overview of node::copy_domain](#attributes)
 

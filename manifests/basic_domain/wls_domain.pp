@@ -114,6 +114,9 @@
 #    The common secure administration port for this WebLogic Server domain.
 #    (Requires you to enable the administration port.)
 #
+# @param [Optional[Integer]] adminserver_ssl_port
+#    SSL port to use for the Admin server.
+#
 # @param [String[1]] os_user
 #    The os user to use for WebLogic.
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_user` to change it to your requested value.
@@ -219,9 +222,9 @@ class wls_profile::basic_domain::wls_domain(
                       $custom_identity_privatekey_passphrase = undef,
   Integer             $nodemanager_port                      = $wls_profile::nodemanager_port,
   Integer             $adminserver_port                      = $wls_profile::adminserver_port,
-  Optional[Integer]   $adminserver_ssl_port                  = undef,
-  Optional[Integer]   $administration_port                   = undef,
-  Boolean             $administration_port_enabled           = false,
+  Optional[Integer]   $adminserver_ssl_port,
+  Optional[Integer]   $administration_port,
+  Boolean             $administration_port_enabled,
   Wls_install::Versions
                       $version                               = $wls_profile::weblogic_version,
   Optional[String[1]] $repository_database_url               = undef,

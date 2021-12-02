@@ -35,6 +35,7 @@ Attribute Name                                                                  
 [adminserver_address](#basic_domain::wls_domain_adminserver_address)                 | The address the admin server process will run and listen on.                                             |
 [adminserver_port](#basic_domain::wls_domain_adminserver_port)                       | The IP port the admin server process will run and listen on.                                             |
 [adminserver_settings](#basic_domain::wls_domain_adminserver_settings)               | A Hash containing settings (of type `wls_server`) to define for the Admin server.                        |
+[adminserver_ssl_port](#basic_domain::wls_domain_adminserver_ssl_port)               | SSL port to use for the Admin server.                                                                    |
 [b2b_enabled](#basic_domain::wls_domain_b2b_enabled)                                 | A boolean value specifying if you want to enable b2b.                                                    |
 [bam_enabled](#basic_domain::wls_domain_bam_enabled)                                 | A boolean value specifying if you want to enable bam.                                                    |
 [development_mode](#basic_domain::wls_domain_development_mode)                       | A boolean value specifying if you want to enable development mode.                                       |
@@ -264,6 +265,16 @@ Default:`false`
 ### administration_port<a name='basic_domain::wls_domain_administration_port'>
 
 The common secure administration port for this WebLogic Server domain. (Requires you to enable the administration port.)
+Type: `Optional[Integer]`
+
+Default:`undef`
+
+[Back to overview of basic_domain::wls_domain](#attributes)
+
+### adminserver_ssl_port<a name='basic_domain::wls_domain_adminserver_ssl_port'>
+
+SSL port to use for the Admin server.
+
 Type: `Optional[Integer]`
 
 Default:`undef`
