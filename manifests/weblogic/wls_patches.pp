@@ -216,7 +216,7 @@ class wls_profile::weblogic::wls_patches(
 
   easy_type::debug_evaluation() # Show local variable on extended debug
 
-  $running_domains = dig($::facts['wls_install_homes'],$middleware_home,'running_domains')
+  $running_domains = wls_install::running_domains($middleware_home)
   if $needs_patches {
     if $running_domains in [[], undef] {
       $apply_patch_classes = true

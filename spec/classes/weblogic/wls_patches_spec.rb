@@ -12,11 +12,10 @@ describe 'wls_profile::weblogic::wls_patches' do
         context "patch level NONE" do
           let(:test_facts) {{
             'wls_install_homes' => {
-              '/opt/oracle/middleware12' => {
-                'running_domains' => [],
-                'installed_patches' => []
+              'running_domains' => {'/opt/oracle/middleware12' => []},
+              'opatch_version' => {'/opt/oracle/middleware12' => '12.2.1.4'},
+              'installed_patches' => {'/opt/oracle/middleware12' => []}
               }
-            }          
           }}
           let(:params) {{
             'version'      => 12214,
@@ -38,11 +37,10 @@ describe 'wls_profile::weblogic::wls_patches' do
           context "Domain not running" do
             let(:test_facts) {{
               'wls_install_homes' => {
-                '/opt/oracle/middleware12' => {
-                  'running_domains' => [],
-                  'installed_patches' => []
+                'running_domains' => {'/opt/oracle/middleware12' => []},
+                'opatch_version' => {'/opt/oracle/middleware12' => '12.2.1.4'},
+                'installed_patches' => {'/opt/oracle/middleware12' => []}
                 }
-              }          
             }}
             it { is_expected.to contain_echo('Ensure WebLogic patch level JAN2021RU on /opt/oracle/middleware12')}
             it { is_expected.to contain_echo('Directly applying WebLogic patches because no domains are running from middleware home')}
@@ -54,12 +52,11 @@ describe 'wls_profile::weblogic::wls_patches' do
           context "Domain is running" do
             let(:test_facts) {{
               'wls_install_homes' => {
-                '/opt/oracle/middleware12' => {
-                  'running_domains' => ['dom0'],
-                  'installed_patches' => []
+                'running_domains' => {'/opt/oracle/middleware12' => ['dom01']},
+                'opatch_version' => {'/opt/oracle/middleware12' => '12.2.1.4'},
+                'installed_patches' => {'/opt/oracle/middleware12' => []}
                 }
-              }          
-            }}
+              }}
             it { is_expected.to contain_echo('Ensure WebLogic patch level JAN2021RU on /opt/oracle/middleware12')}
             it { is_expected.to contain_echo('Skipping WebLogic patching because no patch window specified.')}
             it { is_expected.not_to contain_wls_opatch('/opt/oracle/middleware12:32253037')}
@@ -96,11 +93,10 @@ describe 'wls_profile::weblogic::wls_patches' do
         context "Domain not running" do
           let(:test_facts) {{
             'wls_install_homes' => {
-              '/opt/oracle/middleware12' => {
-                'running_domains' => [],
-                'installed_patches' => []
+              'running_domains' => {'/opt/oracle/middleware12' => []},
+              'opatch_version' => {'/opt/oracle/middleware12' => '12.2.1.4'},
+              'installed_patches' => {'/opt/oracle/middleware12' => []}
               }
-            }          
           }}
 
           it { is_expected.to contain_echo('Ensure WebLogic patch level JAN2021RU on /opt/oracle/middleware12')}
@@ -117,11 +113,10 @@ describe 'wls_profile::weblogic::wls_patches' do
         context "Domain is running" do
           let(:test_facts) {{
             'wls_install_homes' => {
-              '/opt/oracle/middleware12' => {
-                'running_domains' => ['dom01'],
-                'installed_patches' => []
+              'running_domains' => {'/opt/oracle/middleware12' => ['dom01']},
+              'opatch_version' => {'/opt/oracle/middleware12' => '12.2.1.4'},
+              'installed_patches' => {'/opt/oracle/middleware12' => []}
               }
-            }          
           }}
 
           it { is_expected.to contain_echo('Ensure WebLogic patch level JAN2021RU on /opt/oracle/middleware12')}
