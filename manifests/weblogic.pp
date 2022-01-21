@@ -299,6 +299,8 @@ class wls_profile::weblogic (
     }
   }
 
+  include wls_install    # Do the basic setup like fact caching etc
+
   easy_type::ordered_steps([
     'wls_profile::weblogic::em_license',
     ['wls_profile::weblogic::sysctl',           { 'implementation' => 'easy_type::profile::sysctl' }],
