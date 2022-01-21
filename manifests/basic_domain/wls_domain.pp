@@ -240,7 +240,7 @@ class wls_profile::basic_domain::wls_domain(
     withpath => false
   }
 
-  if $template_name in ['forms','ohs_standalone','osb','osb_soa','osb_soa_bpm','soa','soa_bpm','bam','oim','oud','wc','wc_wcc_bpm'] {
+  if $template_name in ['forms','ohs_standalone','osb','osb_soa','osb_soa_bpm','soa','soa_bpm','bam','oim','oud','wc','wc_wcc_bpm', 'adf'] {
     $optional_settings = {
       repository_database_url => $repository_database_url,
       rcu_database_url        => $rcu_database_url,

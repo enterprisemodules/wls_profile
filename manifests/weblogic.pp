@@ -290,7 +290,7 @@ class wls_profile::weblogic (
 ) inherits wls_profile {
 
   $install_fusion = $wls_profile::install_type in
-    ['forms','ohs_standalone','osb','osb_soa','osb_soa_bpm','soa','soa_bpm','bam','oim','oud','wc','wc_wcc_bpm']
+    ['forms','ohs_standalone','osb','osb_soa','osb_soa_bpm','soa','soa_bpm','bam','oim','oud','wc','wc_wcc_bpm', 'adf']
 
   if $install_fusion {
     # If we install anything else then basic weblogic, we fmw_infra to be true
