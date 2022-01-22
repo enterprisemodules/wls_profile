@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 
 
+## Release 0.16.0
+
+**Features**
+
+- [core] Add fact caching
+- [wls_patches] Adjust for new fact structure of wls_install
+
+
+**Bugs**
+
+[core] Fix installation and creation of ADF
+
 ## Release 0.15.3
 
 **Bugs**

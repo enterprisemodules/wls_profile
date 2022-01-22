@@ -1,6 +1,6 @@
 {
   "name": "enterprisemodules-wls_profile",
-  "version": "0.15.3",
+  "version": "0.17.0",
   "author": "enterprisemodules",
   "summary": "Easy customisable profile classes for WebLogic and Fusion nodes for Linux, Solaris & AIX",
   "license": "Apache-2.0",
@@ -8,7 +8,7 @@
   "dependencies": [
     {
       "name": "enterprisemodules/easy_type",
-      "version_requirement": ">= 2.7.0 < 4.0.0"
+      "version_requirement": ">= 2.36.0 < 4.0.0"
     },
     {
       "name": "enterprisemodules/wls_config",
@@ -16,7 +16,7 @@
     },
     {
       "name": "enterprisemodules/wls_install",
-      "version_requirement": ">= 3.10.0 < 4.0.0"
+      "version_requirement": ">= 4.0.2 < 5.0.0"
     },
     {
       "name": "ipcrm-echo",
