@@ -3,7 +3,14 @@
 All notable changes to this project will be documented in this file.
 
 
-## Release 0.16.0
+## Release 0.17.1
+
+
+**Bugs**
+
+- [weblogic] ADF doesn’t need additional fmw software
+
+## Release 0.17.0
 
 **Features**
 
