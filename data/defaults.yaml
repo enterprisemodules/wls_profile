@@ -486,13 +486,46 @@ wls_profile::weblogic::wls_patches::patch_levels:
   '12213':
       NONE:       {}
       JAN2021RU:  {}
+      JAN2022RU: 
+        "%{lookup('wls_profile::middleware_home')}:33751288": # Version 12.2.1.3.220112
+          source:           "%{lookup('wls_profile::source')}/p33751288_122130_Generic.zip"
+          patch_type:       spb
+          sub_patches:
+            - '32647468'
+            - '33699205'
+            - '1221317'
+            - '32148634'
+            - '32982708'
+            - '33290784'
+            - '33678607'
   '12214':
       NONE:       {}
       JAN2021RU:
         "%{lookup('wls_profile::middleware_home')}:32253037":
-          source:           "%{lookup('wls_profile::source')}/p32253037_122140_Generic.zip"
+          source:           "%{lookup('wls_profile::source')}/p32253037_122130_Generic.zip"
+      JAN2022RU: 
+        "%{lookup('wls_profile::middleware_home')}:33751264": # Version 12.2.1.4.220112
+          source:           "%{lookup('wls_profile::source')}/p33751264_122140_Generic.zip"
+          patch_type:       spb
+          sub_patches:
+            - '32647448'
+            - '33727616'
+            - '1221412'
+            - '33093748'
+            - '32720458'
+            - '33678607'
   '14110':
       NONE:       {}
       JAN2021RU:
         "%{lookup('wls_profile::middleware_home')}:32247800":
           source:           "%{lookup('wls_profile::source')}/p32247800_141100_Generic"
+      JAN2022RU: 
+        "%{lookup('wls_profile::middleware_home')}:33751244": # Version 14.1.1.0.220112
+          source:           "%{lookup('wls_profile::source')}/p33751244_141100_Generic.zip"
+          patch_type:       spb
+          sub_patches:
+            - '32720458'
+            - '33591037'
+            - '33678607'
+            - '33727619'
+          
