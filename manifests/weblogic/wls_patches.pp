@@ -195,11 +195,6 @@ class wls_profile::weblogic::wls_patches(
   # No compare the list of required patches with the current state of the
   # system and decide what needs to be done.
   #
-  # converted_list contains all the patches in simple notation which is used for
-  # echo and to check if any patches need to be installed
-  #
-  $converted_list = wls_install::wls_physical_patches($complete_list)
-  #
   # list_to_apply is the hash with patches that need to be applied, 
   # without patches that have already been applied
   #
