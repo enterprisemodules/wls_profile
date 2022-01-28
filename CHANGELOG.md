@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.18.0
+
+**Features**
+
+- [data] Add January 2022 PSU patch levels for 1.2.1.3, 12.2.1.4 and 14.1
+
+**Bugs**
+
+- [wls_patches] Remove unused variable
+
 
 ## Release 0.17.1
 
@@ -9,6 +19,7 @@ All notable changes to this project will be documented in this file.
 **Bugs**
 
 - [weblogic] ADF doesn’t need additional fmw software
+
 
 ## Release 0.17.0
 
@@ -20,7 +31,7 @@ All notable changes to this project will be documented in this file.
 
 **Bugs**
 
-[core] Fix installation and creation of ADF
+- [core] Fix installation and creation of ADF
 
 ## Release 0.15.3
 
