@@ -14,7 +14,7 @@ This is a highly customizable Puppet profile class to define a basic WebLogic (e
 contain wls_profile::basic_domain
 ```
 
-Is enough to get an empty WebLogic 12.2.1.3. WebLogic domain running on your system. 
+Is enough to get an empty WebLogic domain running on your system. 
 
 But sometimes you have specific uses cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.
 

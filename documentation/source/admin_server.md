@@ -4,7 +4,7 @@ This is a highly customizable Puppet profile class to define a WebLogic Admin Se
 contain wls_profile::admin_server
 ```
 
-Is enough to get a WebLogic 12.2.1.3. WebLogic domain running on your system. 
+Is enough to get a WebLogic domain running on your system. 
 
 But sometimes you have specific uses cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.
 

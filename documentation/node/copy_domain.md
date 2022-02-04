@@ -219,7 +219,6 @@ Default:`$wls_profile::adminserver_port`
 The common secure administration port for this WebLogic Server domain. (Requires you to enable the administration port.)
 Type: `Optional[Integer]`
 
-Default:`undef`
 
 [Back to overview of node::copy_domain](#attributes)
 
@@ -240,7 +239,6 @@ The command that starts managed servers must specify a secure protocol and the a
 
 Type: `Boolean`
 
-Default:`false`
 
 [Back to overview of node::copy_domain](#attributes)
 
@@ -250,7 +248,6 @@ SSL port to use for the Admin server.
 
 Type: `Optional[Integer]`
 
-Default:`undef`
 
 [Back to overview of node::copy_domain](#attributes)
 

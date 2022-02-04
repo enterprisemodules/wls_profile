@@ -19,7 +19,7 @@
 * [`wls_profile::basic_domain::wls_startup`](#wls_profilebasic_domainwls_startup): This class is the default implementation for making sure WebLogic gets started after a system reboot.
 * [`wls_profile::node`](#wls_profilenode): wls_profile::node  This is a highly customizable Puppet profile class to define a WebLogic node. At its core just adding:```contain wls_profi
 * [`wls_profile::node::copy_domain`](#wls_profilenodecopy_domain): This class is the default implementation to copy the packed domain from the Admin Server, unpack it on the current machine and start the nodemanager.
-* [`wls_profile::weblogic`](#wls_profileweblogic): wls_profile::weblogic  This is a highly customizable Puppet profile class to define a WebLogic Software and its requirements on your system. 
+* [`wls_profile::weblogic`](#wls_profileweblogic): wls_profile::weblogic  This is a highly customizable Puppet profile class to install the  WebLogic software and its requirements on your syst
 * [`wls_profile::weblogic::em_license`](#wls_profileweblogicem_license): This class will deploy the Enterprise Modules license.
 * [`wls_profile::weblogic::fmw_software`](#wls_profileweblogicfmw_software): This class is the default implementation for creating the required OS users and groups for the installation of WebLogic.
 * [`wls_profile::weblogic::java_software`](#wls_profileweblogicjava_software): This class is the default implementation for making sure the Java software is correctly installed on your system.
@@ -33,6 +33,10 @@
 * [`wls_profile::admin_server::managed_server`](#wls_profileadmin_servermanaged_server): This defined type is the default implementation for defining a managed server in your WebLogic domain.
 * [`wls_profile::weblogic::private::start_domain`](#wls_profileweblogicprivatestart_domain)
 * [`wls_profile::weblogic::private::stop_domain`](#wls_profileweblogicprivatestop_domain)
+
+### Plans
+
+* [`wls_profile::weblogic::apply_patches`](#wls_profileweblogicapply_patches): Apply the in hiera specified WebLogic patches to the specified target
 
 ## Classes
 
@@ -240,7 +244,7 @@ At its core just adding:
 contain wls_profile::admin_server
 ```
 
-Is enough to get a WebLogic 12.2.1.3. WebLogic domain running on your system.
+Is enough to get a WebLogic domain running on your system.
 
 But sometimes you have specific uses cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.
 
@@ -906,7 +910,7 @@ This is a simple way to get started. It is easy to get started, but soon your hi
 
 wls_profile::basic_domain
 
-This is a highly customizable Puppet profile class to define a basic WebLogic (empty) domain on your system. At its core just adding:```contain wls_profile::basic_domain```Is enough to get an empty WebLogic 12.2.1.3. WebLogic domain running on your system. But sometimes you have specific uses cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.## StagesDefining and starting an empty basic WebLogic domain on you system goes through several stages(These are not puppet stages):- [`weblogic`](./weblogic.html) Install and patch the WebLogic software- [`wls_domain`](./wls_domain.html)    Create an empty WebLogic domain- [`wls_startup`](./wls_startup.html)   Make sure the domain restarts after a system reboot.All these stages have a default implementation. This implementation is suitable to get off to an easy start. These classed all have parameters you can customize through hiera values. The defaults are specified in the module's `data/default.yaml` file. ## before classesBut sometimes this is not enough, and you would like to add some extra definitions, you can, for example, add a Puppet class to be executed after the `weblogic` stage is done and before the `wls_domain` is done. You can do this by adding the next line to your yaml data:```yamlwls_profile::basic_domain::before_wls_domain:   my_profile::my_extra_class```## after classesYou can do the same when you want to add code after one of the stage classes:```yamlwls_profile::basic_domain::after_wls_domain:   my_profile::my_extra_class```## SkippingSometimes organizations use different modules and mechanisms to implement a feature, and you want to skip the class:```yamlwls_profile::basic_domain::wls_startup:   skip```## ReplacingOr provide your own implementation:```yamlwls_profile::basic_domain::wls_domain:   my_profile::my_own_implementation```This mechanism can be used for all named stages and makes it easy to move from an easy setup with a running standard WebLogic installation to a fully customized setup using a lot of your own classes plugged in.Look at the description of the stages and their properties.
+This is a highly customizable Puppet profile class to define a basic WebLogic (empty) domain on your system. At its core just adding:```contain wls_profile::basic_domain```Is enough to get an empty WebLogic domain running on your system. But sometimes you have specific uses cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.## StagesDefining and starting an empty basic WebLogic domain on you system goes through several stages(These are not puppet stages):- [`weblogic`](./weblogic.html) Install and patch the WebLogic software- [`wls_domain`](./wls_domain.html)    Create an empty WebLogic domain- [`wls_startup`](./wls_startup.html)   Make sure the domain restarts after a system reboot.All these stages have a default implementation. This implementation is suitable to get off to an easy start. These classed all have parameters you can customize through hiera values. The defaults are specified in the module's `data/default.yaml` file. ## before classesBut sometimes this is not enough, and you would like to add some extra definitions, you can, for example, add a Puppet class to be executed after the `weblogic` stage is done and before the `wls_domain` is done. You can do this by adding the next line to your yaml data:```yamlwls_profile::basic_domain::before_wls_domain:   my_profile::my_extra_class```## after classesYou can do the same when you want to add code after one of the stage classes:```yamlwls_profile::basic_domain::after_wls_domain:   my_profile::my_extra_class```## SkippingSometimes organizations use different modules and mechanisms to implement a feature, and you want to skip the class:```yamlwls_profile::basic_domain::wls_startup:   skip```## ReplacingOr provide your own implementation:```yamlwls_profile::basic_domain::wls_domain:   my_profile::my_own_implementation```This mechanism can be used for all named stages and makes it easy to move from an easy setup with a running standard WebLogic installation to a fully customized setup using a lot of your own classes plugged in.Look at the description of the stages and their properties.
 
 See the file "LICENSE" for the full license governing this code.
 
@@ -1093,6 +1097,9 @@ The following parameters are available in the `wls_profile::basic_domain::wls_do
 * [`nodemanager_port`](#nodemanager_port)
 * [`adminserver_address`](#adminserver_address)
 * [`adminserver_port`](#adminserver_port)
+* [`administration_port_enabled`](#administration_port_enabled)
+* [`administration_port`](#administration_port)
+* [`adminserver_ssl_port`](#adminserver_ssl_port)
 * [`os_user`](#os_user)
 * [`os_group`](#os_group)
 * [`weblogic_user`](#weblogic_user)
@@ -1115,7 +1122,6 @@ The following parameters are available in the `wls_profile::basic_domain::wls_do
 * [`custom_identity_keystore_passphrase`](#custom_identity_keystore_passphrase)
 * [`trust_keystore_passphrase`](#trust_keystore_passphrase)
 * [`custom_identity_privatekey_passphrase`](#custom_identity_privatekey_passphrase)
-* [`adminserver_ssl_port`](#adminserver_ssl_port)
 * [`repository_database_url`](#repository_database_url)
 * [`rcu_database_url`](#rcu_database_url)
 * [`repository_prefix`](#repository_prefix)
@@ -1243,6 +1249,31 @@ This value is used in multiple places. To make sure in all classed the correct v
 The default value is:  `7001`
 
 Default value: `$wls_profile::adminserver_port`
+
+##### <a name="administration_port_enabled"></a>`administration_port_enabled`
+
+Data type: `Boolean`
+
+Specifies whether the domain-wide administration port should be enabled for this WebLogic Server domain.
+Because the administration port uses SSL, enabling the administration port requires that SSL must be configured for all servers in the domain.
+The domain-wide administration port enables you to start a WebLogic Server instance in STANDBY state. It also allows you to separate administration traffic from application traffic in your domain. Because all servers in the domain must enable or disable the administration port at once, you configure the default administration port settings at the domain level.
+If you enable the administration port:
+The administration port accepts only connections that specify administrator credentials.
+Connections that specify administrator credentials can use only the administration port.
+The command that starts managed servers must specify a secure protocol and the administration port: -Dweblogic.management.server=https://admin_server:administration_port
+
+##### <a name="administration_port"></a>`administration_port`
+
+Data type: `Optional[Integer]`
+
+The common secure administration port for this WebLogic Server domain.
+(Requires you to enable the administration port.)
+
+##### <a name="adminserver_ssl_port"></a>`adminserver_ssl_port`
+
+Data type: `Optional[Integer]`
+
+SSL port to use for the Admin server.
 
 ##### <a name="os_user"></a>`os_user`
 
@@ -1391,14 +1422,6 @@ Default value: ``undef``
 ##### <a name="custom_identity_privatekey_passphrase"></a>`custom_identity_privatekey_passphrase`
 
 Data type: `Optional[Easy_type::Password]`
-
-
-
-Default value: ``undef``
-
-##### <a name="adminserver_ssl_port"></a>`adminserver_ssl_port`
-
-Data type: `Optional[Integer]`
 
 
 
@@ -1562,7 +1585,7 @@ Default value: `lookup('wls_profile::basic_domain::wls_domain::trust_keystore_pa
 
 wls_profile::node
 
-This is a highly customizable Puppet profile class to define a WebLogic node. At its core just adding:```contain wls_profile::node```Is enough to get a WebLogic 12.2.1.3. Installed, fetch the domain definition from the Admin Server and start the node manager.But sometimes you have specific uses cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.## StagesDefining and starting a WebLogic Admin Server on your system goes through several stages(These are not puppet stages):- [`weblogic`](./weblogic.html)     Setup the OS and install the WebLogic software- [`copy_domain`](./copy_domain.html)   Copy the packed domain from the AdminServer and start the Nodemanager- [`wls_startup`](./wls_startup.html)   Ensure WebLogic gets started after a reboot.All these stages have a default implementation. This implementation is suitable to get started with. These classed all have parameters you can customize through hiera values. The defaults are specified in the module's `data/default.yaml` file. ## before classesBut sometimes this is not enough, and you would like to add some extra definitions, you can, for example, add a Puppet class to be executed after the `weblogic` stage is done and before the `copy_domain` is done. You can do this by adding the next line to your yaml data:```yamlwls_profile::node::before_copy_domain:   my_profile::my_extra_class```## after classesYou can do the same when you want to add code after one of the stage classes:```yamlwls_profile::node::wls_startup:   my_profile::my_extra_class```## SkippingSometimes organizations use different modules and mechanisms to implement a feature, and you want to skip the class:```yamlwls_profile::node::pack_domain:   skip```## ReplacingOr provide your own implementation:```yamlwls_profile::admin_server::copy_domain:   my_profile::my_own_implementation```This mechanism can be used for all named stages and makes it easy to move from an easy setup with a running standard WebLogic node server to a fully customized setup using a lot of your own classes plugged in.Look at the description of the stages and their properties.
+This is a highly customizable Puppet profile class to define a WebLogic node. At its core just adding:```contain wls_profile::node```Is enough to get the WebLogic software nstalled, fetch the domain definition from the Admin Server and start the node manager.But sometimes, you have specific uses cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.## StagesDefining and starting a WebLogic Admin Server on your system goes through several stages(These are not puppet stages):- [`weblogic`](./weblogic.html)     Setup the OS and install the WebLogic software- [`copy_domain`](./copy_domain.html)   Copy the packed domain from the AdminServer and start the Nodemanager- [`wls_startup`](./wls_startup.html)   Ensure WebLogic gets started after a reboot.All these stages have a default implementation. This implementation is suitable to get started with. These classed all have parameters you can customize through hiera values. The defaults are specified in the module's `data/default.yaml` file. ## before classesBut sometimes this is not enough, and you would like to add some extra definitions, you can, for example, add a Puppet class to be executed after the `weblogic` stage is done and before the `copy_domain` is done. You can do this by adding the next line to your yaml data:```yamlwls_profile::node::before_copy_domain:   my_profile::my_extra_class```## after classesYou can do the same when you want to add code after one of the stage classes:```yamlwls_profile::node::wls_startup:   my_profile::my_extra_class```## SkippingSometimes organizations use different modules and mechanisms to implement a feature, and you want to skip the class:```yamlwls_profile::node::pack_domain:   skip```## ReplacingOr provide your own implementation:```yamlwls_profile::admin_server::copy_domain:   my_profile::my_own_implementation```This mechanism can be used for all named stages and makes it easy to move from an easy setup with a running standard WebLogic node server to a fully customized setup using a lot of your own classes plugged in.Look at the description of the stages and their properties.
 
 See the file "LICENSE" for the full license governing this code.
 
@@ -1731,10 +1754,22 @@ The following parameters are available in the `wls_profile::node::copy_domain` c
 * [`os_group`](#os_group)
 * [`adminserver_address`](#adminserver_address)
 * [`adminserver_port`](#adminserver_port)
+* [`administration_port`](#administration_port)
+* [`administration_port_enabled`](#administration_port_enabled)
+* [`adminserver_ssl_port`](#adminserver_ssl_port)
 * [`nodemanager_address`](#nodemanager_address)
 * [`nodemanager_wait`](#nodemanager_wait)
 * [`weblogic_user`](#weblogic_user)
 * [`weblogic_password`](#weblogic_password)
+* [`jsse_enabled`](#jsse_enabled)
+* [`custom_trust`](#custom_trust)
+* [`trust_keystore_file`](#trust_keystore_file)
+* [`trust_keystore_passphrase`](#trust_keystore_passphrase)
+* [`custom_identity`](#custom_identity)
+* [`custom_identity_keystore_filename`](#custom_identity_keystore_filename)
+* [`custom_identity_alias`](#custom_identity_alias)
+* [`custom_identity_keystore_passphrase`](#custom_identity_keystore_passphrase)
+* [`custom_identity_privatekey_passphrase`](#custom_identity_privatekey_passphrase)
 
 ##### <a name="domain_name"></a>`domain_name`
 
@@ -1841,6 +1876,31 @@ The default value is:  `7001`
 
 Default value: `$wls_profile::adminserver_port`
 
+##### <a name="administration_port"></a>`administration_port`
+
+Data type: `Optional[Integer]`
+
+The common secure administration port for this WebLogic Server domain.
+(Requires you to enable the administration port.)
+
+##### <a name="administration_port_enabled"></a>`administration_port_enabled`
+
+Data type: `Boolean`
+
+Specifies whether the domain-wide administration port should be enabled for this WebLogic Server domain.
+Because the administration port uses SSL, enabling the administration port requires that SSL must be configured for all servers in the domain.
+The domain-wide administration port enables you to start a WebLogic Server instance in STANDBY state. It also allows you to separate administration traffic from application traffic in your domain. Because all servers in the domain must enable or disable the administration port at once, you configure the default administration port settings at the domain level.
+If you enable the administration port:
+The administration port accepts only connections that specify administrator credentials.
+Connections that specify administrator credentials can use only the administration port.
+The command that starts managed servers must specify a secure protocol and the administration port: -Dweblogic.management.server=https://admin_server:administration_port
+
+##### <a name="adminserver_ssl_port"></a>`adminserver_ssl_port`
+
+Data type: `Optional[Integer]`
+
+SSL port to use for the Admin server.
+
 ##### <a name="nodemanager_address"></a>`nodemanager_address`
 
 Data type: `String[1]`
@@ -1872,11 +1932,65 @@ The password for the WebLogic account.
 This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::weblogic_password` to change it to your requested value.
 Default value: `Welcome01`
 
+##### <a name="jsse_enabled"></a>`jsse_enabled`
+
+Data type: `Boolean`
+
+Determine if you want to enable JSSE security.
+
+##### <a name="custom_trust"></a>`custom_trust`
+
+Data type: `Boolean`
+
+Determine if you want to use a custom trust or not.
+
+##### <a name="trust_keystore_file"></a>`trust_keystore_file`
+
+Data type: `Optional[String[1]]`
+
+File specification of the trust keystore.
+
+##### <a name="trust_keystore_passphrase"></a>`trust_keystore_passphrase`
+
+Data type: `Optional[Easy_type::Password]`
+
+The passphrase for access to the keystore.
+
+##### <a name="custom_identity"></a>`custom_identity`
+
+Data type: `Boolean`
+
+Set to true if you want to enable the use of custom identities.
+
+##### <a name="custom_identity_keystore_filename"></a>`custom_identity_keystore_filename`
+
+Data type: `Optional[String[1]]`
+
+The name of the file containing the custom identities.
+
+##### <a name="custom_identity_alias"></a>`custom_identity_alias`
+
+Data type: `Optional[String[1]]`
+
+The alias of the entry in the custom identity keystore that we want to use.
+
+##### <a name="custom_identity_keystore_passphrase"></a>`custom_identity_keystore_passphrase`
+
+Data type: `Optional[Easy_type::Password]`
+
+The passphrase for the custom identity keystore.
+
+##### <a name="custom_identity_privatekey_passphrase"></a>`custom_identity_privatekey_passphrase`
+
+Data type: `Optional[Easy_type::Password]`
+
+The passphrase for the private key in the custom identity keystore.
+
 ### <a name="wls_profileweblogic"></a>`wls_profile::weblogic`
 
 wls_profile::weblogic
 
-This is a highly customizable Puppet profile class to define a WebLogic Software and its requirements on your system. At its core just adding:```contain wls_profile::weblogic```Is enough to get a WebLogic 12.2.1.3 installed on your system. But sometimes you have specific uses cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.## StagesDefining and starting a WebLogic Admin Server on you system goes through several stages(These are not puppet stages):- [`sysctl`](/docs/wls_profile/sysctl.html)            Set required sysctl parameters- [`limits`](/docs/wls_profile/limits.html)            Set OS security limits- [`packages`](/docs/wls_profile/packages.html)          Install required packages- [`groups_and_users`](/docs/wls_profile/groups_and_users.html)  Create required OS users and groups- [`ssh_setup`](/docs/wls_profile/ssh_setup.html)         Setup SSH for accounts- [`firewall`](/docs/wls_profile/firewall.html)          Setup the firewall- [`java_software`](/docs/wls_profile/java_software.html)     Install the java software- [`wls_software`](/docs/wls_profile/wls_software.html)      Install the WebLogic software- [`wls_patches`](/docs/wls_profile/wls_patches.html)       Install the WebLogic patchesAll these stages have a default implementation. This implementation is suitable to get started with. These classed all have parameters you can customize through hiera values. The defaults are specified in the module's `data/default.yaml` file. ## before classesBut sometimes this is not enough, and you would like to add some extra definitions, you can, for example, add a Puppet class to be executed after the `packages` stage is done and before the `groups_and_users` is done. You can do this by adding the next line to your yaml data:```yamlwls_profile::weblogic::groups_and_users:   my_profile::my_extra_class```## after classesYou can do the same when you want to add code after one of the stage classes:```yamlwls_profile::weblogic::firewall:   my_profile::my_extra_class```## SkippingSometimes organizations use different modules and mechanisms to implement a feature, and you want to skip the class:```yamlwls_profile::weblogic::java_software:   skip```## ReplacingOr provide your own implementation:```yamlwls_profile::weblogic::wls_datasources:   my_profile::my_own_implementation```This mechanism can be used for all named stages and makes it easy to move from an easy setup with a running standard WebLogic software installation to a fully customized setup using a lot of your own classes plugged in.Look at the description of the stages and their properties.
+This is a highly customizable Puppet profile class to install the  WebLogic software and its requirements on your system. At its core, just adding:```contain wls_profile::weblogic```is enough to get the WebLogic software installed on your system. But sometimes, you have specific uses cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.## StagesDefining and starting a WebLogic Admin Server on your system goes through several stages(These are not puppet stages):- [`sysctl`](/docs/wls_profile/sysctl.html)            Set required sysctl parameters- [`limits`](/docs/wls_profile/limits.html)            Set OS security limits- [`packages`](/docs/wls_profile/packages.html)          Install required packages- [`groups_and_users`](/docs/wls_profile/groups_and_users.html)  Create required OS users and groups- [`ssh_setup`](/docs/wls_profile/ssh_setup.html)         Setup SSH for accounts- [`firewall`](/docs/wls_profile/firewall.html)          Setup the firewall- [`java_software`](/docs/wls_profile/java_software.html)     Install the java software- [`wls_software`](/docs/wls_profile/wls_software.html)      Install the WebLogic software- [`wls_patches`](/docs/wls_profile/wls_patches.html)       Install the WebLogic patchesAll these stages have a default implementation. This implementation is suitable to get started with. These classed all have parameters you can customize through hiera values. The defaults are specified in the module's `data/default.yaml` file. ## before classesBut sometimes this is not enough, and you would like to add some extra definitions, you can, for example, add a Puppet class to be executed after the `packages` stage is done and before the `groups_and_users` is done. You can do this by adding the following line to your yaml data:```yamlwls_profile::weblogic::groups_and_users:   my_profile::my_extra_class```## after classesYou can do the same when you want to add code after one of the stage classes:```yamlwls_profile::weblogic::firewall:   my_profile::my_extra_class```## SkippingSometimes organizations use different modules and mechanisms to implement a feature, and you want to skip the class:```yamlwls_profile::weblogic::java_software:   skip```## ReplacingOr provide your own implementation:```yamlwls_profile::weblogic::wls_datasources:   my_profile::my_own_implementation```This mechanism can be used for all named stages and makes it easy to move from an easy setup with a running standard WebLogic software installation to a fully customized setup using a lot of your own classes plugged in.Look at the description of the stages and their properties.
 
 See the file "LICENSE" for the full license governing this code.
 
@@ -2509,7 +2623,7 @@ The following parameters are available in the `wls_profile::weblogic::java_softw
 
 ##### <a name="version"></a>`version`
 
-Data type: `String`
+Data type: `String[1]`
 
 The version of java you want to use.
 This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::java_version` to change it to your requested value.
@@ -2517,7 +2631,7 @@ Default value: `8u152`
 
 ##### <a name="full_version"></a>`full_version`
 
-Data type: `String`
+Data type: `String[1]`
 
 The full version of java you want to use.
 This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::java_full_version` to change it to your requested value.
@@ -2525,14 +2639,16 @@ Default value: `jdk1.8.0_152`
 
 ##### <a name="cryptography_extension_file"></a>`cryptography_extension_file`
 
-Data type: `String`
+Data type: `Optional[String[1]]`
 
 Cryptographic extension file to use.
 Default value: `jce_policy-8.zip`
 
+Default value: ``undef``
+
 ##### <a name="source"></a>`source`
 
-Data type: `String`
+Data type: `String[1]`
 
 The location where the classes can find the software.
 You can specify a local directory, a Puppet url or an http url.
@@ -3201,4 +3317,38 @@ Data type: `Variant[Boolean,Enum['on_failure']]`
 
 
 Default value: `lookup({name => 'logoutput', default_value => 'on_failure'})`
+
+## Plans
+
+### <a name="wls_profileweblogicapply_patches"></a>`wls_profile::weblogic::apply_patches`
+
+This bolt plan applies the patches specified in the hieradata,
+to the node it is running on. Because the service window is set to
+ALWAYS (virtualy that is), the patching will start immediately. If the
+WebLogic domain is running, it will be stopped before the patches
+are applied and started after the patches are applied. It will only
+restart managed servers that were running before the patching started.#
+
+See the file "LICENSE" for the full license governing this code.
+
+#### Examples
+
+##### 
+
+```puppet
+
+bolt plan run wls_profile::weblogic::apply_patches targets=myserver1,myserver2
+```
+
+#### Parameters
+
+The following parameters are available in the `wls_profile::weblogic::apply_patches` plan:
+
+* [`targets`](#targets)
+
+##### <a name="targets"></a>`targets`
+
+Data type: `TargetSpec`
+
+The WebLogic node(s) you want to patch
 

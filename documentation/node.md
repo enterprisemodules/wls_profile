@@ -14,9 +14,9 @@ This is a highly customizable Puppet profile class to define a WebLogic node. At
 contain wls_profile::node
 ```
 
-Is enough to get a WebLogic 12.2.1.3. Installed, fetch the domain definition from the Admin Server and start the node manager.
+Is enough to get the WebLogic software nstalled, fetch the domain definition from the Admin Server and start the node manager.
 
-But sometimes you have specific uses cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.
+But sometimes, you have specific uses cases that are not handled well by the standard classes. This profile class allows you to add your own code to the execution.
 
 ## Stages
 
