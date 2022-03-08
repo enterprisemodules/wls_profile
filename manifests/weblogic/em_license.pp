@@ -4,11 +4,5 @@
 #
 class wls_profile::weblogic::em_license
 {
-  include stdlib
-
-  unless defined(Class['easy_type::license::available']) {
-    class{'::easy_type::license::available':
-      stage => 'setup',
-    }
-  }
+  contain easy_type::license::activate
 }
