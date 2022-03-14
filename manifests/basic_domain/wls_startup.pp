@@ -74,7 +74,7 @@ class wls_profile::basic_domain::wls_startup(
   }
 
   case  $::operatingsystem {
-    'RedHat', 'CentOS', 'OracleLinux': {
+    'RedHat', 'CentOS', 'OracleLinux', 'AlmaLinux', 'Rocky': {
       wls_install::support::nodemanagerautostart{"${domain_name}_nodemanager":
         version                   => $version,
         wl_home                   => $weblogic_home,

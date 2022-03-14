@@ -86,7 +86,7 @@ class wls_profile::weblogic::java_software(
         provider => 'aix',
       }
     }
-    'RedHat', 'CentOS', 'OracleLinux': {
+    'RedHat', 'CentOS', 'OracleLinux', 'AlmaLinux', 'Rocky': {
       $remove = [ 'java-1.7.0-openjdk.x86_64', 'java-1.6.0-openjdk.x86_64' ]
 
       package { $remove:
