@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+
+## Release 0.19.0
+
+**Features**
+
+-[release] Add support for AlmaLinux and RockyLinux
+
+**Bugs**
+
+- [em_license] Use license::activate instead of license::available
+
 ## Release 0.18.0
 
 **Features**
