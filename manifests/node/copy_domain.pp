@@ -172,6 +172,18 @@ class wls_profile::node::copy_domain(
     withpath => false,
   }
 
+  #
+  # Depending on the options we specify we need to connect to a different URL for management 
+  # of the domain.
+  #
+  $connect_url = if $administration_port_enabled == true {
+    "t3s://${adminserver_address}:${administration_port}"
+  } elsif $administration_port_enabled == false and $adminserver_ssl_port != undef {
+    "t3s://${adminserver_address}:${adminserver_ssl_port}"
+  } else {
+    "t3://${adminserver_address}:${adminserver_port}"
+  }
+
   easy_type::debug_evaluation() # Show local variable on extended debug
 
   wls_install::copydomain { $domain_name:
@@ -227,6 +239,20 @@ class wls_profile::node::copy_domain(
     custom_identity_alias                 => $custom_identity_alias,
     custom_identity_privatekey_passphrase => $custom_identity_privatekey_passphrase,
     sleep                                 => $nodemanager_wait,
+  }
+  #
+  # wls_setting is used to store the credentials and connect URL of a domain. The Puppet
+  # types need this to connect to the admin server and change settings.
+  #
+  -> wls_setting { $domain_name:
+    user                      => $os_user,
+    weblogic_user             => $weblogic_user,
+    weblogic_password         => $weblogic_password,
+    connect_url               => $connect_url,
+    weblogic_home_dir         => $weblogic_home,
+    custom_trust              => $custom_trust,
+    trust_keystore_file       => $trust_keystore_file,
+    trust_keystore_passphrase => if $trust_keystore_passphrase == undef {  undef } else { $trust_keystore_passphrase.unwrap },
   }
 }
 # lint:endignore:variable_scope
