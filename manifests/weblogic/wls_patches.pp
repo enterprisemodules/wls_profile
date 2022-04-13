@@ -238,11 +238,11 @@ class wls_profile::weblogic::wls_patches(
         # we cannot use the schedule on the defined type level. As a work arround, 
         # we pass in the string value and us it in the defined type
         #
-        wls_profile::weblogic::private::stop_domain { $running_domains:
+        wls_profile::weblogic::private::stop_managed_servers{ $running_domains:
           schedule_name => 'wls_patch_window',
         }
 
-        wls_profile::weblogic::private::start_domain { $running_domains:
+        wls_profile::weblogic::private::start_managed_servers { $running_domains:
           domains_dir          => $domains_dir,
           weblogic_home        => $weblogic_home,
           middleware_home      => $middleware_home,
@@ -263,8 +263,8 @@ class wls_profile::weblogic::wls_patches(
 
         ensure_resources('wls_opatch', $complete_list, $defaults.merge({
           'schedule' => 'wls_patch_window',
-          'before'   => Wls_profile::Weblogic::Private::Start_domain[$running_domains],
-          'require'  => Wls_profile::Weblogic::Private::Stop_domain[$running_domains]
+          'before'   => Wls_profile::Weblogic::Private::Start_managed_servers[$running_domains],
+          'require'  => Wls_profile::Weblogic::Private::Stop_managed_servers[$running_domains]
           })
         )
       } else {

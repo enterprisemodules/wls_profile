@@ -1,5 +1,5 @@
 #
-define wls_profile::weblogic::private::stop_domain(
+define wls_profile::weblogic::private::stop_managed_servers(
   String[1]                           $schedule_name,
   Variant[Boolean,Enum['on_failure']] $logoutput = lookup({name => 'logoutput', default_value => 'on_failure'}),
 )
@@ -11,19 +11,43 @@ define wls_profile::weblogic::private::stop_domain(
     schedule => $schedule_name,
   }
 
+  $ip_addresses = $facts['networking']['interfaces'].keys.map |$interface| {
+    if $facts['networking']['interfaces'][$interface]['bindings'] != undef {
+      $facts['networking']['interfaces'][$interface]['bindings'].map |$entry| {$entry['address'] }
+    }
+  }.flatten
+
   $stop_managed_servers = @(WLST:python)
+    <%- |
+      Array   $ip_addresses,
+    | -%>
+    import socket
+
     adminServerName = cmo.getAdminServerName()
     print "Current admin server is: " + adminServerName
     appServers = cmo.getServers()
     stoppedServers = []
     domainRuntime()
+    stopAdminServer = False
 
     for appServer in appServers:
         try:
             name = str(appServer.getName())
-            if name == adminServerName:
-                print "Skipping server " + adminServerName + " because it is the admin server."
+            ip_addresses_on_current_node = <%= $ip_addresses.map |$e| { "'${e}'" } %>
+            listener = str(appServer.getListenAddress())
+            ip = socket.gethostbyname(listener)
+            print "IP address is :" + ip
+
+            if ip not in ip_addresses_on_current_node:
+                print "Skipping server " + name + " because it is not listening on this node."
                 continue
+
+            if name == adminServerName:
+                print "Skipping server " + adminServerName + " for now because it is the admin server."
+                print "We will stop " + adminServerName + " after all other servers are stopped."
+                stopAdminServer = True
+                continue
+
             cd('domainRuntime:/ServerLifeCycleRuntimes/' + name)
             print "Processing server " + name
             status = cmo.getState()
@@ -35,8 +59,9 @@ define wls_profile::weblogic::private::stop_domain(
             print 'Error when stopping ' + str(appServer.getName()) + ' please see the logs.'
 
     try:
-        shutdown(adminServerName)
-        print 'Stopped Server: ' + adminServerName
+        if stopAdminServer:
+          shutdown(adminServerName)
+          print 'Stopped Server: ' + adminServerName
     except:
         print 'Error when stopping ' + adminServerName + ' please see the logs.'
 
@@ -47,13 +72,14 @@ define wls_profile::weblogic::private::stop_domain(
 
     stoppedServerFile.close()
 
-    print 'All servers stopped'
+    print 'All local managed servers stopped'
     |WLST
 
   file {"/tmp/stop_managed_servers_for_${domain}.py":
-    ensure   => 'present',
-    content  => $stop_managed_servers,
-    schedule => $schedule_name,
+    ensure       => 'present',
+    schedule     => $schedule_name,
+    content      => inline_epp($stop_managed_servers,
+    ip_addresses => $ip_addresses)
   }
 
   -> wls_exec {"${domain}/@/tmp/stop_managed_servers_for_${domain}.py":

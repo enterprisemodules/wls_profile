@@ -217,7 +217,7 @@ describe 'wls_profile::weblogic::wls_patches' do
           }
           
           it { is_expected.to contain_wls_adminserver('start_adminserver_dom01_after_patches:AdminServer')
-            .with('ensure'                      => 'start')
+            .with('ensure' => 'start')
           }
         end
       end

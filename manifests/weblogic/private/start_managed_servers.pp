@@ -1,5 +1,5 @@
 #
-define wls_profile::weblogic::private::start_domain(
+define wls_profile::weblogic::private::start_managed_servers(
   String[1]           $schedule_name,
   Stdlib::Absolutepath
                       $domains_dir,
@@ -91,28 +91,38 @@ define wls_profile::weblogic::private::start_domain(
     failontimeout => true,
   }
 
-  -> wls_install::control{"start_adminserver_${domain}_after_patches":
-    wls_domains_dir           => $domains_dir,
-    action                    => 'start',
-    weblogic_home_dir         => $weblogic_home,
-    middleware_home_dir       => $middleware_home,
-    download_dir              => '/tmp',
-    jdk_home_dir              => $jdk_home,
-    os_user                   => $os_user,
-    os_group                  => $os_group,
-    domain_name               => $domain,
-    weblogic_user             => $weblogic_user,
-    weblogic_password         => $weblogic_password,
-    adminserver_address       => $adminserver_address,
-    adminserver_port          => $adminserver_port,
-    jsse_enabled              => $jsse_enabled,
-    custom_trust              => $custom_trust,
-    trust_keystore_file       => $trust_keystore_file,
-    trust_keystore_passphrase => $trust_keystore_passphrase,
-    schedule                  => $schedule_name,
+  $ip_addresses = $facts['networking']['interfaces'].keys.map |$interface| {
+    if $facts['networking']['interfaces'][$interface]['bindings'] != undef {
+      $facts['networking']['interfaces'][$interface]['bindings'].map |$entry| {$entry['address'] }
+    }
+  }.flatten
+
+  if easy_type::dnslookup($adminserver_address)[0] in $ip_addresses {
+    wls_install::control{"start_adminserver_${domain}_after_patches":
+      wls_domains_dir           => $domains_dir,
+      action                    => 'start',
+      weblogic_home_dir         => $weblogic_home,
+      middleware_home_dir       => $middleware_home,
+      download_dir              => '/tmp',
+      jdk_home_dir              => $jdk_home,
+      os_user                   => $os_user,
+      os_group                  => $os_group,
+      domain_name               => $domain,
+      weblogic_user             => $weblogic_user,
+      weblogic_password         => $weblogic_password,
+      adminserver_address       => $adminserver_address,
+      adminserver_port          => $adminserver_port,
+      jsse_enabled              => $jsse_enabled,
+      custom_trust              => $custom_trust,
+      trust_keystore_file       => $trust_keystore_file,
+      trust_keystore_passphrase => $trust_keystore_passphrase,
+      schedule                  => $schedule_name,
+      require                   => Sleep["Wait for nodemanager on domain ${domain}"],
+      before                    => Wls_exec["${domain}/@/tmp/start_managed_servers_for_${domain}.py"],
+    }
   }
 
-  -> file {"/tmp/start_managed_servers_for_${domain}.py":
+  file {"/tmp/start_managed_servers_for_${domain}.py":
     ensure   => 'present',
     content  => $start_managed_servers,
     schedule => $schedule_name,
