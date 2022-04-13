@@ -8,6 +8,7 @@ if Gem::Version.new(puppetversion) > Gem::Version.new('5.0.0')
   gem 'pdk', '>1.9.0'
 end
 group :unit_test do
+  gem 'puppet-catalog_rspec'
   gem 'hiera-puppet-helper'
   gem 'rspec-puppet'
   gem 'rspec-puppet-utils'
@@ -48,6 +49,23 @@ group :unit_test, :acceptance_test, :publish do
   gem 'puppetlabs_spec_helper'
 end
 group :quality do
+  gem 'voxpupuli-puppet-lint-plugins'
+  gem 'puppet-lint-uncuddled_else-check'
+  gem 'puppet-lint-no_symbolic_file_modes-check'
+  gem 'puppet-lint-no_erb_template-check'
+  gem 'puppet-lint-package_ensure-check'
+  gem 'puppet-lint-absolute_template_path'
+  gem 'puppet-lint-no_file_path_attribute-check'
+  gem 'puppet-lint-template_file_extension-check'
+  gem 'puppet-lint-numericvariable'
+  gem 'puppet-lint-appends-check'
+  gem 'puppet-lint-class_parameter-check'
+  gem 'puppet-lint-world_writable_files-check'
+  gem 'puppet-lint-empty_trailing_lines'
+  gem 'puppet-lint-empty_lines_around_body-check'
+  gem 'puppet-lint-recurse_file-check'
+  gem 'puppet-lint-explicit_hiera_class_param_lookup-check'
+  gem 'puppet-lint-param-types'
   gem 'fasterer'
   gem 'bundle-audit'
   gem 'metadata-json-lint'
