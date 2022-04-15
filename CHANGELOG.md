@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.20.0
+
+**Features**
+
+- [wls_patches] Only stop the managed servers on current node for patching
+- [copy_domain] Also add the basic wls_setting information to the node
+
+**Bugs**
+
+- [wls_domain] Remove hard coded machine name
+- [wls_servers] Change default port for nodemanager from 7001 to 5556
+- [managed_server] Pass the log directory when defining server
+- [release] update required version of easy_type
 
 ## Release 0.19.0
 
