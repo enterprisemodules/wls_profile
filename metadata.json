@@ -8,7 +8,7 @@
   "dependencies": [
     {
       "name": "enterprisemodules/easy_type",
-      "version_requirement": ">= 2.37.0 < 4.0.0"
+      "version_requirement": ">= 2.39.0 < 4.0.0"
     },
     {
       "name": "enterprisemodules/wls_config",
