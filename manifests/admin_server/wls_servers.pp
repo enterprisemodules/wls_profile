@@ -6,32 +6,19 @@
 # 
 # When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::weblogic](./weblogic.html) for an explanation on how to do this.
 #
-# @param [String[1]] domain_name
-#    The name of the WebLogic domain.
-#    This will be used both as the REAL WebLogic domain name, and also be used by Puppet as a designator for Puppet resources. (e.g. the name before the slash `my_domain/wls_queue1`).
-#    The change the domain name, use the hiera key: `wls_profile::domain_name`. This will make sure the correct domain name gets used in all classes.
-#    The default value is: `MYDOMAIN`
-#
-# @param [Hash] servers
-#    
-#
-# @param [Hash] server_defaults
-#    
-#
-# @param [Hash] machine_defaults
 #    
 #
 #
 # See the file "LICENSE" for the full license governing this code.
 #
-class wls_profile::admin_server::wls_servers(
+class wls_profile::admin_server::wls_servers (
   String[1] $domain_name,
-  Hash      $server_defaults,
   Hash      $machine_defaults,
-  Hash      $servers            = $wls_profile::servers,
+  Hash      $server_defaults,
+  Hash      $servers            = $wls_profile::servers
 ) inherits wls_profile {
-  echo {"WebLogic servers ${servers.keys.join(',')}":
-    withpath => false
+  echo { "WebLogic servers ${servers.keys.join(',')}":
+    withpath => false,
   }
   $defaults = {
     domain_name      => $domain_name,

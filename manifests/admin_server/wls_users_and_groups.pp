@@ -18,7 +18,7 @@ class wls_profile::admin_server::wls_users_and_groups (
   Hash $group_list,
   Hash $user_list,
 ) inherits wls_profile {
-  echo {'WebLogic Groups and Users':
+  echo { 'WebLogic Groups and Users':
     withpath => false,
   }
   #

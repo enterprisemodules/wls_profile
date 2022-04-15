@@ -8,59 +8,24 @@
 # 
 # When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::admin_server](./admin_server.html) for an explanation on how to do this.
 #
-# @param [String[1]] domain_name
-#    The name of the WebLogic domain.
-#    This will be used both as the REAL WebLogic domain name, and also be used by Puppet as a designator for Puppet resources. (e.g. the name before the slash `my_domain/wls_queue1`).
-#    The change the domain name, use the hiera key: `wls_profile::domain_name`. This will make sure the correct domain name gets used in all classes.
-#    The default value is: `MYDOMAIN`
-#
-# @param [Stdlib::Absolutepath] middleware_home
-#    The Oracle middleware home directory.
-#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::middleware_home` to change it to your requested value.
-#    Default value: `/opt/oracle/middleware12`
-#
-# @param [Stdlib::Absolutepath] weblogic_home
-#    The directory used as WebLogic home
-#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::weblogic_home` to change it to your requested value.
-#    Default value: `/opt/oracle/middleware12/wlserver`
-#
-# @param [Stdlib::Absolutepath] jdk_home
-#    The location where the JDK is installed.
-#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::jdk_home` to change it to your requested value.
-#    The default value is: `/usr/java/jdk1.8.0_152`
-#
-# @param [Stdlib::Absolutepath] domains_dir
-#    The top-level directory where the domain directories will reside in.
-#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::domains_dir` to change it to your requested value.
-#    The default value is:  `/opt/oracle/domains`
-#
-# @param [String[1]] os_user
-#    The os user to use for WebLogic.
-#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_user` to change it to your requested value.
-#    Default value: `oracle`
-#
-# @param [String[1]] os_group
-#    The os group to use for WebLogic.
-#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_group` to change it to your requested value.
-#    Default value: `dba`
 #
 #
 # See the file "LICENSE" for the full license governing this code.
 #
-class wls_profile::admin_server::pack_domain(
+class wls_profile::admin_server::pack_domain (
   String[1] $domain_name,
   Stdlib::Absolutepath
-            $middleware_home,
+  $domains_dir,
   Stdlib::Absolutepath
-            $weblogic_home,
+  $jdk_home,
   Stdlib::Absolutepath
-            $jdk_home,
-  Stdlib::Absolutepath
-            $domains_dir,
-  String[1] $os_user,
+  $middleware_home,
   String[1] $os_group,
+  String[1] $os_user,
+  Stdlib::Absolutepath
+  $weblogic_home
 ) inherits wls_profile {
-  echo {"WebLogic pack domain ${domain_name}":
+  echo { "WebLogic pack domain ${domain_name}":
     withpath => false,
   }
   #
@@ -69,7 +34,7 @@ class wls_profile::admin_server::pack_domain(
   # When the node is part of the domain, the packed file loses its value. Any changes in the domain are managed
   # by webLogic.
   #
-  wls_install::packdomain{$domain_name:
+  wls_install::packdomain { $domain_name:
     domain_name         => $domain_name,
     weblogic_home_dir   => $weblogic_home,
     middleware_home_dir => $middleware_home,
@@ -79,5 +44,4 @@ class wls_profile::admin_server::pack_domain(
     os_group            => $os_group,
     download_dir        => "${domains_dir}/${domain_name}",
   }
-
 }

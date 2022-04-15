@@ -62,229 +62,40 @@
 # 
 # Look at the description of the stages and their properties.
 #
-# @param [Optional[String]] basic_domain
-#    Use this value if you want to skip or use your own class for stage `basic_domain`.
-#    ## Use your own class
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::basic_domain:  my_module::my_class
-#    ```
-#    ## Skip
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::basic_domain:  skip
-#    ```
-#
-# @param [Optional[String]] wls_servers
-#    Use this value if you want to skip or use your own class for stage `wls_servers`.
-#    ## Use your own class
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::wls_servers:  my_module::my_class
-#    ```
-#    ## Skip
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::wls_servers:  skip
-#    ```
-#
-# @param [Optional[String]] wls_cluster
-#    Use this value if you want to skip or use your own class for stage `wls_cluster`.
-#    ## Use your own class
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::wls_cluster:  my_module::my_class
-#    ```
-#    ## Skip
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::wls_cluster:  skip
-#    ```
-#
-# @param [Optional[String]] wls_datasources
-#    Use this value if you want to skip or use your own class for stage `wls_datasources`.
-#    ## Use your own class
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::wls_datasources:  my_module::my_class
-#    ```
-#    ## Skip
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::wls_datasources:  skip
-#    ```
-#
-# @param [Optional[String]] wls_jms
-#    Use this value if you want to skip or use your own class for stage `wls_jms`.
-#    ## Use your own class
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::wls_jms:  my_module::my_class
-#    ```
-#    ## Skip
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::wls_jms:  skip
-#    ```
-#
-# @param [Optional[String]] wls_users_and_groups
-#    Use this value if you want to skip or use your own class for stage `wls_users_and_groups`.
-#    ## Use your own class
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::wls_users_and_groups:  my_module::my_class
-#    ```
-#    ## Skip
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::wls_users_and_groups:  skip
-#    ```
-#
-# @param [Optional[String]] pack_domain
-#    Use this value if you want to skip or use your own class for stage `pack_domain`.
-#    ## Use your own class
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::pack_domain:  my_module::my_class
-#    ```
-#    ## Skip
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::pack_domain:  skip
-#    ```
-#
-# @param [Optional[String]] before_basic_domain
-#    The name of the class you want to execute directly **before** the `basic_domain` class.
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::before_basic_domain:  my_module::my_class
-#    ```
-#
-# @param [Optional[String]] before_wls_servers
-#    The name of the class you want to execute directly **before** the `wls_servers` class.
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::before_wls_servers:  my_module::my_class
-#    ```
-#
-# @param [Optional[String]] before_wls_cluster
-#    The name of the class you want to execute directly **before** the `wls_cluster` class.
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::before_wls_cluster:  my_module::my_class
-#    ```
-#
-# @param [Optional[String]] before_wls_datasources
-#    The name of the class you want to execute directly **before** the `wls_datasources` class.
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::before_wls_datasources:  my_module::my_class
-#    ```
-#
-# @param [Optional[String]] before_wls_jms
-#    The name of the class you want to execute directly **before** the `wls_jms` class.
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::before_wls_jms:  my_module::my_class
-#    ```
-#
-# @param [Optional[String]] before_wls_users_and_groups
-#    The name of the class you want to execute directly **before** the `wls_users` class.
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::before_wls_users:  my_module::my_class
-#    ```
-#
-# @param [Optional[String]] before_pack_domain
-#    The name of the class you want to execute directly **before** the `pack_domain` class.
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::before_pack_domain:  my_module::my_class
-#    ```
-#
-# @param [Optional[String]] after_basic_domain
-#    The name of the class you want to execute directly **after** the `basic_domain` class.
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::basic_domain:  my_module::my_class
-#    ```
-#
-# @param [Optional[String]] after_wls_servers
-#    The name of the class you want to execute directly **after** the `wls_servers` class.
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::after_wls_servers:  my_module::my_class
-#    ```
-#
-# @param [Optional[String]] after_wls_cluster
-#    The name of the class you want to execute directly **after** the `wls_cluster` class.
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::after_wls_cluster:  my_module::my_class
-#    ```
-#
-# @param [Optional[String]] after_wls_datasources
-#    The name of the class you want to execute directly **after** the `wls_datasources` class.
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::after_wls_datasources:  my_module::my_class
-#    ```
-#
-# @param [Optional[String]] after_wls_jms
-#    The name of the class you want to execute directly **after** the `wls_jms` class.
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::after_wls_jms:  my_module::my_class
-#    ```
-#
-# @param [Optional[String]] after_wls_users_and_groups
-#    The name of the class you want to execute directly **after** the `wls_users_and_groups` class.
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::after_wls_users_and_groups:  my_module::my_class
-#    ```
-#
-# @param [Optional[String]] after_pack_domain
-#    The name of the class you want to execute directly **after** the `pack_domain` class.
-#    You can use hiera to set this value. Here is an example:
-#    ```yaml
-#    wls_profile::admin_server::after_pack_domain:  my_module::my_class
-#    ```
 #
 #
 # See the file "LICENSE" for the full license governing this code.
 #
-class wls_profile::admin_server(
-  Optional[String] $basic_domain = undef,
-  Optional[String] $wls_servers = undef,
-  Optional[String] $wls_cluster = undef,
-  Optional[String] $wls_datasources = undef,
-  Optional[String] $wls_jms = undef,
-  Optional[String] $wls_users_and_groups = undef,
-  Optional[String] $pack_domain = undef,
-  Optional[String] $before_basic_domain = undef,
-  Optional[String] $before_wls_servers = undef,
-  Optional[String] $before_wls_cluster = undef,
-  Optional[String] $before_wls_datasources = undef,
-  Optional[String] $before_wls_jms = undef,
-  Optional[String] $before_wls_users_and_groups = undef,
-  Optional[String] $before_pack_domain = undef,
+class wls_profile::admin_server (
   Optional[String] $after_basic_domain = undef,
-  Optional[String] $after_wls_servers = undef,
+  Optional[String] $after_pack_domain = undef,
   Optional[String] $after_wls_cluster = undef,
   Optional[String] $after_wls_datasources = undef,
   Optional[String] $after_wls_jms = undef,
+  Optional[String] $after_wls_servers = undef,
   Optional[String] $after_wls_users_and_groups = undef,
-  Optional[String] $after_pack_domain = undef,
+  Optional[String] $basic_domain = undef,
+  Optional[String] $before_basic_domain = undef,
+  Optional[String] $before_pack_domain = undef,
+  Optional[String] $before_wls_cluster = undef,
+  Optional[String] $before_wls_datasources = undef,
+  Optional[String] $before_wls_jms = undef,
+  Optional[String] $before_wls_servers = undef,
+  Optional[String] $before_wls_users_and_groups = undef,
+  Optional[String] $pack_domain = undef,
+  Optional[String] $wls_cluster = undef,
+  Optional[String] $wls_datasources = undef,
+  Optional[String] $wls_jms = undef,
+  Optional[String] $wls_servers = undef,
+  Optional[String] $wls_users_and_groups = undef
 ) inherits wls_profile {
-
   easy_type::ordered_steps([
-    'wls_profile::basic_domain',
-    'wls_profile::admin_server::wls_servers',
-    'wls_profile::admin_server::wls_cluster',
-    'wls_profile::admin_server::wls_datasources',
-    'wls_profile::admin_server::wls_jms',
-    'wls_profile::admin_server::wls_users_and_groups',
-    'wls_profile::admin_server::pack_domain',
+      'wls_profile::basic_domain',
+      'wls_profile::admin_server::wls_servers',
+      'wls_profile::admin_server::wls_cluster',
+      'wls_profile::admin_server::wls_datasources',
+      'wls_profile::admin_server::wls_jms',
+      'wls_profile::admin_server::wls_users_and_groups',
+      'wls_profile::admin_server::pack_domain',
   ])
 }
