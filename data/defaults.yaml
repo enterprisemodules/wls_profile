@@ -233,7 +233,7 @@ wls_profile::admin_server::wls_servers::server_defaults:
   listenport:      7001
   ssllistenport:   7002
 wls_profile::admin_server::wls_servers::machine_defaults:
-  listenport:      7001
+  listenport:      5556
   machinetype:     UnixMachine
   nmtype:          SSL
 #------------------------------------------------------------------------------
