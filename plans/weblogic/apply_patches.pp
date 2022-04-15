@@ -30,14 +30,14 @@ plan wls_profile::weblogic::apply_patches(
   # be able to access the available licenses
   #
   $used_modules = ['easy_type', 'wls_install', 'wls_config', 'wls_profile', 'wls_config', 'em_license']
-  apply_prep($targets, {'required_modules' => $used_modules })
+  apply_prep($targets, { 'required_modules' => $used_modules })
 
   #
   # Apply the wls_patching class to the target(s). This class will
   # do all the hard lifting for us.
   #
-  $result = apply($targets, {'required_modules' => $used_modules, '_catch_errors' => true}) {
-    class {'wls_profile::weblogic::wls_patches':
+  $result = apply($targets, { 'required_modules' => $used_modules, '_catch_errors' => true }) {
+    class { 'wls_profile::weblogic::wls_patches':
       patch_window => '00:00 - 23:59:59', # This will always trigger except in 1 second before midnight
       # patch_window => '00:00 - 23:59:59', # This will always trigger except in 1 second before midnight
     }

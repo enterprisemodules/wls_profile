@@ -1,43 +1,43 @@
 #
 # wls_profile
 #
-class wls_profile(
+class wls_profile (
+  String[1] $adminserver_address,
+  Integer   $adminserver_port,
+  String[1] $cluster_name,
   #
   # See the file "LICENSE" for the full license governing this code.
   #
   String[1] $domain_name,
-  String[1] $cluster_name,
-  String[1] $java_version,
+  Stdlib::Absolutepath
+  $domains_dir,
+  Stdlib::Absolutepath
+  $download_dir,
   String[1] $java_full_version,
-  String[1] $weblogic_user,
-  Easy_type::Password
-            $weblogic_password,
-  String[1] $os_user,
-  String[1] $os_group,
-  String[1] $source,
+  String[1] $java_version,
   Stdlib::Absolutepath
-            $oracle_base,
+  $jdk_home,
   Stdlib::Absolutepath
-            $middleware_home,
+  $log_dir,
   Stdlib::Absolutepath
-            $weblogic_home,
-  Stdlib::Absolutepath
-            $domains_dir,
-  Stdlib::Absolutepath
-            $jdk_home,
-  Stdlib::Absolutepath
-            $log_dir,
-  String[1] $adminserver_address,
+  $middleware_home,
   String[1] $nodemanager_address,
-  Hash      $servers,
-  Integer   $adminserver_port,
   Integer   $nodemanager_port,
   Stdlib::Absolutepath
-            $download_dir,
+  $oracle_base,
+  String[1] $os_group,
+  String[1] $os_user,
+  Hash      $servers,
+  String[1] $source,
   Stdlib::Absolutepath
-            $temp_dir,
+  $temp_dir,
+  Stdlib::Absolutepath
+  $weblogic_home,
+  Easy_type::Password
+  $weblogic_password,
+  String[1] $weblogic_user,
   Wls_install::Versions
-            $weblogic_version,
+  $weblogic_version,
   Enum[
     'standard',
     'forms',
@@ -53,7 +53,7 @@ class wls_profile(
     'oim',
     'oud',
     'wc',
-    'wc_wcc_bpm']
-            $install_type = 'standard',
+  'wc_wcc_bpm']
+  $install_type = 'standard'
 ) {
 }

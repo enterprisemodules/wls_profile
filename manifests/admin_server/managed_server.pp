@@ -43,7 +43,7 @@ define wls_profile::admin_server::managed_server (
   Hash                 $server_defaults,
   Hash                 $machine_defaults,
   Stdlib::Absolutepath $log_dir = lookup('wls_profile::log_dir'),
-){
+) {
   wls_machine { "${domain_name}/${machine_name}":
     ensure        => 'present',
     listenaddress => $listenaddress,

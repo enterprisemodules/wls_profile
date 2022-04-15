@@ -1,14 +1,14 @@
 #
-define wls_profile::weblogic::private::start_managed_servers(
+define wls_profile::weblogic::private::start_managed_servers (
   String[1]           $schedule_name,
   Stdlib::Absolutepath
-                      $domains_dir,
+  $domains_dir,
   Stdlib::Absolutepath
-                      $weblogic_home,
+  $weblogic_home,
   Stdlib::Absolutepath
-                      $middleware_home,
+  $middleware_home,
   Stdlib::Absolutepath
-                      $jdk_home,
+  $jdk_home,
   String[1]           $os_user,
   String[1]           $os_group,
   String[1]           $weblogic_user,
@@ -18,14 +18,13 @@ define wls_profile::weblogic::private::start_managed_servers(
   String[1]           $adminserver_address,
   Boolean             $jsse_enabled,
   Boolean             $custom_trust,
-  Optional[String[1]] $trust_keystore_file,
+  String[1]           $trust_keystore_file,
   Integer             $wait_for_nodemanager,
   Variant[Boolean,Enum['on_failure']]
-                      $logoutput = lookup({name => 'logoutput', default_value => 'on_failure'}),
-)
-{
+  $logoutput = lookup( { name => 'logoutput', default_value => 'on_failure' }),
+) {
   $domain = $title
-  echo {"Restarting AdminServer, nodemanager and managed servers in domain ${domain}":
+  echo { "Restarting AdminServer, nodemanager and managed servers in domain ${domain}":
     withpath => false,
     schedule => $schedule_name,
   }
@@ -36,7 +35,7 @@ define wls_profile::weblogic::private::start_managed_servers(
     $trust_keystore_passphrase = undef
   }
 
-  case $::kernel {
+  case $facts['kernel'] {
     'AIX': {
       $netstat_statement = "/bin/netstat -an | /bin/grep LISTEN | /bin/grep '.${nodemanager_port}'"
     }
@@ -47,7 +46,7 @@ define wls_profile::weblogic::private::start_managed_servers(
       $netstat_statement = "/bin/netstat -an -P tcp | /bin/grep LISTEN | /bin/grep '.${nodemanager_port}'"
     }
     default: {
-      fail("Unrecognized operating system ${::kernel}, please use it on a Linux or Solaris host")
+      fail("Unrecognized operating system ${facts['kernel']}, please use it on a Linux or Solaris host")
     }
   }
 
@@ -79,7 +78,7 @@ define wls_profile::weblogic::private::start_managed_servers(
     print 'All servers previously stopped, are now started again.'
     |WLST
 
-  exec {"Starting nodemanager ${title} after patching":
+  exec { "Starting nodemanager ${title} after patching":
     command  => "/usr/bin/systemctl restart nodemanager_${domain}",
     schedule => $schedule_name,
   }
@@ -93,12 +92,12 @@ define wls_profile::weblogic::private::start_managed_servers(
 
   $ip_addresses = $facts['networking']['interfaces'].keys.map |$interface| {
     if $facts['networking']['interfaces'][$interface]['bindings'] != undef {
-      $facts['networking']['interfaces'][$interface]['bindings'].map |$entry| {$entry['address'] }
+      $facts['networking']['interfaces'][$interface]['bindings'].map |$entry| { $entry['address'] }
     }
   }.flatten
 
   if easy_type::dnslookup($adminserver_address)[0] in $ip_addresses {
-    wls_install::control{"start_adminserver_${domain}_after_patches":
+    wls_install::control { "start_adminserver_${domain}_after_patches":
       wls_domains_dir           => $domains_dir,
       action                    => 'start',
       weblogic_home_dir         => $weblogic_home,
@@ -122,19 +121,19 @@ define wls_profile::weblogic::private::start_managed_servers(
     }
   }
 
-  file {"/tmp/start_managed_servers_for_${domain}.py":
-    ensure   => 'present',
+  file { "/tmp/start_managed_servers_for_${domain}.py":
+    ensure   => 'file',
     content  => $start_managed_servers,
     schedule => $schedule_name,
   }
 
-  -> wls_exec {"${domain}/@/tmp/start_managed_servers_for_${domain}.py":
+  -> wls_exec { "${domain}/@/tmp/start_managed_servers_for_${domain}.py":
     schedule            => $schedule_name,
     disable_autorequire => true,
     logoutput           => $logoutput,
   }
 
-  -> exec {"cleanup startscript ${domain}":
+  -> exec { "cleanup startscript ${domain}":
     command   => "/bin/rm -f /tmp/start_managed_servers_for_${domain}.py",
     schedule  => $schedule_name,
     logoutput => $logoutput,
