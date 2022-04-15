@@ -35,26 +35,27 @@
 #
 # See the file "LICENSE" for the full license governing this code.
 #
-define wls_profile::admin_server::managed_server(
-  String[1] $machine_name,
-  String[1] $listenaddress,
-  String[1] $domain_name,
-  Array     $server_arguments,
-  Hash      $server_defaults,
-  Hash      $machine_defaults,
-)
-{
+define wls_profile::admin_server::managed_server (
+  String[1]            $machine_name,
+  String[1]            $listenaddress,
+  String[1]            $domain_name,
+  Array                $server_arguments,
+  Hash                 $server_defaults,
+  Hash                 $machine_defaults,
+  Stdlib::Absolutepath $log_dir = lookup('wls_profile::log_dir'),
+){
   wls_machine { "${domain_name}/${machine_name}":
     ensure        => 'present',
     listenaddress => $listenaddress,
     *             => $machine_defaults,
   }
 
-  wls_install::managed_server{ $title:
+  wls_install::managed_server { $title:
     domain           => $domain_name,
     machine          => $machine_name,
     listenaddress    => $listenaddress,
     server_arguments => $server_arguments,
-    *                => $server_defaults
+    wls_log_dir      => $log_dir,
+    *                => $server_defaults,
   }
 }
