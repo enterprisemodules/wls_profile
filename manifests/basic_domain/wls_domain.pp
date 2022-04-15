@@ -382,7 +382,6 @@ class wls_profile::basic_domain::wls_domain(
     ensure                  => 'present',
     listenaddress           => $adminserver_address,
     listenport              => $adminserver_port,
-    machine                 => 'LocalMachine',
     logfilename             => "${log_dir}/AdminServer/AdminServer_${domain_name}.log",
     log_datasource_filename => "${log_dir}/AdminServer/datasource.log",
     log_http_filename       => "${log_dir}/AdminServer/access.log",
