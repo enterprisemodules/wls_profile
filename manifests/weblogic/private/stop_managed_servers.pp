@@ -16,8 +16,6 @@ define wls_profile::weblogic::private::stop_managed_servers (
     }
   }.flatten
 
-  notice $ip_addresses
-
   $stop_managed_servers = @(WLST:python)
     <%- |
       Array   $ip_addresses,
