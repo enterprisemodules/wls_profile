@@ -491,13 +491,25 @@ wls_profile::weblogic::wls_patches::patch_levels:
           source:           "%{lookup('wls_profile::source')}/p33751288_122130_Generic.zip"
           patch_type:       spb
           sub_patches:
-            - '32647468'
             - '33699205'
             - '1221317'
             - '32148634'
             - '32982708'
             - '33290784'
             - '33678607'
+      APR2022RU: 
+        "%{lookup('wls_profile::middleware_home')}:34079971": # WLS STACK PATCH BUNDLE 12.2.1.3.220417
+          source:           "%{lookup('wls_profile::source')}/p34079971_122130_Generic.zip"
+          patch_type:       spb
+          sub_patches:
+            # - '32647468'  # Patch ( 32647468 ) is not applicable on current platform
+            - '34010914'
+            - '1221318'
+            - '32148634'
+            - '32982708'
+            - '33290784'
+            - '34077670'
+            - '34080006'
   '12214':
       NONE:       {}
       JAN2021RU:
@@ -514,6 +526,19 @@ wls_profile::weblogic::wls_patches::patch_levels:
             - '33093748'
             - '32720458'
             - '33678607'
+      APR2022RU: 
+        "%{lookup('wls_profile::middleware_home')}:34080315": # WLS STACK PATCH BUNDLE 12.2.1.4.220418
+          source:           "%{lookup('wls_profile::source')}/p34080315_122140_Generic.zip"
+          patch_type:       spb
+          sub_patches:
+            # - '32647448'  # Patch ( 32647448 ) is not applicable on current platform.
+            - '34012040'
+            - '1221413'
+            - '33868012'
+            - '33093748'
+            - '32720458'
+            - '34077658'
+            - '34080360'
   '14110':
       NONE:       {}
       JAN2021RU:
@@ -528,4 +553,16 @@ wls_profile::weblogic::wls_patches::patch_levels:
             - '33591037'
             - '33678607'
             - '33727619'
-          
+      APR2022RU:
+        "%{lookup('wls_profile::middleware_home')}:34084007":   # WLS STACK PATCH BUNDLE 14.1.1.0.220418
+          source:           "%{lookup('wls_profile::source')}/p34084007_141100_Generic.zip"
+          patch_type:       spb
+          sub_patches:
+            - '32720458'
+            - '33868014'
+            - '33902209'
+            - '34011596'
+            - '34077664'
+            - '34084037'
+        "%{lookup('wls_profile::middleware_home')}:34120447":   # MERGE REQUEST ON TOP OF 14.1.1.0.0 FOR BUGS 33868014 33934977
+          source:           "%{lookup('wls_profile::source')}/p34120447_141100_Generic.zip"
