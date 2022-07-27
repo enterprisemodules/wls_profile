@@ -75,7 +75,7 @@ class wls_profile::weblogic::wls_patches (
   if ( has_key($patch_levels["${version}"], $level) ) {
     $patch_level_list = $patch_levels["${version}"][$level]
   } else {
-     warning "Patch level ${level} not defined for version ${version}."
+    warning "Patch level ${level} not defined for version ${version}."
     $patch_level_list = {}
   }
   $complete_list = ($patch_level_list + $list)
