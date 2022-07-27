@@ -510,6 +510,19 @@ wls_profile::weblogic::wls_patches::patch_levels:
             - '33290784'
             - '34077670'
             - '34080006'
+      JUL2022RU: 
+        "%{lookup('wls_profile::middleware_home')}:34373534": # WLS STACK PATCH BUNDLE 12.2.1.3.220711
+          source:           "%{lookup('wls_profile::source')}/p34373534_122130_Generic.zip"
+          patch_type:       spb
+          sub_patches:
+            # - '33598515' Patch ( 33598515 ) is not applicable on current platform.
+            - '34298772'
+            - '1221319'
+            - '32148634'
+            - '32982708'
+            - '33290784'
+            - '34212747'
+            - '34373561'
   '12214':
       NONE:       {}
       JAN2021RU:
@@ -539,6 +552,19 @@ wls_profile::weblogic::wls_patches::patch_levels:
             - '32720458'
             - '34077658'
             - '34080360'
+      JUL2022RU: 
+        "%{lookup('wls_profile::middleware_home')}:34373563": # WLS STACK PATCH BUNDLE 12.2.1.4.220711
+          source:           "%{lookup('wls_profile::source')}/p34373563_122140_Generic.zip"
+          patch_type:       spb
+          sub_patches:
+            - '33639718'
+            - '34236279'
+            - '1221414'
+            # - '34160496'
+            - '33093748'
+            - '32720458'
+            - '34212770'
+            - '34373589'
   '14110':
       NONE:       {}
       JAN2021RU:
