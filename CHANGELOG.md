@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.21.0
+
+**Features**
+
+- [wls_patches] Warn when patchlevel not defined
+- [data] Added JUL2022RU patchlevels for 12.2.1.3, 12.2.1.4
+- [data] Added APR2022RU patchlevels for 12.2.1.3, 12.2.1.4 and 14.1
+- [stop_managed_servers] Removed debugging notice
+
 ## Release 0.20.0
 
 **Features**
