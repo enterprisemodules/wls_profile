@@ -2,7 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-## Release 0.32.0
+
+## Release 0.23.0
+
+
+**Features**
+
+- [wls_domain,copy_domain] Add support for java_update_window
+
+**Bug fixes**
+
+- [docs] Re-add documentation to puppet source
+
+## Release 0.22.0
 
 **Bug fixes**
 
