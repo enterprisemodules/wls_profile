@@ -10,7 +10,6 @@
 #
 # See the file "LICENSE" for the full license governing this code.
 #
-# lint:ignore:strict_indent
 class wls_profile::basic_domain::wls_domain (
   Optional[Integer]   $administration_port,
   Boolean             $administration_port_enabled,
@@ -26,16 +25,16 @@ class wls_profile::basic_domain::wls_domain (
   Boolean             $development_mode,
   String[1]           $domain_name,
   Stdlib::Absolutepath
-                      $domains_dir,
+  $domains_dir,
   Boolean             $ess_enabled,
   Array               $extra_properties,
   Stdlib::Absolutepath
-                      $jdk_home,
+  $jdk_home,
   Boolean             $jsse_enabled,
   Stdlib::Absolutepath
-                      $log_dir,
+  $log_dir,
   Stdlib::Absolutepath
-                      $middleware_home,
+  $middleware_home,
   String[1]           $nodemanager_address,
   Integer             $nodemanager_wait,
   String[1]           $os_group,
@@ -55,36 +54,53 @@ class wls_profile::basic_domain::wls_domain (
     'oim',
     'oud',
     'wc',
-    'wc_wcc_bpm']
-                      $template_name,
+  'wc_wcc_bpm']
+  $template_name,
   Optional[String[1]] $trust_keystore_file,
   Stdlib::Absolutepath
-                      $weblogic_home,
+  $weblogic_home,
   Easy_type::Password $weblogic_password,
   String[1]           $weblogic_user,
   Integer             $adminserver_port                      = $wls_profile::adminserver_port,
   Optional[Easy_type::Password]
-                      $custom_identity_keystore_passphrase   = undef,
+  $custom_identity_keystore_passphrase   = undef,
   Optional[Easy_type::Password]
-                      $custom_identity_privatekey_passphrase = undef,
+  $custom_identity_privatekey_passphrase = undef,
   String[1]           $domain_alias                          = $domain_name,
+  Optional[String[1]] $java_update_window                    = undef,
   Integer             $nodemanager_port                      = $wls_profile::nodemanager_port,
   Optional[String[1]] $rcu_database_url                      = undef,
   Optional[String[1]] $repository_database_url               = undef,
   Optional[Easy_type::Password]
-                      $repository_password                   = undef,
+  $repository_password                   = undef,
   Optional[String[1]] $repository_prefix                     = undef,
   Optional[Easy_type::Password]
-                      $repository_sys_password               = undef,
+  $repository_sys_password               = undef,
   Optional[Easy_type::Password]
-                      $trust_keystore_passphrase             = undef,
+  $trust_keystore_passphrase             = undef,
   Wls_install::Versions
-                      $version                               = $wls_profile::weblogic_version
+  $version                               = $wls_profile::weblogic_version
 ) inherits wls_profile {
-# lint:endignore:strict_indent
-
   echo { "WebLogic domain for domain ${domain_name} using template for ${template_name}":
     withpath => false,
+  }
+
+  if $java_update_window != undef {
+    echo { "Ensuring Java updates only run in update window: ${java_update_window}":
+      withpath => false,
+    }
+    #
+    # Ensure the java update window exists
+    #
+    schedule { 'java_update_window':
+      range  => $java_update_window,
+    }
+    $java_update_schedule = 'java_update_window'
+  } else {
+    $java_update_schedule = undef
+    echo { 'Any java updates are run immediately':
+      withpath => false,
+    }
   }
 
   if $template_name in ['forms','ohs_standalone','osb','osb_soa','osb_soa_bpm','soa','soa_bpm','bam','oim','oud','wc','wc_wcc_bpm', 'adf'] {
@@ -141,6 +157,7 @@ class wls_profile::basic_domain::wls_domain (
     administration_port                   => $administration_port,
     administration_port_enabled           => $administration_port_enabled,
     download_dir                          => $wls_profile::download_dir,
+    java_update_window                    => $java_update_schedule,
     jsse_enabled                          => $jsse_enabled,
     custom_trust                          => $custom_trust,
     trust_keystore_file                   => $trust_keystore_file,
@@ -169,6 +186,7 @@ class wls_profile::basic_domain::wls_domain (
     nodemanager_address                   => $nodemanager_address,
     os_user                               => $os_user,
     os_group                              => $os_group,
+    java_update_window                    => $java_update_schedule,
     jsse_enabled                          => $jsse_enabled,
     custom_trust                          => $custom_trust,
     trust_keystore_file                   => $trust_keystore_file,

@@ -23,6 +23,7 @@ When these customizations aren't enough, you can replace the class with your own
   :nodemanager_wait,
   :weblogic_user,
   :weblogic_password,
+  :java_update_window,
   :jsse_enabled,
   :custom_trust,
   :trust_keystore_file,

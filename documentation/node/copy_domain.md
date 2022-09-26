@@ -45,6 +45,7 @@ Attribute Name                                                                  
 [custom_trust](#node::copy_domain_custom_trust)                                                   | Determine if you want to use a custom trust or not.                                                      |
 [domain_name](#node::copy_domain_domain_name)                                                     | The name of the WebLogic domain.                                                                         |
 [domains_dir](#node::copy_domain_domains_dir)                                                     | The top-level directory where the domain directories will reside in.                                     |
+[java_update_window](#node::copy_domain_java_update_window)                                       | The time frame in which any required java updates will be applied to your domain by Puppet.              |
 [jdk_home](#node::copy_domain_jdk_home)                                                           | The location where the JDK is installed.                                                                 |
 [jsse_enabled](#node::copy_domain_jsse_enabled)                                                   | Determine if you want to enable JSSE security.                                                           |
 [log_dir](#node::copy_domain_log_dir)                                                             | The directory used for log files.                                                                        |
@@ -294,6 +295,15 @@ This value is used in multiple places. To make sure in all classed the correct v
 Default value: `Welcome01`
 Type: `Easy_type::Password`
 
+
+[Back to overview of node::copy_domain](#attributes)
+
+### java_update_window<a name='node::copy_domain_java_update_window'>
+
+The time frame in which any required java updates will be applied to your domain by Puppet. Puppet will apply any detected java updates immediately if the value is `undef`, which is the default.
+Type: `Optional[String[1]]`
+
+Default:`undef`
 
 [Back to overview of node::copy_domain](#attributes)
 

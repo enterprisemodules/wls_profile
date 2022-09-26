@@ -43,6 +43,7 @@ Attribute Name                                                                  
 [domain_name](#basic_domain::wls_domain_domain_name)                                 | The name of the WebLogic domain.                                                                         |
 [domains_dir](#basic_domain::wls_domain_domains_dir)                                 | The top-level directory where the domain directories will reside in.                                     |
 [ess_enabled](#basic_domain::wls_domain_ess_enabled)                                 | A boolean value specifying if you want to enable ess.                                                    |
+[java_update_window](#basic_domain::wls_domain_java_update_window)                   | The time frame in which any required java updates will be applied to your domain by Puppet.              |
 [log_dir](#basic_domain::wls_domain_log_dir)                                         | The directory used for log files.                                                                        |
 [nodemanager_address](#basic_domain::wls_domain_nodemanager_address)                 | The IP address the nodemanager will run and listen on.                                                   |
 [nodemanager_port](#basic_domain::wls_domain_nodemanager_port)                       | The IP port the nodemanager listens on.                                                                  |
@@ -170,23 +171,7 @@ Valid values are:
 - `wc`
 - `wc_wcc_bpm`
 
-Type: `Enum[
-    'standard',
-    'forms',
-    'ohs_standalone',
-    'adf_restricted',
-    'osb',
-    'osb_soa',
-    'osb_soa_bpm',
-    'soa',
-    'soa_bpm',
-    'bam',
-    'adf',
-    'oim',
-    'oud',
-    'wc',
-    'wc_wcc_bpm'
-    ]`
+Type: `Enum['standard','forms','ohs_standalone','adf_restricted','osb','osb_soa','osb_soa_bpm','soa','soa_bpm','bam','adf','oim','oud','wc','wc_wcc_bpm']`
 
 
 [Back to overview of basic_domain::wls_domain](#attributes)
@@ -275,6 +260,15 @@ SSL port to use for the Admin server.
 
 Type: `Optional[Integer]`
 
+
+[Back to overview of basic_domain::wls_domain](#attributes)
+
+### java_update_window<a name='basic_domain::wls_domain_java_update_window'>
+
+The time frame in which any required java updates will be applied to your domain by Puppet. Puppet will apply any detected java updates immediately if the value is `undef`, which is the default.
+Type: `Optional[String[1]]`
+
+Default:`undef`
 
 [Back to overview of basic_domain::wls_domain](#attributes)
 
