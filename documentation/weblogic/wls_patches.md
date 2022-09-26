@@ -320,6 +320,6 @@ Valid values are:
 
 Type: `Variant[Boolean,Enum['on_failure']]`
 
-Default:`lookup({name => 'logoutput', default_value => 'on_failure'})`
+Default:`lookup( { name => 'logoutput', default_value => 'on_failure' })`
 
 [Back to overview of weblogic::wls_patches](#attributes)

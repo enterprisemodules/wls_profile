@@ -8,6 +8,23 @@
 # 
 # When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::admin_server](./admin_server.html) for an explanation on how to do this.
 #
+# @param [String[1]] os_user
+#    The os user to use for WebLogic.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_user` to change it to your requested value.
+#    Default value: `oracle`
+#
+# @param [String[1]] os_group
+#    The os group to use for WebLogic.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_group` to change it to your requested value.
+#    Default value: `dba`
+#
+# @param [String[1]] private_key
+#    The private key to create for the `os_user`  account.
+#    The defaults contain a valid pair. It is recommended to specify your own values.
+#
+# @param [String[1]] public_key
+#    The public key to create for the `os_user`  account.
+#    The defaults contain a valid pair. It is recommended to specify your own values.
 #
 #
 # See the file "LICENSE" for the full license governing this code.

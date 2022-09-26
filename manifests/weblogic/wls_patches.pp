@@ -12,6 +12,117 @@
 # 
 # When you don't specify a patch windows, Puppet will never patch a running domain. It will however provide your installations with the specified patch level at the initial run or when the WebLogic domain is not running at the start of the Puppet run.
 #
+# @param [String[1]] level
+#    The specified patch level.
+#    The default value is 'NONE'.
+#
+# @param [Integer] version
+#    The version of WebLogic you want to use.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::version` to change it to your requested value.
+#    Valid values are:
+#      - `1036`
+#      - `1111`
+#      - `1112`
+#      - `1211`
+#      - `1212`
+#      - `1213`
+#      - `1221`
+#      - `12211`
+#      - `12212`
+#      - `12213`
+#      - `12214`
+#    Default value: `12213`
+#
+# @param [String[1]] middleware_home
+#    The Oracle middleware home directory.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::middleware_home` to change it to your requested value.
+#    Default value: `/opt/oracle/middleware12`
+#
+# @param [String[1]] orainst_dir
+#    The directory where the orainst file is located.
+#
+# @param [String[1]] jdk_home
+#    The location where the JDK is installed.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::jdk_home` to change it to your requested value.
+#    The default value is: `/usr/java/jdk1.8.0_152`
+#
+# @param [String[1]] os_user
+#    The os user to use for WebLogic.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_user` to change it to your requested value.
+#    Default value: `oracle`
+#
+# @param [Hash] list
+#    A Hash describing the WebLogic patches you want be installed.
+#    Default value is: `{}`
+#
+# @param [Stdlib::Absolutepath] domains_dir
+#    The top-level directory where the domain directories will reside in.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::domains_dir` to change it to your requested value.
+#    The default value is:  `/opt/oracle/domains`
+#
+# @param [Stdlib::Absolutepath] weblogic_home
+#    The directory used as WebLogic home
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::weblogic_home` to change it to your requested value.
+#    Default value: `/opt/oracle/middleware12/wlserver`
+#
+# @param [String[1]] os_group
+#    The os group to use for WebLogic.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_group` to change it to your requested value.
+#    Default value: `dba`
+#
+# @param [String[1]] weblogic_user
+#    The WebLogic user account to bear all administration rights.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::weblogic_user` to change it to your requested value.
+#    Default value: `weblogic`
+#
+# @param [Easy_type::Password] weblogic_password
+#    The password for the WebLogic account.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::weblogic_password` to change it to your requested value.
+#    Default value: `Welcome01`
+#
+# @param [Integer] adminserver_port
+#    The IP port the admin server process will run and listen on.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::adminserver_port` to change it to your requested value.
+#    The default value is:  `7001`
+#
+# @param [Integer] nodemanager_port
+#    The IP port the nodemanager listens on.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::nodemanager_port` to change it to your requested value.
+#    Default value: `5556`
+#
+# @param [Integer] wait_for_nodemanager
+#    The time in seconds we wait for the nodemanager to be started in the restart phase of the patching.
+#
+# @param [String[1]] nodemanager_address
+#    The IP address the nodemanager will run and listen on.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::wls_domain::log_dir` to change it to your requested value.
+#    Default value: `::fqdn`
+#
+# @param [String[1]] adminserver_address
+#    The address the admin server process will run and listen on.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::adminserver_address` to change it to your requested value.
+#    The default value is: The fact `fqdn`
+#
+# @param [Boolean] jsse_enabled
+#    Determine if you want to enable JSSE security.
+#
+# @param [Boolean] custom_trust
+#    Determine if you want to use a custom trust or not.
+#
+# @param [Optional[String[1]]] trust_keystore_file
+#    File specification of the trust keystore.
+#
+# @param [Optional[String[1]]] patch_window
+#    The service window in which any patching will be executed.
+#
+#
+# @param [Variant[Boolean, Enum['on_failure']]] logoutput
+#    log the outputs of Puppet exec and wls_exec or not.
+#    When you specify `true` Puppet will log all output of `exec` types.
+#    Valid values are:
+#    - `true`
+#    - `false`
+#    - `on_failure`
 #
 #
 # See the file "LICENSE" for the full license governing this code.

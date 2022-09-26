@@ -6,6 +6,42 @@
 # 
 # When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::weblogic](./weblogic.html) for an explanation on how to do this.
 #
+# @param [String[1]] version
+#    The version of java you want to use.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::java_version` to change it to your requested value.
+#    Default value: `8u152`
+#
+# @param [String[1]] full_version
+#    The full version of java you want to use.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::java_full_version` to change it to your requested value.
+#    Default value: `jdk1.8.0_152`
+#
+# @param [Optional[String[1]]] cryptography_extension_file
+#    Cryptographic extension file to use.
+#    Default value: `jce_policy-8.zip`
+#
+# @param [String[1]] source
+#    The location where the classes can find the software.
+#    You can specify a local directory, a Puppet url or an http url.
+#    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::source` to change it to your requested value.
+#    The default is : `puppet:///modules/software/`
+#
+# @param [Optional[Boolean]] urandom_fix
+#    Enable the urandom fix.
+#    This parameter is deprecated and will be removed in a next version.
+#    Default value: `true`
+#
+# @param [Optional[Boolean]] rsa_key_size_fix
+#    Enable the RSA keysize fix.
+#    Default value: `true`
+#
+# @param [Boolean] x64
+#    Install x64 version of java.
+#    Default value: `true`
+#
+# @param [Optional[Integer]] alternatives_priority
+#    alternatives priority for jdk.
+#    Default value is: `18001`
 #
 #
 # See the file "LICENSE" for the full license governing this code.

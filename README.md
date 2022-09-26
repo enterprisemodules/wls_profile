@@ -3,16 +3,17 @@
 
 #### Table of Contents
 
-1. [Overview](#overview)
-2. [License](#license)
-3. [Experience the Power of Puppet for Oracle WebLogic](experience-the-power-of-puppet-for-oracle-weblogic)
-4. [Description - What the module does and why it is useful](#description)
-5. [Setup](#setup)
-  * [Requirements](#requirements)
-  * [Installing the wls_install module](#installing-the-wls_install-module)
-6. [Usage - Configuration options and additional functionality](#usage)
-7. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-8. [Limitations - OS compatibility, etc.](#limitations)
+- [Overview](#overview)
+- [Experience the Power of Puppet for Oracle WebLogic](#experience-the-power-of-puppet-for-oracle-weblogic)
+- [License](#license)
+- [Description](#description)
+- [Setup](#setup)
+  - [Requirements](#requirements)
+    - [We support WebLogic versions:](#we-support-weblogic-versions)
+  - [Installing the wls_profile module](#installing-the-wls_profile-module)
+- [Usage](#usage)
+- [Reference](#reference)
+- [Limitations](#limitations)
 
 ## Overview
 
@@ -26,7 +27,6 @@ The `wls_profile` module allows an easy path from first simple installation to a
 Installing Oracle WebLogic and/or Fusion software and managing your WebLogic domain configuration can be hard. With Puppet at your side, you get super-powers when installing and managing Oracle WebLogic. If you want to play and experiment with this [please take a look at our playgrounds](https://www.enterprisemodules.com/playgrounds#weblogic). 
 
 [![Experience the Power](https://raw.githubusercontent.com/enterprisemodules/public_images/master/superpowers-33-blanc.jpg)](https://www.enterprisemodules.com/playgrounds#weblogic)
-
 
 ## License
 

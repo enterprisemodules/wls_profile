@@ -18,7 +18,6 @@
 * [`wls_profile::basic_domain::wls_domain`](#wls_profilebasic_domainwls_domain): This class is the default implementation for defining a domain on your system.
 * [`wls_profile::basic_domain::wls_startup`](#wls_profilebasic_domainwls_startup): This class is the default implementation for making sure WebLogic gets started after a system reboot.
 * [`wls_profile::node`](#wls_profilenode): wls_profile::node  This is a highly customizable Puppet profile class to define a WebLogic node. At its core just adding:```contain wls_profi
-* [`wls_profile::node::copy_domain`](#wls_profilenodecopy_domain): This class is the default implementation to copy the packed domain from the Admin Server, unpack it on the current machine and start the nodemanager.
 * [`wls_profile::weblogic`](#wls_profileweblogic): wls_profile::weblogic  This is a highly customizable Puppet profile class to install the  WebLogic software and its requirements on your syst
 * [`wls_profile::weblogic::em_license`](#wls_profileweblogicem_license): This class will deploy the Enterprise Modules license.
 * [`wls_profile::weblogic::fmw_software`](#wls_profileweblogicfmw_software): This class is the default implementation for creating the required OS users and groups for the installation of WebLogic.
@@ -31,8 +30,8 @@
 ### Defined types
 
 * [`wls_profile::admin_server::managed_server`](#wls_profileadmin_servermanaged_server): This defined type is the default implementation for defining a managed server in your WebLogic domain.
-* [`wls_profile::weblogic::private::start_domain`](#wls_profileweblogicprivatestart_domain)
-* [`wls_profile::weblogic::private::stop_domain`](#wls_profileweblogicprivatestop_domain)
+* [`wls_profile::weblogic::private::start_managed_servers`](#wls_profileweblogicprivatestart_managed_servers)
+* [`wls_profile::weblogic::private::stop_managed_servers`](#wls_profileweblogicprivatestop_managed_servers)
 
 ### Plans
 
@@ -48,34 +47,40 @@ wls_profile
 
 The following parameters are available in the `wls_profile` class:
 
-* [`domain_name`](#domain_name)
+* [`adminserver_address`](#adminserver_address)
+* [`adminserver_port`](#adminserver_port)
 * [`cluster_name`](#cluster_name)
-* [`java_version`](#java_version)
-* [`java_full_version`](#java_full_version)
-* [`weblogic_user`](#weblogic_user)
-* [`weblogic_password`](#weblogic_password)
-* [`os_user`](#os_user)
-* [`os_group`](#os_group)
-* [`source`](#source)
-* [`oracle_base`](#oracle_base)
-* [`middleware_home`](#middleware_home)
-* [`weblogic_home`](#weblogic_home)
+* [`domain_name`](#domain_name)
 * [`domains_dir`](#domains_dir)
+* [`download_dir`](#download_dir)
+* [`java_full_version`](#java_full_version)
+* [`java_version`](#java_version)
 * [`jdk_home`](#jdk_home)
 * [`log_dir`](#log_dir)
-* [`adminserver_address`](#adminserver_address)
+* [`middleware_home`](#middleware_home)
 * [`nodemanager_address`](#nodemanager_address)
-* [`servers`](#servers)
-* [`adminserver_port`](#adminserver_port)
 * [`nodemanager_port`](#nodemanager_port)
-* [`download_dir`](#download_dir)
+* [`oracle_base`](#oracle_base)
+* [`os_group`](#os_group)
+* [`os_user`](#os_user)
+* [`servers`](#servers)
+* [`source`](#source)
 * [`temp_dir`](#temp_dir)
+* [`weblogic_home`](#weblogic_home)
+* [`weblogic_password`](#weblogic_password)
+* [`weblogic_user`](#weblogic_user)
 * [`weblogic_version`](#weblogic_version)
 * [`install_type`](#install_type)
 
-##### <a name="domain_name"></a>`domain_name`
+##### <a name="adminserver_address"></a>`adminserver_address`
 
 Data type: `String[1]`
+
+
+
+##### <a name="adminserver_port"></a>`adminserver_port`
+
+Data type: `Integer`
 
 
 
@@ -85,9 +90,21 @@ Data type: `String[1]`
 
 
 
-##### <a name="java_version"></a>`java_version`
+##### <a name="domain_name"></a>`domain_name`
 
 Data type: `String[1]`
+
+
+
+##### <a name="domains_dir"></a>`domains_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+
+
+##### <a name="download_dir"></a>`download_dir`
+
+Data type: `Stdlib::Absolutepath`
 
 
 
@@ -97,57 +114,9 @@ Data type: `String[1]`
 
 
 
-##### <a name="weblogic_user"></a>`weblogic_user`
+##### <a name="java_version"></a>`java_version`
 
 Data type: `String[1]`
-
-
-
-##### <a name="weblogic_password"></a>`weblogic_password`
-
-Data type: `Easy_type::Password`
-
-
-
-##### <a name="os_user"></a>`os_user`
-
-Data type: `String[1]`
-
-
-
-##### <a name="os_group"></a>`os_group`
-
-Data type: `String[1]`
-
-
-
-##### <a name="source"></a>`source`
-
-Data type: `String[1]`
-
-
-
-##### <a name="oracle_base"></a>`oracle_base`
-
-Data type: `Stdlib::Absolutepath`
-
-
-
-##### <a name="middleware_home"></a>`middleware_home`
-
-Data type: `Stdlib::Absolutepath`
-
-
-
-##### <a name="weblogic_home"></a>`weblogic_home`
-
-Data type: `Stdlib::Absolutepath`
-
-
-
-##### <a name="domains_dir"></a>`domains_dir`
-
-Data type: `Stdlib::Absolutepath`
 
 
 
@@ -163,13 +132,37 @@ Data type: `Stdlib::Absolutepath`
 
 
 
-##### <a name="adminserver_address"></a>`adminserver_address`
+##### <a name="middleware_home"></a>`middleware_home`
+
+Data type: `Stdlib::Absolutepath`
+
+
+
+##### <a name="nodemanager_address"></a>`nodemanager_address`
 
 Data type: `String[1]`
 
 
 
-##### <a name="nodemanager_address"></a>`nodemanager_address`
+##### <a name="nodemanager_port"></a>`nodemanager_port`
+
+Data type: `Integer`
+
+
+
+##### <a name="oracle_base"></a>`oracle_base`
+
+Data type: `Stdlib::Absolutepath`
+
+
+
+##### <a name="os_group"></a>`os_group`
+
+Data type: `String[1]`
+
+
+
+##### <a name="os_user"></a>`os_user`
 
 Data type: `String[1]`
 
@@ -181,27 +174,33 @@ Data type: `Hash`
 
 
 
-##### <a name="adminserver_port"></a>`adminserver_port`
+##### <a name="source"></a>`source`
 
-Data type: `Integer`
-
-
-
-##### <a name="nodemanager_port"></a>`nodemanager_port`
-
-Data type: `Integer`
-
-
-
-##### <a name="download_dir"></a>`download_dir`
-
-Data type: `Stdlib::Absolutepath`
+Data type: `String[1]`
 
 
 
 ##### <a name="temp_dir"></a>`temp_dir`
 
 Data type: `Stdlib::Absolutepath`
+
+
+
+##### <a name="weblogic_home"></a>`weblogic_home`
+
+Data type: `Stdlib::Absolutepath`
+
+
+
+##### <a name="weblogic_password"></a>`weblogic_password`
+
+Data type: `Easy_type::Password`
+
+
+
+##### <a name="weblogic_user"></a>`weblogic_user`
+
+Data type: `String[1]`
 
 
 
@@ -228,7 +227,7 @@ Data type: `Enum[
     'oim',
     'oud',
     'wc',
-    'wc_wcc_bpm']`
+  'wc_wcc_bpm']`
 
 
 
@@ -1062,24 +1061,6 @@ Using hiera, you can customize some of the aspects of this process.
 
 When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::basic_domain](./basic_domain.html) for an explanation on how to do this.
 
-   The domain template to use when creating the domain.
-   The default value is `standard`.
-   Valid values are:
-   - `standard`
-   - `ohs_standalone`
-   - `adf_restricted`
-   - `osb`
-   - `osb_soa`
-   - `osb_soa_bpm`
-   - `soa`
-   - `soa_bpm`
-   - `bam`
-   - `adf`
-   - `oim`
-   - `oud`
-   - `wc`
-   - `wc_wcc_bpm`
-
 See the file "LICENSE" for the full license governing this code.
 
 #### Parameters
@@ -1100,6 +1081,7 @@ The following parameters are available in the `wls_profile::basic_domain::wls_do
 * [`administration_port_enabled`](#administration_port_enabled)
 * [`administration_port`](#administration_port)
 * [`adminserver_ssl_port`](#adminserver_ssl_port)
+* [`java_update_window`](#java_update_window)
 * [`os_user`](#os_user)
 * [`os_group`](#os_group)
 * [`weblogic_user`](#weblogic_user)
@@ -1110,23 +1092,23 @@ The following parameters are available in the `wls_profile::basic_domain::wls_do
 * [`development_mode`](#development_mode)
 * [`nodemanager_wait`](#nodemanager_wait)
 * [`adminserver_settings`](#adminserver_settings)
-* [`middleware_home`](#middleware_home)
-* [`jdk_home`](#jdk_home)
-* [`extra_properties`](#extra_properties)
-* [`jsse_enabled`](#jsse_enabled)
-* [`custom_trust`](#custom_trust)
-* [`trust_keystore_file`](#trust_keystore_file)
 * [`custom_identity`](#custom_identity)
-* [`custom_identity_keystore_filename`](#custom_identity_keystore_filename)
 * [`custom_identity_alias`](#custom_identity_alias)
+* [`custom_identity_keystore_filename`](#custom_identity_keystore_filename)
+* [`custom_trust`](#custom_trust)
+* [`extra_properties`](#extra_properties)
+* [`jdk_home`](#jdk_home)
+* [`jsse_enabled`](#jsse_enabled)
+* [`middleware_home`](#middleware_home)
+* [`trust_keystore_file`](#trust_keystore_file)
 * [`custom_identity_keystore_passphrase`](#custom_identity_keystore_passphrase)
-* [`trust_keystore_passphrase`](#trust_keystore_passphrase)
 * [`custom_identity_privatekey_passphrase`](#custom_identity_privatekey_passphrase)
-* [`repository_database_url`](#repository_database_url)
 * [`rcu_database_url`](#rcu_database_url)
-* [`repository_prefix`](#repository_prefix)
+* [`repository_database_url`](#repository_database_url)
 * [`repository_password`](#repository_password)
+* [`repository_prefix`](#repository_prefix)
 * [`repository_sys_password`](#repository_sys_password)
+* [`trust_keystore_passphrase`](#trust_keystore_passphrase)
 
 ##### <a name="domain_name"></a>`domain_name`
 
@@ -1209,10 +1191,25 @@ Data type: `Enum[
     'oim',
     'oud',
     'wc',
-    'wc_wcc_bpm'
-    ]`
+    'wc_wcc_bpm']`
 
-
+The domain template to use when creating the domain.
+The default value is `standard`.
+Valid values are:
+- `standard`
+- `ohs_standalone`
+- `adf_restricted`
+- `osb`
+- `osb_soa`
+- `osb_soa_bpm`
+- `soa`
+- `soa_bpm`
+- `bam`
+- `adf`
+- `oim`
+- `oud`
+- `wc`
+- `wc_wcc_bpm`
 
 ##### <a name="nodemanager_address"></a>`nodemanager_address`
 
@@ -1274,6 +1271,15 @@ The common secure administration port for this WebLogic Server domain.
 Data type: `Optional[Integer]`
 
 SSL port to use for the Admin server.
+
+##### <a name="java_update_window"></a>`java_update_window`
+
+Data type: `Optional[String[1]]`
+
+The time frame in which any required java updates will be applied to your domain by Puppet.
+Puppet will apply any detected java updates immediately if the value is `undef`, which is the default.
+
+Default value: ``undef``
 
 ##### <a name="os_user"></a>`os_user`
 
@@ -1349,51 +1355,9 @@ Data type: `Hash`
 A Hash containing settings (of type `wls_server`) to define for the Admin server.
 The default value is: `{}`
 
-##### <a name="middleware_home"></a>`middleware_home`
-
-Data type: `Stdlib::Absolutepath`
-
-
-
-##### <a name="jdk_home"></a>`jdk_home`
-
-Data type: `Stdlib::Absolutepath`
-
-
-
-##### <a name="extra_properties"></a>`extra_properties`
-
-Data type: `Array`
-
-
-
-##### <a name="jsse_enabled"></a>`jsse_enabled`
-
-Data type: `Boolean`
-
-
-
-##### <a name="custom_trust"></a>`custom_trust`
-
-Data type: `Boolean`
-
-
-
-##### <a name="trust_keystore_file"></a>`trust_keystore_file`
-
-Data type: `Optional[String[1]]`
-
-
-
 ##### <a name="custom_identity"></a>`custom_identity`
 
 Data type: `Boolean`
-
-
-
-##### <a name="custom_identity_keystore_filename"></a>`custom_identity_keystore_filename`
-
-Data type: `Optional[String[1]]`
 
 
 
@@ -1403,15 +1367,49 @@ Data type: `Optional[String[1]]`
 
 
 
+##### <a name="custom_identity_keystore_filename"></a>`custom_identity_keystore_filename`
+
+Data type: `Optional[String[1]]`
+
+
+
+##### <a name="custom_trust"></a>`custom_trust`
+
+Data type: `Boolean`
+
+
+
+##### <a name="extra_properties"></a>`extra_properties`
+
+Data type: `Array`
+
+
+
+##### <a name="jdk_home"></a>`jdk_home`
+
+Data type: `Stdlib::Absolutepath`
+
+
+
+##### <a name="jsse_enabled"></a>`jsse_enabled`
+
+Data type: `Boolean`
+
+
+
+##### <a name="middleware_home"></a>`middleware_home`
+
+Data type: `Stdlib::Absolutepath`
+
+
+
+##### <a name="trust_keystore_file"></a>`trust_keystore_file`
+
+Data type: `Optional[String[1]]`
+
+
+
 ##### <a name="custom_identity_keystore_passphrase"></a>`custom_identity_keystore_passphrase`
-
-Data type: `Optional[Easy_type::Password]`
-
-
-
-Default value: ``undef``
-
-##### <a name="trust_keystore_passphrase"></a>`trust_keystore_passphrase`
 
 Data type: `Optional[Easy_type::Password]`
 
@@ -1427,14 +1425,6 @@ Data type: `Optional[Easy_type::Password]`
 
 Default value: ``undef``
 
-##### <a name="repository_database_url"></a>`repository_database_url`
-
-Data type: `Optional[String[1]]`
-
-
-
-Default value: ``undef``
-
 ##### <a name="rcu_database_url"></a>`rcu_database_url`
 
 Data type: `Optional[String[1]]`
@@ -1443,7 +1433,7 @@ Data type: `Optional[String[1]]`
 
 Default value: ``undef``
 
-##### <a name="repository_prefix"></a>`repository_prefix`
+##### <a name="repository_database_url"></a>`repository_database_url`
 
 Data type: `Optional[String[1]]`
 
@@ -1459,7 +1449,23 @@ Data type: `Optional[Easy_type::Password]`
 
 Default value: ``undef``
 
+##### <a name="repository_prefix"></a>`repository_prefix`
+
+Data type: `Optional[String[1]]`
+
+
+
+Default value: ``undef``
+
 ##### <a name="repository_sys_password"></a>`repository_sys_password`
+
+Data type: `Optional[Easy_type::Password]`
+
+
+
+Default value: ``undef``
+
+##### <a name="trust_keystore_passphrase"></a>`trust_keystore_passphrase`
 
 Data type: `Optional[Easy_type::Password]`
 
@@ -1487,8 +1493,8 @@ The following parameters are available in the `wls_profile::basic_domain::wls_st
 * [`domains_dir`](#domains_dir)
 * [`log_dir`](#log_dir)
 * [`os_user`](#os_user)
-* [`jsse_enabled`](#jsse_enabled)
 * [`custom_trust`](#custom_trust)
+* [`jsse_enabled`](#jsse_enabled)
 * [`trust_keystore_file`](#trust_keystore_file)
 * [`trust_keystore_passphrase`](#trust_keystore_passphrase)
 
@@ -1555,13 +1561,13 @@ The os user to use for WebLogic.
 This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_user` to change it to your requested value.
 Default value: `oracle`
 
-##### <a name="jsse_enabled"></a>`jsse_enabled`
+##### <a name="custom_trust"></a>`custom_trust`
 
 Data type: `Boolean`
 
 
 
-##### <a name="custom_trust"></a>`custom_trust`
+##### <a name="jsse_enabled"></a>`jsse_enabled`
 
 Data type: `Boolean`
 
@@ -1579,7 +1585,7 @@ Data type: `Optional[Easy_type::Password]`
 
 
 
-Default value: `lookup('wls_profile::basic_domain::wls_domain::trust_keystore_passphrase', {'default_value' => undef})`
+Default value: `lookup('wls_profile::basic_domain::wls_domain::trust_keystore_passphrase', { 'default_value' => undef })`
 
 ### <a name="wls_profilenode"></a>`wls_profile::node`
 
@@ -1729,263 +1735,6 @@ wls_profile::node::after_wls_startup:  my_module::my_class
 
 Default value: ``undef``
 
-### <a name="wls_profilenodecopy_domain"></a>`wls_profile::node::copy_domain`
-
-wls_profile::node::copy_domain
-
-Using hiera, you can customize some of the aspects of this process.
-
-When these customizations aren't enough, you can replace the class with your own class. See [wls_profile::node](./node.html) for an explanation on how to do this.
-
-See the file "LICENSE" for the full license governing this code.
-
-#### Parameters
-
-The following parameters are available in the `wls_profile::node::copy_domain` class:
-
-* [`domain_name`](#domain_name)
-* [`version`](#version)
-* [`weblogic_home`](#weblogic_home)
-* [`log_dir`](#log_dir)
-* [`middleware_home`](#middleware_home)
-* [`jdk_home`](#jdk_home)
-* [`domains_dir`](#domains_dir)
-* [`os_user`](#os_user)
-* [`os_group`](#os_group)
-* [`adminserver_address`](#adminserver_address)
-* [`adminserver_port`](#adminserver_port)
-* [`administration_port`](#administration_port)
-* [`administration_port_enabled`](#administration_port_enabled)
-* [`adminserver_ssl_port`](#adminserver_ssl_port)
-* [`nodemanager_address`](#nodemanager_address)
-* [`nodemanager_wait`](#nodemanager_wait)
-* [`weblogic_user`](#weblogic_user)
-* [`weblogic_password`](#weblogic_password)
-* [`jsse_enabled`](#jsse_enabled)
-* [`custom_trust`](#custom_trust)
-* [`trust_keystore_file`](#trust_keystore_file)
-* [`trust_keystore_passphrase`](#trust_keystore_passphrase)
-* [`custom_identity`](#custom_identity)
-* [`custom_identity_keystore_filename`](#custom_identity_keystore_filename)
-* [`custom_identity_alias`](#custom_identity_alias)
-* [`custom_identity_keystore_passphrase`](#custom_identity_keystore_passphrase)
-* [`custom_identity_privatekey_passphrase`](#custom_identity_privatekey_passphrase)
-
-##### <a name="domain_name"></a>`domain_name`
-
-Data type: `String[1]`
-
-The name of the WebLogic domain.
-This will be used both as the REAL WebLogic domain name, and also be used by Puppet as a designator for Puppet resources. (e.g. the name before the slash `my_domain/wls_queue1`).
-The change the domain name, use the hiera key: `wls_profile::domain_name`. This will make sure the correct domain name gets used in all classes.
-The default value is: `MYDOMAIN`
-
-##### <a name="version"></a>`version`
-
-Data type: `Wls_install::Versions`
-
-The version of WebLogic you want to use.
-This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::version` to change it to your requested value.
-Valid values are:
-  - `1036`
-  - `1111`
-  - `1112`
-  - `1211`
-  - `1212`
-  - `1213`
-  - `1221`
-  - `12211`
-  - `12212`
-  - `12213`
-  - `12214`
-Default value: `12213`
-
-Default value: `$wls_profile::weblogic_version`
-
-##### <a name="weblogic_home"></a>`weblogic_home`
-
-Data type: `Stdlib::Absolutepath`
-
-The directory used as WebLogic home
-This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::weblogic_home` to change it to your requested value.
-Default value: `/opt/oracle/middleware12/wlserver`
-
-##### <a name="log_dir"></a>`log_dir`
-
-Data type: `Stdlib::Absolutepath`
-
-The directory used for log files.
-This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::log_dir` to change it to your requested value.
-Default value: `/opt/oracle/domains/log`
-
-##### <a name="middleware_home"></a>`middleware_home`
-
-Data type: `Stdlib::Absolutepath`
-
-The Oracle middleware home directory.
-This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::middleware_home` to change it to your requested value.
-Default value: `/opt/oracle/middleware12`
-
-##### <a name="jdk_home"></a>`jdk_home`
-
-Data type: `Stdlib::Absolutepath`
-
-The location where the JDK is installed.
-This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::jdk_home` to change it to your requested value.
-The default value is: `/usr/java/jdk1.8.0_152`
-
-##### <a name="domains_dir"></a>`domains_dir`
-
-Data type: `Stdlib::Absolutepath`
-
-The top-level directory where the domain directories will reside in.
-This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::domains_dir` to change it to your requested value.
-The default value is:  `/opt/oracle/domains`
-
-##### <a name="os_user"></a>`os_user`
-
-Data type: `String[1]`
-
-The os user to use for WebLogic.
-This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_user` to change it to your requested value.
-Default value: `oracle`
-
-##### <a name="os_group"></a>`os_group`
-
-Data type: `String[1]`
-
-The os group to use for WebLogic.
-This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_group` to change it to your requested value.
-Default value: `dba`
-
-##### <a name="adminserver_address"></a>`adminserver_address`
-
-Data type: `String[1]`
-
-The address the admin server process will run and listen on.
-This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::adminserver_address` to change it to your requested value.
-The default value is: The fact `fqdn`
-
-##### <a name="adminserver_port"></a>`adminserver_port`
-
-Data type: `Integer`
-
-The IP port the admin server process will run and listen on.
-This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::adminserver_port` to change it to your requested value.
-The default value is:  `7001`
-
-Default value: `$wls_profile::adminserver_port`
-
-##### <a name="administration_port"></a>`administration_port`
-
-Data type: `Optional[Integer]`
-
-The common secure administration port for this WebLogic Server domain.
-(Requires you to enable the administration port.)
-
-##### <a name="administration_port_enabled"></a>`administration_port_enabled`
-
-Data type: `Boolean`
-
-Specifies whether the domain-wide administration port should be enabled for this WebLogic Server domain.
-Because the administration port uses SSL, enabling the administration port requires that SSL must be configured for all servers in the domain.
-The domain-wide administration port enables you to start a WebLogic Server instance in STANDBY state. It also allows you to separate administration traffic from application traffic in your domain. Because all servers in the domain must enable or disable the administration port at once, you configure the default administration port settings at the domain level.
-If you enable the administration port:
-The administration port accepts only connections that specify administrator credentials.
-Connections that specify administrator credentials can use only the administration port.
-The command that starts managed servers must specify a secure protocol and the administration port: -Dweblogic.management.server=https://admin_server:administration_port
-
-##### <a name="adminserver_ssl_port"></a>`adminserver_ssl_port`
-
-Data type: `Optional[Integer]`
-
-SSL port to use for the Admin server.
-
-##### <a name="nodemanager_address"></a>`nodemanager_address`
-
-Data type: `String[1]`
-
-The IP address the nodemanager will run and listen on.
-This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::wls_domain::log_dir` to change it to your requested value.
-Default value: `::fqdn`
-
-##### <a name="nodemanager_wait"></a>`nodemanager_wait`
-
-Data type: `Integer`
-
-The time in seconds Puppet waits for the nodemanager to start before declaring an error.
-Default value: `20`
-
-##### <a name="weblogic_user"></a>`weblogic_user`
-
-Data type: `String[1]`
-
-The WebLogic user account to bear all administration rights.
-This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::weblogic_user` to change it to your requested value.
-Default value: `weblogic`
-
-##### <a name="weblogic_password"></a>`weblogic_password`
-
-Data type: `Easy_type::Password`
-
-The password for the WebLogic account.
-This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::weblogic_password` to change it to your requested value.
-Default value: `Welcome01`
-
-##### <a name="jsse_enabled"></a>`jsse_enabled`
-
-Data type: `Boolean`
-
-Determine if you want to enable JSSE security.
-
-##### <a name="custom_trust"></a>`custom_trust`
-
-Data type: `Boolean`
-
-Determine if you want to use a custom trust or not.
-
-##### <a name="trust_keystore_file"></a>`trust_keystore_file`
-
-Data type: `Optional[String[1]]`
-
-File specification of the trust keystore.
-
-##### <a name="trust_keystore_passphrase"></a>`trust_keystore_passphrase`
-
-Data type: `Optional[Easy_type::Password]`
-
-The passphrase for access to the keystore.
-
-##### <a name="custom_identity"></a>`custom_identity`
-
-Data type: `Boolean`
-
-Set to true if you want to enable the use of custom identities.
-
-##### <a name="custom_identity_keystore_filename"></a>`custom_identity_keystore_filename`
-
-Data type: `Optional[String[1]]`
-
-The name of the file containing the custom identities.
-
-##### <a name="custom_identity_alias"></a>`custom_identity_alias`
-
-Data type: `Optional[String[1]]`
-
-The alias of the entry in the custom identity keystore that we want to use.
-
-##### <a name="custom_identity_keystore_passphrase"></a>`custom_identity_keystore_passphrase`
-
-Data type: `Optional[Easy_type::Password]`
-
-The passphrase for the custom identity keystore.
-
-##### <a name="custom_identity_privatekey_passphrase"></a>`custom_identity_privatekey_passphrase`
-
-Data type: `Optional[Easy_type::Password]`
-
-The passphrase for the private key in the custom identity keystore.
-
 ### <a name="wls_profileweblogic"></a>`wls_profile::weblogic`
 
 wls_profile::weblogic
@@ -2025,15 +1774,15 @@ The following parameters are available in the `wls_profile::weblogic` class:
 * [`after_java_software`](#after_java_software)
 * [`after_wls_software`](#after_wls_software)
 * [`after_wls_patches`](#after_wls_patches)
-* [`before_em_license`](#before_em_license)
-* [`em_license`](#em_license)
 * [`after_em_license`](#after_em_license)
-* [`fmw_software`](#fmw_software)
-* [`wls_opatch`](#wls_opatch)
-* [`before_fmw_software`](#before_fmw_software)
-* [`before_wls_opatch`](#before_wls_opatch)
 * [`after_fmw_software`](#after_fmw_software)
 * [`after_wls_opatch`](#after_wls_opatch)
+* [`before_em_license`](#before_em_license)
+* [`before_fmw_software`](#before_fmw_software)
+* [`before_wls_opatch`](#before_wls_opatch)
+* [`em_license`](#em_license)
+* [`fmw_software`](#fmw_software)
+* [`wls_opatch`](#wls_opatch)
 
 ##### <a name="sysctl"></a>`sysctl`
 
@@ -2413,22 +2162,6 @@ wls_profile::weblogic::after_wls_patches:  my_module::my_class
 
 Default value: ``undef``
 
-##### <a name="before_em_license"></a>`before_em_license`
-
-Data type: `Optional[String]`
-
-
-
-Default value: ``undef``
-
-##### <a name="em_license"></a>`em_license`
-
-Data type: `Optional[String]`
-
-
-
-Default value: ``undef``
-
 ##### <a name="after_em_license"></a>`after_em_license`
 
 Data type: `Optional[String]`
@@ -2437,7 +2170,7 @@ Data type: `Optional[String]`
 
 Default value: ``undef``
 
-##### <a name="fmw_software"></a>`fmw_software`
+##### <a name="after_fmw_software"></a>`after_fmw_software`
 
 Data type: `Optional[String]`
 
@@ -2445,7 +2178,15 @@ Data type: `Optional[String]`
 
 Default value: ``undef``
 
-##### <a name="wls_opatch"></a>`wls_opatch`
+##### <a name="after_wls_opatch"></a>`after_wls_opatch`
+
+Data type: `Optional[String]`
+
+
+
+Default value: ``undef``
+
+##### <a name="before_em_license"></a>`before_em_license`
 
 Data type: `Optional[String]`
 
@@ -2469,7 +2210,7 @@ Data type: `Optional[String]`
 
 Default value: ``undef``
 
-##### <a name="after_fmw_software"></a>`after_fmw_software`
+##### <a name="em_license"></a>`em_license`
 
 Data type: `Optional[String]`
 
@@ -2477,7 +2218,15 @@ Data type: `Optional[String]`
 
 Default value: ``undef``
 
-##### <a name="after_wls_opatch"></a>`after_wls_opatch`
+##### <a name="fmw_software"></a>`fmw_software`
+
+Data type: `Optional[String]`
+
+
+
+Default value: ``undef``
+
+##### <a name="wls_opatch"></a>`wls_opatch`
 
 Data type: `Optional[String]`
 
@@ -2981,7 +2730,7 @@ Valid values are:
 - `false`
 - `on_failure`
 
-Default value: `lookup({name => 'logoutput', default_value => 'on_failure'})`
+Default value: `lookup( { name => 'logoutput', default_value => 'on_failure' })`
 
 ##### <a name="patch_levels"></a>`patch_levels`
 
@@ -3120,6 +2869,7 @@ The following parameters are available in the `wls_profile::admin_server::manage
 * [`server_arguments`](#server_arguments)
 * [`server_defaults`](#server_defaults)
 * [`machine_defaults`](#machine_defaults)
+* [`log_dir`](#log_dir)
 
 ##### <a name="machine_name"></a>`machine_name`
 
@@ -3163,13 +2913,21 @@ Data type: `Hash`
 a Hash describing the defauls to use when creating WebLogic machines.
 Default value : `{}`
 
-### <a name="wls_profileweblogicprivatestart_domain"></a>`wls_profile::weblogic::private::start_domain`
+##### <a name="log_dir"></a>`log_dir`
 
-The wls_profile::weblogic::private::start_domain class.
+Data type: `Stdlib::Absolutepath`
+
+
+
+Default value: `lookup('wls_profile::log_dir')`
+
+### <a name="wls_profileweblogicprivatestart_managed_servers"></a>`wls_profile::weblogic::private::start_managed_servers`
+
+The wls_profile::weblogic::private::start_managed_servers class.
 
 #### Parameters
 
-The following parameters are available in the `wls_profile::weblogic::private::start_domain` defined type:
+The following parameters are available in the `wls_profile::weblogic::private::start_managed_servers` defined type:
 
 * [`schedule_name`](#schedule_name)
 * [`domains_dir`](#domains_dir)
@@ -3185,8 +2943,8 @@ The following parameters are available in the `wls_profile::weblogic::private::s
 * [`adminserver_address`](#adminserver_address)
 * [`jsse_enabled`](#jsse_enabled)
 * [`custom_trust`](#custom_trust)
-* [`trust_keystore_file`](#trust_keystore_file)
 * [`wait_for_nodemanager`](#wait_for_nodemanager)
+* [`trust_keystore_file`](#trust_keystore_file)
 * [`logoutput`](#logoutput)
 
 ##### <a name="schedule_name"></a>`schedule_name`
@@ -3273,17 +3031,19 @@ Data type: `Boolean`
 
 
 
+##### <a name="wait_for_nodemanager"></a>`wait_for_nodemanager`
+
+Data type: `Integer`
+
+
+
 ##### <a name="trust_keystore_file"></a>`trust_keystore_file`
 
 Data type: `Optional[String[1]]`
 
 
 
-##### <a name="wait_for_nodemanager"></a>`wait_for_nodemanager`
-
-Data type: `Integer`
-
-
+Default value: ``undef``
 
 ##### <a name="logoutput"></a>`logoutput`
 
@@ -3291,15 +3051,15 @@ Data type: `Variant[Boolean,Enum['on_failure']]`
 
 
 
-Default value: `lookup({name => 'logoutput', default_value => 'on_failure'})`
+Default value: `lookup( { name => 'logoutput', default_value => 'on_failure' })`
 
-### <a name="wls_profileweblogicprivatestop_domain"></a>`wls_profile::weblogic::private::stop_domain`
+### <a name="wls_profileweblogicprivatestop_managed_servers"></a>`wls_profile::weblogic::private::stop_managed_servers`
 
-The wls_profile::weblogic::private::stop_domain class.
+The wls_profile::weblogic::private::stop_managed_servers class.
 
 #### Parameters
 
-The following parameters are available in the `wls_profile::weblogic::private::stop_domain` defined type:
+The following parameters are available in the `wls_profile::weblogic::private::stop_managed_servers` defined type:
 
 * [`schedule_name`](#schedule_name)
 * [`logoutput`](#logoutput)
@@ -3316,7 +3076,7 @@ Data type: `Variant[Boolean,Enum['on_failure']]`
 
 
 
-Default value: `lookup({name => 'logoutput', default_value => 'on_failure'})`
+Default value: `lookup( { name => 'logoutput', default_value => 'on_failure' })`
 
 ## Plans
 
