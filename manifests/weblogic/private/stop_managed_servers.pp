@@ -1,7 +1,7 @@
 #
 define wls_profile::weblogic::private::stop_managed_servers (
   String[1]                           $schedule_name,
-  Variant[Boolean,Enum['on_failure']] $logoutput = lookup( { name => 'logoutput', default_value => 'on_failure' }),
+  Variant[Boolean,Enum['on_failure']] $logoutput = lookup({ name => 'logoutput', default_value => 'on_failure' }),
 ) {
   $domain = $title
 

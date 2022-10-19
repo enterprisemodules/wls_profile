@@ -21,7 +21,7 @@ define wls_profile::weblogic::private::start_managed_servers (
   Integer             $wait_for_nodemanager,
   Optional[String[1]] $trust_keystore_file = undef,
   Variant[Boolean,Enum['on_failure']]
-  $logoutput = lookup( { name => 'logoutput', default_value => 'on_failure' }),
+  $logoutput = lookup({ name => 'logoutput', default_value => 'on_failure' }),
 ) {
   $domain = $title
   echo { "Restarting AdminServer, nodemanager and managed servers in domain ${domain}":

@@ -152,7 +152,7 @@ class wls_profile::weblogic::wls_patches (
   Easy_type::Password $weblogic_password,
   String[1]           $weblogic_user,
   Variant[Boolean,Enum['on_failure']]
-  $logoutput = lookup( { name => 'logoutput', default_value => 'on_failure' }),
+  $logoutput = lookup({ name => 'logoutput', default_value => 'on_failure' }),
   Optional[String[1]] $patch_window = undef
 ) {
   $defaults = {
@@ -261,7 +261,7 @@ class wls_profile::weblogic::wls_patches (
           schedule_name        => 'wls_patch_window',
         }
 
-        ensure_resources('wls_opatch', $complete_list, $defaults.merge( {
+        ensure_resources('wls_opatch', $complete_list, $defaults.merge({
               'schedule' => 'wls_patch_window',
               'before'   => Wls_profile::Weblogic::Private::Start_managed_servers[$running_domains],
               'require'  => Wls_profile::Weblogic::Private::Stop_managed_servers[$running_domains],

@@ -301,15 +301,15 @@ class wls_profile::weblogic (
 
   easy_type::ordered_steps([
       'wls_profile::weblogic::em_license',
-      ['wls_profile::weblogic::sysctl',           { 'implementation' => 'easy_type::profile::sysctl' }],
-      ['wls_profile::weblogic::limits',           { 'implementation' => 'easy_type::profile::limits' }],
-      ['wls_profile::weblogic::packages',         { 'implementation' => 'easy_type::profile::packages' }],
+      ['wls_profile::weblogic::sysctl', { 'implementation' => 'easy_type::profile::sysctl' }],
+      ['wls_profile::weblogic::limits', { 'implementation' => 'easy_type::profile::limits' }],
+      ['wls_profile::weblogic::packages', { 'implementation' => 'easy_type::profile::packages' }],
       ['wls_profile::weblogic::groups_and_users', { 'implementation' => 'easy_type::profile::groups_and_users' }],
       'wls_profile::weblogic::ssh_setup',
-      ['wls_profile::weblogic::firewall',         { 'implementation' => 'easy_type::profile::firewall' }],
+      ['wls_profile::weblogic::firewall', { 'implementation' => 'easy_type::profile::firewall' }],
       'wls_profile::weblogic::java_software',
       'wls_profile::weblogic::wls_software',
-      ['wls_profile::weblogic::fmw_software',     { 'onlyif' => $install_fusion }],
+      ['wls_profile::weblogic::fmw_software', { 'onlyif' => $install_fusion }],
       'wls_profile::weblogic::wls_opatch',
       'wls_profile::weblogic::wls_patches',
   ])
