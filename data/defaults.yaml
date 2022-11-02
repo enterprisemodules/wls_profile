@@ -523,6 +523,18 @@ wls_profile::weblogic::wls_patches::patch_levels:
             - '33290784'
             - '34212747'
             - '34373561'
+      OCT2022RU: 
+        "%{lookup('wls_profile::middleware_home')}:34697822": #WLS PATCH SET UPDATE 12.2.1.3.221013
+          source:           "%{lookup('wls_profile::source')}/p34697822_122130_Generic.zip"
+          remove_patches_before:
+            - '33598515'
+            - '34298772'
+            - '1221319'
+            - '32148634'
+            - '32982708'
+            - '33290784'
+            - '34212747'
+            - '34373561'
   '12214':
       NONE:       {}
       JAN2021RU:
@@ -565,6 +577,16 @@ wls_profile::weblogic::wls_patches::patch_levels:
             - '32720458'
             - '34212770'
             - '34373589'
+      OCT2022RU:
+        "%{lookup('wls_profile::middleware_home')}:34653267": # WLS PATCH SET UPDATE 12.2.1.4.220929
+          source:           "%{lookup('wls_profile::source')}/p34653267_122140_Generic.zip"
+          remove_patches_before:
+            - '1221414'
+            - '32720458'
+            - '33093748'
+            - '33639718'
+            - '34212770'
+            - '34373589'
   '14110':
       NONE:       {}
       JAN2021RU:
@@ -592,3 +614,6 @@ wls_profile::weblogic::wls_patches::patch_levels:
             - '34084037'
         "%{lookup('wls_profile::middleware_home')}:34120447":   # MERGE REQUEST ON TOP OF 14.1.1.0.0 FOR BUGS 33868014 33934977
           source:           "%{lookup('wls_profile::source')}/p34120447_141100_Generic.zip"
+      OCT2022RU:
+        "%{lookup('wls_profile::middleware_home')}:34686388": #WLS PATCH SET UPDATE 14.1.1.0.221010
+          source:           "%{lookup('wls_profile::source')}/p34686388_141100_Generic.zip"
