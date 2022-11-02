@@ -2,9 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.24.0
+
+**Features**
+
+- [data] Add OCT2022 PSU’s
 
 ## Release 0.23.0
-
 
 **Features**
 
