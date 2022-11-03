@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.25.0
+
+**Features**
+
+- [core] Add support for EL9
+- [release] Update dependencies
+
 ## Release 0.24.0
 
 **Features**
