@@ -273,4 +273,6 @@ class wls_profile::weblogic::wls_patches (
         }
       }
     }
-} }
+  }
+  Wls_java_home<||> -> Wls_profile::Weblogic::Private::Stop_managed_servers<||>
+}
