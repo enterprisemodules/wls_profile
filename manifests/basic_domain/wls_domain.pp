@@ -36,6 +36,7 @@ class wls_profile::basic_domain::wls_domain (
   Stdlib::Absolutepath
   $middleware_home,
   String[1]           $nodemanager_address,
+  Hash                $nodemanager_properties,
   Integer             $nodemanager_wait,
   String[1]           $os_group,
   String[1]           $os_user,
@@ -186,6 +187,7 @@ class wls_profile::basic_domain::wls_domain (
     nodemanager_address                   => $nodemanager_address,
     os_user                               => $os_user,
     os_group                              => $os_group,
+    properties                            => $nodemanager_properties,
     java_update_window                    => $java_update_schedule,
     jsse_enabled                          => $jsse_enabled,
     custom_trust                          => $custom_trust,

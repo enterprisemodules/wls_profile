@@ -206,6 +206,7 @@ wls_profile::basic_domain::wls_domain::os_group:                              "%
 wls_profile::basic_domain::wls_domain::weblogic_user:                         "%{lookup('wls_profile::weblogic_user')}"
 wls_profile::basic_domain::wls_domain::weblogic_password:                     "%{alias('wls_profile::weblogic_password')}"
 wls_profile::basic_domain::wls_domain::repository_password:                   "%{alias('wls_profile::repository_password')}"
+wls_profile::basic_domain::wls_domain::nodemanager_properties:                {}
 wls_profile::basic_domain::wls_domain::jsse_enabled:                          false
 wls_profile::basic_domain::wls_domain::custom_trust:                          false
 wls_profile::basic_domain::wls_domain::trust_keystore_file:                   ~
