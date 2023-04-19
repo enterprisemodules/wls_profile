@@ -332,6 +332,7 @@ wls_profile::node::copy_domain::weblogic_user:                          "%{looku
 wls_profile::node::copy_domain::weblogic_password:                      "%{alias('wls_profile::weblogic_password')}"
 wls_profile::node::copy_domain::repository_password:                    "%{alias('wls_profile::repository_password')}"
 wls_profile::node::copy_domain::nodemanager_address:                    "%{lookup('wls_profile::nodemanager_address')}"
+wls_profile::node::copy_domain::nodemanager_properties:                 {}
 wls_profile::node::copy_domain::jsse_enabled:                           "%{alias('wls_profile::basic_domain::wls_domain::jsse_enabled')}"
 wls_profile::node::copy_domain::custom_trust:                           "%{alias('wls_profile::basic_domain::wls_domain::custom_trust')}"
 wls_profile::node::copy_domain::trust_keystore_file:                    "%{alias('wls_profile::basic_domain::wls_domain::trust_keystore_file')}"

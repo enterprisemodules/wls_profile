@@ -20,6 +20,7 @@ When these customizations aren't enough, you can replace the class with your own
   :administration_port_enabled,
   :adminserver_ssl_port,
   :nodemanager_address,
+  :nodemanager_properties,
   :nodemanager_wait,
   :weblogic_user,
   :weblogic_password,

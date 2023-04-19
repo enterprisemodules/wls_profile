@@ -51,6 +51,7 @@ Attribute Name                                                                  
 [log_dir](#node::copy_domain_log_dir)                                                             | The directory used for log files.                                                                        |
 [middleware_home](#node::copy_domain_middleware_home)                                             | The Oracle middleware home directory.                                                                    |
 [nodemanager_address](#node::copy_domain_nodemanager_address)                                     | The IP address the nodemanager will run and listen on.                                                   |
+[nodemanager_properties](#node::copy_domain_nodemanager_properties)                               |                                                                                                          |
 [nodemanager_wait](#node::copy_domain_nodemanager_wait)                                           | The time in seconds Puppet waits for the nodemanager to start before declaring an error.                 |
 [os_group](#node::copy_domain_os_group)                                                           | The os group to use for WebLogic.                                                                        |
 [os_user](#node::copy_domain_os_user)                                                             | The os user to use for WebLogic.                                                                         |
@@ -260,6 +261,14 @@ This value is used in multiple places. To make sure in all classed the correct v
 
 Default value: `::fqdn`
 Type: `String[1]`
+
+
+[Back to overview of node::copy_domain](#attributes)
+
+### nodemanager_properties<a name='node::copy_domain_nodemanager_properties'>
+
+These are the additional parameters required for nodemanager creation, which will be stored in the nodemanager.properties file.
+Type: `Hash`
 
 
 [Back to overview of node::copy_domain](#attributes)

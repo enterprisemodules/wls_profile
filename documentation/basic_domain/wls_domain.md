@@ -47,6 +47,7 @@ Attribute Name                                                                  
 [log_dir](#basic_domain::wls_domain_log_dir)                                         | The directory used for log files.                                                                        |
 [nodemanager_address](#basic_domain::wls_domain_nodemanager_address)                 | The IP address the nodemanager will run and listen on.                                                   |
 [nodemanager_port](#basic_domain::wls_domain_nodemanager_port)                       | The IP port the nodemanager listens on.                                                                  |
+[nodemanager_properties](#basic_domain::wls_domain_nodemanager_properties)           |                                                                                                          |
 [nodemanager_wait](#basic_domain::wls_domain_nodemanager_wait)                       | The time in seconds Puppet waits for the nodemanager to start before declaring an error.                 |
 [os_group](#basic_domain::wls_domain_os_group)                                       | The os group to use for WebLogic.                                                                        |
 [os_user](#basic_domain::wls_domain_os_user)                                         | The os user to use for WebLogic.                                                                         |
@@ -188,6 +189,26 @@ Type: `String[1]`
 
 [Back to overview of basic_domain::wls_domain](#attributes)
 
+### adminserver_address<a name='basic_domain::wls_domain_adminserver_address'>
+
+The address the admin server process will run and listen on. 
+
+This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::adminserver_address` to change it to your requested value.
+
+The default value is: The fact `fqdn`
+Type: `String[1]`
+
+
+[Back to overview of basic_domain::wls_domain](#attributes)
+
+### nodemanager_properties<a name='basic_domain::wls_domain_nodemanager_properties'>
+
+These are the additional parameters required for nodemanager creation, which will be stored in the nodemanager.properties file.
+Type: `Hash`
+
+
+[Back to overview of basic_domain::wls_domain](#attributes)
+
 ### nodemanager_port<a name='basic_domain::wls_domain_nodemanager_port'>
 
 The IP port the nodemanager listens on.
@@ -198,18 +219,6 @@ Default value: `5556`
 Type: `Integer`
 
 Default:`$wls_profile::nodemanager_port`
-
-[Back to overview of basic_domain::wls_domain](#attributes)
-
-### adminserver_address<a name='basic_domain::wls_domain_adminserver_address'>
-
-The address the admin server process will run and listen on. 
-
-This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::adminserver_address` to change it to your requested value.
-
-The default value is: The fact `fqdn`
-Type: `String[1]`
-
 
 [Back to overview of basic_domain::wls_domain](#attributes)
 

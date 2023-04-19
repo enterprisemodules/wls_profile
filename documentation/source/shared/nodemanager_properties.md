@@ -1,0 +1,1 @@
+These are the additional parameters required for nodemanager creation, which will be stored in the nodemanager.properties file.
