@@ -27,8 +27,8 @@
       "version_requirement": ">= 2.1.4 < 4.0.0"
     },
     {
-      "name": "herculesteam-augeasproviders_sysctl",
-      "version_requirement": ">= 2.2.0 < 3.0.0"
+      "name": "puppet-augeasproviders_sysctl",
+      "version_requirement": ">= 2.2.0 < 4.0.0"
     },
     {
       "name": "saz-limits",
@@ -36,7 +36,7 @@
     },
     {
       "name": "puppetlabs-firewall",
-      "version_requirement": ">= 1.12.0 < 4.0.0"
+      "version_requirement": ">= 1.12.0 < 6.0.0"
     },
     {
       "name": "puppet-firewalld",
@@ -44,7 +44,7 @@
     },
     {
       "name": "puppetlabs-java",
-      "version_requirement": ">= 6.3.0 < 9.0.0"
+      "version_requirement": ">= 6.3.0 < 11.0.0"
     },
     {
       "name": "puppet-archive",
@@ -111,7 +111,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.7.0 < 8.0.0"
+      "version_requirement": ">= 4.7.0 < 9.0.0"
     }
   ],
   "pdk-version": "1.17.0",

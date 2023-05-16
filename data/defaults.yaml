@@ -58,8 +58,8 @@ wls_profile::domains_dir:         /opt/oracle/domains
 wls_profile::log_dir:             /opt/oracle/domains/log
 wls_profile::download_dir:        /var/install
 wls_profile::temp_dir:            /tmp
-wls_profile::adminserver_address: "%{::fqdn}"
-wls_profile::nodemanager_address: "%{::fqdn}"
+wls_profile::adminserver_address: "%{networking.fqdn}"
+wls_profile::nodemanager_address: "%{networking.fqdn}"
 wls_profile::adminserver_port:    7001
 wls_profile::nodemanager_port:    5556
 wls_profile::servers:             {}
@@ -139,7 +139,7 @@ wls_profile::weblogic::packages::list:
 #------------------------------------------------------------------------------
 wls_profile::weblogic::groups_and_users::groups:
   "%{lookup('wls_profile::os_group')}":
-    gid:  54321,
+    gid:  54321
 #------------------------------------------------------------------------------
 #
 # Users to create
