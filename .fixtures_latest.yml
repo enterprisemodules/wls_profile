@@ -7,9 +7,7 @@ fixtures:
   repositories:
     facts:        'https://github.com/puppetlabs/puppetlabs-facts.git'
     puppet_agent: 'https://github.com/puppetlabs/puppetlabs-puppet_agent.git'
-    provision:    
-      repo:       https://github.com/enterprisemodules/provision.git
-      branch:     docker_run_opts
+    provision:    'https://github.com/puppetlabs/provision.git'
     easy_type:    'https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/enterprisemodules/easy_type_src.git'
     wls_install:  'https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/enterprisemodules/wls_install.git'
     wls_config:   'https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/enterprisemodules/wls_config.git'
@@ -19,7 +17,7 @@ fixtures:
     archive:                puppet-archive
     augeas_core:            puppetlabs-augeas_core
     augeasproviders_core:   puppet-augeasproviders_core
-    augeasproviders_sysctl: herculesteam-augeasproviders_sysctl
+    augeasproviders_sysctl: puppet-augeasproviders_sysctl
     limits:                 saz-limits
     firewall:               puppetlabs-firewall
     firewalld:              puppet-firewalld

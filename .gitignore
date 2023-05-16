@@ -33,3 +33,4 @@ update_report.txt
 /vendor/
 /convert_report.txt
 /inventory.yaml
+/.local/
