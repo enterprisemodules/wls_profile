@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+
+## Release 0.26.0
+
+**Features**
+
+- [core] Add support for Puppet 8
+- [copy_domain] Exposed the nodemanager properties as nodemanager_properties
+- [wls_domain] Exposed the nodemanager properties as nodemanager_properties
+
 ## Release 0.25.0
 
 **Features**
