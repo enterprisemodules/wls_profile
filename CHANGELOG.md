@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.26.1
+
+**Bug fixes**
+
+- [release] Update version of dependencies
+- [wls_patches] Replace deprecated functions
 
 ## Release 0.26.0
 
