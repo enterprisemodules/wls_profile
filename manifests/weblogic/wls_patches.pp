@@ -183,7 +183,7 @@ class wls_profile::weblogic::wls_patches (
   # on the system by adding the patches in the patch level
   # and the patches in the specified patch list.
   #
-  if ( has_key($patch_levels["${version}"], $level) ) {
+  if ( $level in $patch_levels["${version}"]) {
     $patch_level_list = $patch_levels["${version}"][$level]
   } else {
     warning "Patch level ${level} not defined for version ${version}."
@@ -261,7 +261,7 @@ class wls_profile::weblogic::wls_patches (
           schedule_name        => 'wls_patch_window',
         }
 
-        ensure_resources('wls_opatch', $complete_list, $defaults.merge({
+        ensure_resources('wls_opatch', $complete_list, stdlib::merge( $defaults, {
               'schedule' => 'wls_patch_window',
               'before'   => Wls_profile::Weblogic::Private::Start_managed_servers[$running_domains],
               'require'  => Wls_profile::Weblogic::Private::Stop_managed_servers[$running_domains],
