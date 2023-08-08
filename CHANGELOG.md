@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.26.2
+
+**Bug fixes**
+
+- [release] Update dependencies for augeasproviders_core en firewall
+- [wls_patches] Remove dependency on new stdlib
+
 ## Release 0.26.1
 
 **Bug fixes**
