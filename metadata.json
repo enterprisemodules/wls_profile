@@ -24,7 +24,7 @@
     },
     {
       "name": "puppet-augeasproviders_core",
-      "version_requirement": ">= 2.1.4 < 4.0.0"
+      "version_requirement": ">= 2.1.4 < 5.0.0"
     },
     {
       "name": "puppet-augeasproviders_sysctl",
@@ -36,7 +36,7 @@
     },
     {
       "name": "puppetlabs-firewall",
-      "version_requirement": ">= 1.12.0 < 6.0.0"
+      "version_requirement": ">= 1.12.0 < 7.0.0"
     },
     {
       "name": "puppet-firewalld",
