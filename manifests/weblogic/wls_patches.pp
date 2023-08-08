@@ -261,12 +261,11 @@ class wls_profile::weblogic::wls_patches (
           schedule_name        => 'wls_patch_window',
         }
 
-        ensure_resources('wls_opatch', $complete_list, stdlib::merge( $defaults, {
-              'schedule' => 'wls_patch_window',
-              'before'   => Wls_profile::Weblogic::Private::Start_managed_servers[$running_domains],
-              'require'  => Wls_profile::Weblogic::Private::Stop_managed_servers[$running_domains],
-          })
-        )
+        ensure_resources('wls_opatch', $complete_list, $defaults + {
+            'schedule' => 'wls_patch_window',
+            'before'   => Wls_profile::Weblogic::Private::Start_managed_servers[$running_domains],
+            'require'  => Wls_profile::Weblogic::Private::Stop_managed_servers[$running_domains],
+        })
       } else {
         echo { 'Skipping WebLogic patching because no patch window specified.':
           withpath => false,
