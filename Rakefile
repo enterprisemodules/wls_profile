@@ -33,7 +33,7 @@ desc "Run Litmus setup"
 task :litmus do
   docker_image =  'enterprisemodules/acc_base'
   node_name = 'orawls.example.com'
-  Rake::Task['litmus:litmus_setup'].invoke(docker_image, node_name)
+  Rake::Task['litmus:litmus_setup'].invoke(docker_image, node_name, ["--cgroup-parent=docker.slice", "--cgroupns private"])
 end
 
 if defined?(PuppetLint)
