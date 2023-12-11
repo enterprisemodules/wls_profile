@@ -228,7 +228,7 @@ class wls_profile::basic_domain::wls_domain (
   Optional[Easy_type::Password]
   $trust_keystore_passphrase             = undef,
   Wls_install::Versions
-  $version                               = $wls_profile::weblogic_version
+  $version                               = $wls_profile::weblogic_version,
   Optional[Array]     $wlst_args         = undef,
 ) inherits wls_profile {
   echo { "WebLogic domain for domain ${domain_name} using template for ${template_name}":
