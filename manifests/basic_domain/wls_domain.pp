@@ -155,6 +155,10 @@
 #    A Hash containing settings (of type `wls_server`) to define for the Admin server.
 #    The default value is: `{}`
 #
+# @param [Optional[Array]] wlst_args
+#    Add additional arguments to the WLST script
+#    Default value: []
+#
 #
 # See the file "LICENSE" for the full license governing this code.
 #

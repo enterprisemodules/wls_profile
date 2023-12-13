@@ -31,5 +31,5 @@ When these customizations aren't enough, you can replace the class with your own
   :development_mode,
   :nodemanager_wait,
   :adminserver_settings,
-  :wslt_args,
+  :wlst_args,
 ] %>
