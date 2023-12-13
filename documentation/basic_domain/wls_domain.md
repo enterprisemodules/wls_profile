@@ -57,6 +57,7 @@ Attribute Name                                                                  
                                                                      |
 [weblogic_password](#basic_domain::wls_domain_weblogic_password)                     | The password for the WebLogic account.                                                                   |
 [weblogic_user](#basic_domain::wls_domain_weblogic_user)                             | The WebLogic user account to bear all administration rights.                                             |
+[wlst_args](#basic_domain::wls_domain_wlst_args)                             | Add additional arguments to the WLST script                                             |
 
 
 
@@ -385,6 +386,16 @@ A Hash containing settings (of type `wls_server`) to define for the Admin server
 
 The default value is: `{}`
 Type: `Hash`
+
+
+[Back to overview of basic_domain::wls_domain](#attributes)
+
+### wlst_args<a name='basic_domain::wls_domain_wlst_args'>
+
+Add additional arguments to the WLST script
+
+The default value is: `undef`
+Type: `Array`
 
 
 [Back to overview of basic_domain::wls_domain](#attributes)
