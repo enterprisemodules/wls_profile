@@ -49,21 +49,26 @@
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_user` to change it to your requested value.
 #    Default value: `oracle`
 #
+# @param environment_file
+#    Optional name of the environment file to use in the startup unit.
+#    You must use your own Puppet code to ensure the correct content of the file.
+#
 #
 # See the file "LICENSE" for the full license governing this code.
 #
 class wls_profile::basic_domain::wls_startup (
-  Boolean                       $custom_trust,
-  String[1]                     $domain_name,
-  Stdlib::Absolutepath          $domains_dir,
-  Boolean                       $jsse_enabled,
-  Stdlib::Absolutepath          $log_dir,
-  String[1]                     $os_user,
-  Optional[String[1]]           $trust_keystore_file,
-  Stdlib::Absolutepath          $weblogic_home,
+  Boolean                         $custom_trust,
+  String[1]                       $domain_name,
+  Stdlib::Absolutepath            $domains_dir,
+  Boolean                         $jsse_enabled,
+  Stdlib::Absolutepath            $log_dir,
+  String[1]                       $os_user,
+  Optional[String[1]]             $trust_keystore_file,
+  Stdlib::Absolutepath            $weblogic_home,
+  Optional[Stdlib::Absolutepath]  $environment_file,
   #
   # We want the key trust_keystore_passphrase to connect to wls_profile::basic_domain::wls_domain::trust_keystore_passphrase. Normaly we would
-  # do this inside of the hiera data, but because the valuecan also be undef, and the lookup conversion in hiera will transform this into a Sensitive[undef]
+  # do this inside of the hiera data, but because the value can also be undef, and the lookup conversion in hiera will transform this into a Sensitive[undef]
   # that will fail against the data type check Sensitive[String]. To work arround this issue, we do a lookup here and provide a default of undef.
   #
   Optional[Easy_type::Password] $trust_keystore_passphrase = lookup('wls_profile::basic_domain::wls_domain::trust_keystore_passphrase', { 'default_value' => undef }),
@@ -86,6 +91,7 @@ class wls_profile::basic_domain::wls_startup (
         custom_trust              => $custom_trust,
         trust_keystore_file       => $trust_keystore_file,
         trust_keystore_passphrase => $trust_keystore_passphrase,
+        environment_file          => $environment_file,
       }
     }
     default: {

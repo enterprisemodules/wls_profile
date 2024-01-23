@@ -29,14 +29,15 @@ If you want to play and experiment with Puppet and WebLogic, please take a look 
 
 
 
-Attribute Name                                            | Short Description                                                    |
---------------------------------------------------------- | -------------------------------------------------------------------- |
-[domain_name](#basic_domain::wls_startup_domain_name)     | The name of the WebLogic domain.                                     |
-[domains_dir](#basic_domain::wls_startup_domains_dir)     | The top-level directory where the domain directories will reside in. |
-[log_dir](#basic_domain::wls_startup_log_dir)             | The directory used for log files.                                    |
-[os_user](#basic_domain::wls_startup_os_user)             | The os user to use for WebLogic.                                     |
-[version](#basic_domain::wls_startup_version)             | The version of WebLogic you want to use.                             |
-[weblogic_home](#basic_domain::wls_startup_weblogic_home) | The directory used as WebLogic home
+Attribute Name                                                  | Short Description                                                    |
+--------------------------------------------------------------- | -------------------------------------------------------------------- |
+[domain_name](#basic_domain::wls_startup_domain_name)           | The name of the WebLogic domain.                                     |
+[domains_dir](#basic_domain::wls_startup_domains_dir)           | The top-level directory where the domain directories will reside in. |
+[environment_file](#basic_domain::wls_startup_environment_file) | Optional name of the environment file to use in the startup unit.    |
+[log_dir](#basic_domain::wls_startup_log_dir)                   | The directory used for log files.                                    |
+[os_user](#basic_domain::wls_startup_os_user)                   | The os user to use for WebLogic.                                     |
+[version](#basic_domain::wls_startup_version)                   | The version of WebLogic you want to use.                             |
+[weblogic_home](#basic_domain::wls_startup_weblogic_home)       | The directory used as WebLogic home
                                  |
 
 
@@ -128,5 +129,11 @@ This value is used in multiple places. To make sure in all classed the correct v
 Default value: `oracle`
 Type: `String[1]`
 
+
+[Back to overview of basic_domain::wls_startup](#attributes)
+
+### environment_file<a name='basic_domain::wls_startup_environment_file'>
+
+Optional name of the environment file to use in the startup unit. You must use your own Puppet code to ensure the correct content of the file.
 
 [Back to overview of basic_domain::wls_startup](#attributes)

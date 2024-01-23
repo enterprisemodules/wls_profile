@@ -12,4 +12,5 @@ When these customizations aren't enough, you can replace the class with your own
   :domains_dir,
   :log_dir,
   :os_user,
+  :environment_file
 ] %>

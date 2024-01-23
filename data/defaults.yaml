@@ -286,6 +286,7 @@ wls_profile::basic_domain::wls_startup::os_user:                     "%{lookup('
 wls_profile::basic_domain::wls_startup::jsse_enabled:                "%{alias('wls_profile::basic_domain::wls_domain::jsse_enabled')}"
 wls_profile::basic_domain::wls_startup::custom_trust:                "%{alias('wls_profile::basic_domain::wls_domain::custom_trust')}"
 wls_profile::basic_domain::wls_startup::trust_keystore_file:         "%{alias('wls_profile::basic_domain::wls_domain::trust_keystore_file')}"
+wls_profile::basic_domain::wls_startup::environment_file:             ~
 #------------------------------------------------------------------------------
 #
 # WebLogic Users and Groups
