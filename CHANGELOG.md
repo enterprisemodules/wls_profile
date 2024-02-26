@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.27.0
+
+**Features**
+
+- [wls_startup] Add support for Environment file
+- [wls_domain] Add support for providing wlst_args
+- [release] Remove support for RedHat and OracleLinux 6
+
+**Bug fixes**
+
+- [docs] Fix some documentation issues
+
 ## Release 0.26.2
 
 **Bug fixes**
