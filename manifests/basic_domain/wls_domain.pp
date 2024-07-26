@@ -224,6 +224,13 @@ class wls_profile::basic_domain::wls_domain (
   Integer             $nodemanager_port                      = $wls_profile::nodemanager_port,
   Optional[String[1]] $rcu_database_url                      = undef,
   Optional[String[1]] $repository_database_url               = undef,
+  Optional[
+    Enum[
+      'SMALL',
+      'MED',
+      'LARGE',
+    ]
+  ]                              $rcu_soa_profile                       = undef,
   Optional[Easy_type::Password]
   $repository_password                   = undef,
   Optional[String[1]] $repository_prefix                     = undef,
@@ -321,6 +328,7 @@ class wls_profile::basic_domain::wls_domain (
     custom_identity_keystore_passphrase   => $custom_identity_keystore_passphrase,
     custom_identity_alias                 => $custom_identity_alias,
     custom_identity_privatekey_passphrase => $custom_identity_privatekey_passphrase,
+    rcu_soa_profile                       => $rcu_soa_profile,
     *                                     => $optional_settings,
   }
   #
