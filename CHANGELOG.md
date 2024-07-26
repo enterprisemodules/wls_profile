@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.28.0
+
+**Features**
+
+- [wls_domain] Export the rcu_soa_profile parameter from wls_install::domain
+
+**Bug fixes**
+
+- [release] Update version dependencies
+
 ## Release 0.27.0
 
 **Features**
