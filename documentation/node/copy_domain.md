@@ -37,6 +37,7 @@ Attribute Name                                                                  
 [adminserver_address](#node::copy_domain_adminserver_address)                                     | The address the admin server process will run and listen on.                                             |
 [adminserver_port](#node::copy_domain_adminserver_port)                                           | The IP port the admin server process will run and listen on.                                             |
 [adminserver_ssl_port](#node::copy_domain_adminserver_ssl_port)                                   | SSL port to use for the Admin server.                                                                    |
+[copy_script](#node::copy_domain_copy_script)                                                     | Use the specified copy script to copy the packed domain from the admin server to the correct location.   |
 [custom_identity](#node::copy_domain_custom_identity)                                             |                                                                                                          |
 [custom_identity_alias](#node::copy_domain_custom_identity_alias)                                 |                                                                                                          |
 [custom_identity_keystore_filename](#node::copy_domain_custom_identity_keystore_filename)         |                                                                                                          |
@@ -44,6 +45,7 @@ Attribute Name                                                                  
 [custom_identity_privatekey_passphrase](#node::copy_domain_custom_identity_privatekey_passphrase) |                                                                                                          |
 [custom_trust](#node::copy_domain_custom_trust)                                                   | Determine if you want to use a custom trust or not.                                                      |
 [domain_name](#node::copy_domain_domain_name)                                                     | The name of the WebLogic domain.                                                                         |
+[domain_pack_dir](#node::copy_domain_domain_pack_dir)                                             |                                                                                                          |
 [domains_dir](#node::copy_domain_domains_dir)                                                     | The top-level directory where the domain directories will reside in.                                     |
 [java_update_window](#node::copy_domain_java_update_window)                                       | The time frame in which any required java updates will be applied to your domain by Puppet.              |
 [jdk_home](#node::copy_domain_jdk_home)                                                           | The location where the JDK is installed.                                                                 |
@@ -57,6 +59,7 @@ Attribute Name                                                                  
 [os_user](#node::copy_domain_os_user)                                                             | The os user to use for WebLogic.                                                                         |
 [trust_keystore_file](#node::copy_domain_trust_keystore_file)                                     | File specification of the trust keystore.                                                                |
 [trust_keystore_passphrase](#node::copy_domain_trust_keystore_passphrase)                         |                                                                                                          |
+[use_ssh](#node::copy_domain_use_ssh)                                                             |                                                                                                          |
 [version](#node::copy_domain_version)                                                             | The version of WebLogic you want to use.                                                                 |
 [weblogic_home](#node::copy_domain_weblogic_home)                                                 | The directory used as WebLogic home
                                                                      |
@@ -268,8 +271,6 @@ Type: `String[1]`
 ### nodemanager_properties<a name='node::copy_domain_nodemanager_properties'>
 
 These are the additional parameters required for nodemanager creation, which will be stored in the nodemanager.properties file.
-Type: `Hash`
-
 
 [Back to overview of node::copy_domain](#attributes)
 
@@ -389,5 +390,32 @@ Type: `Optional[Easy_type::Password]`
 The passphrase for the private key in the custom identity keystore.
 Type: `Optional[Easy_type::Password]`
 
+
+[Back to overview of node::copy_domain](#attributes)
+
+### use_ssh<a name='node::copy_domain_use_ssh'>
+
+Use ssh with a ssh key to copy the packed domain fro the admin server to this node.
+Type: `Boolean`
+
+Default:`true`
+
+[Back to overview of node::copy_domain](#attributes)
+
+### copy_script<a name='node::copy_domain_copy_script'>
+
+Use the specified copy script to copy the packed domain from the admin server to the correct location. This is `true` by default and so it is the default mechanism to copy the packed domain.
+Type: `Optional[String[1]]`
+
+Default:`undef`
+
+[Back to overview of node::copy_domain](#attributes)
+
+### domain_pack_dir<a name='node::copy_domain_domain_pack_dir'>
+
+The directory that contains the packed domain source for unpacking.
+Type: `String[1]`
+
+Default:`"${domains_dir}/${domain_name}"`
 
 [Back to overview of node::copy_domain](#attributes)

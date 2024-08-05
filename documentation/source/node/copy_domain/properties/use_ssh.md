@@ -1,0 +1,1 @@
+Use ssh with a ssh key to copy the packed domain fro the admin server to this node.

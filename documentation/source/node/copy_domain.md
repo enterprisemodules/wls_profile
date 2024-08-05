@@ -34,6 +34,9 @@ When these customizations aren't enough, you can replace the class with your own
   :custom_identity_alias,
   :custom_identity_keystore_passphrase,
   :custom_identity_privatekey_passphrase,
+  :use_ssh,
+  :copy_script,
+  :domain_pack_dir,
 ] %>
 
 

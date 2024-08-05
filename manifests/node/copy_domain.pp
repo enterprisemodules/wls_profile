@@ -95,7 +95,7 @@
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::wls_domain::log_dir` to change it to your requested value.
 #    Default value: `::fqdn`
 #
-# @param [Hash] nodemanager_properties
+# @param nodemanager_properties
 #    These are the additional parameters required for nodemanager creation, which will be stored in the nodemanager.
 #    properties file.
 #
@@ -144,6 +144,16 @@
 # @param [Optional[Easy_type::Password]] custom_identity_privatekey_passphrase
 #    The passphrase for the private key in the custom identity keystore.
 #
+# @param [Boolean] use_ssh
+#    Use ssh with a ssh key to copy the packed domain fro the admin server to this node.
+#
+# @param [Optional[String[1]]] copy_script
+#    Use the specified copy script to copy the packed domain from the admin server to the correct location.
+#    This is `true` by default and so it is the default mechanism to copy the packed domain.
+#
+# @param [String[1]] domain_pack_dir
+#    The directory that contains the packed domain source for unpacking.
+#
 #
 # See the file "LICENSE" for the full license governing this code.
 #
@@ -165,7 +175,6 @@ class wls_profile::node::copy_domain (
   Stdlib::Absolutepath          $log_dir,
   Stdlib::Absolutepath          $middleware_home,
   String[1]                     $nodemanager_address,
-  Hash                          $nodemanager_properties,
   Integer                       $nodemanager_wait,
   String[1]                     $os_group,
   String[1]                     $os_user,
@@ -176,7 +185,10 @@ class wls_profile::node::copy_domain (
   String[1]                     $weblogic_user,
   Integer                       $adminserver_port      = $wls_profile::adminserver_port,
   Optional[String[1]]           $java_update_window    = undef,
-  Wls_install::Versions         $version               = $wls_profile::weblogic_version
+  Wls_install::Versions         $version               = $wls_profile::weblogic_version,
+  String[1]                     $domain_pack_dir       = "${domains_dir}/${domain_name}",
+  Boolean                       $use_ssh               = true,
+  Optional[String[1]]           $copy_script           = undef,
 ) inherits wls_profile {
   echo { "WebLogic copy domain ${domain_name} from ${adminserver_address}:${domains_dir}/${domain_name}":
     withpath => false,
@@ -226,8 +238,9 @@ class wls_profile::node::copy_domain (
     os_group                    => $os_group,
     download_dir                => $wls_profile::download_dir,
     log_dir                     => $log_dir,
-    use_ssh                     => true,
-    domain_pack_dir             => "${domains_dir}/${domain_name}",
+    use_ssh                     => $use_ssh,
+    copy_script                 => $copy_script,
+    domain_pack_dir             => $domain_pack_dir,
     adminserver_address         => $adminserver_address,
     adminserver_port            => $adminserver_port,
     administration_port_enabled => $administration_port_enabled,
@@ -258,7 +271,6 @@ class wls_profile::node::copy_domain (
     nodemanager_address                   => $nodemanager_address,
     os_user                               => $os_user,
     os_group                              => $os_group,
-    properties                            => $nodemanager_properties,
     java_update_window                    => $java_update_schedule,
     jsse_enabled                          => $jsse_enabled,
     custom_trust                          => $custom_trust,

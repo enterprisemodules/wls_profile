@@ -1,0 +1,1 @@
+Use the specified copy script to copy the packed domain from the admin server to the correct location. This is `true` by default and so it is the default mechanism to copy the packed domain.
