@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+
+## Release 0.29.0
+
+**Features**
+
+- [copy_domain] Allow control over the way the packed domain is fetched
+
 ## Release 0.28.0
 
 **Features**
