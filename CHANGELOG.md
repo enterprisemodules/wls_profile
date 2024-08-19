@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 
 
+## Release 0.29.1
+
+**Bug fixes**
+
+- [wls_patches] Fix waiting for started nodemanager
+
 ## Release 0.29.0
 
 **Features**
