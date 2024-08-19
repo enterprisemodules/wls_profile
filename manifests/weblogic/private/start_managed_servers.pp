@@ -79,15 +79,17 @@ define wls_profile::weblogic::private::start_managed_servers (
     |WLST
 
   exec { "Starting nodemanager ${title} after patching":
-    command  => "/usr/bin/systemctl restart nodemanager_${domain}",
+    command  => "/usr/bin/systemctl start nodemanager_${domain}",
     schedule => $schedule_name,
   }
 
-  -> sleep { "Wait for nodemanager on domain ${domain}":
+  ~> sleep { "Wait for nodemanager on domain ${domain}":
+    schedule      => $schedule_name,
     bedtime       => $wait_for_nodemanager,
     wakeupfor     => $netstat_statement,
     dozetime      => 2,
     failontimeout => true,
+    refreshonly   => true,
   }
 
   $ip_addresses = $facts['networking']['interfaces'].keys.map |$interface| {
