@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.30.0
+
+**Features**
+
+- [wls_domain] Expose repository_sys_user from domain
 
 ## Release 0.29.1
 
