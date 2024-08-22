@@ -234,6 +234,7 @@ class wls_profile::basic_domain::wls_domain (
   Optional[Easy_type::Password]
   $repository_password                   = undef,
   Optional[String[1]] $repository_prefix                     = undef,
+  Optional[String[1]] $repository_sys_user                   = undef,
   Optional[Easy_type::Password]
   $repository_sys_password               = undef,
   Optional[Easy_type::Password]
@@ -270,6 +271,7 @@ class wls_profile::basic_domain::wls_domain (
       rcu_database_url        => $rcu_database_url,
       repository_prefix       => $repository_prefix,
       repository_sys_password => $repository_sys_password,
+      repository_sys_user     => $repository_sys_user,
     }
   } else {
     $optional_settings = {}
