@@ -223,6 +223,7 @@ class wls_profile::basic_domain::wls_domain (
   Optional[String[1]] $java_update_window                    = undef,
   Integer             $nodemanager_port                      = $wls_profile::nodemanager_port,
   Optional[String[1]] $rcu_database_url                      = undef,
+  Optional[Boolean]   $rcu_honor_omf                         = undef,
   Optional[String[1]] $repository_database_url               = undef,
   Optional[
     Enum[
@@ -269,6 +270,7 @@ class wls_profile::basic_domain::wls_domain (
     $optional_settings = {
       repository_database_url => $repository_database_url,
       rcu_database_url        => $rcu_database_url,
+      rcu_honor_omf           => $rcu_honor_omf,
       repository_prefix       => $repository_prefix,
       repository_sys_password => $repository_sys_password,
       repository_sys_user     => $repository_sys_user,
