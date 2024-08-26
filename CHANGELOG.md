@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.31.0
+
+**Features**
+
+- [wls_domain] expose domain parameter rcu_honor_omf
+
 ## Release 0.30.0
 
 **Features**
