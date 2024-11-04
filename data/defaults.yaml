@@ -40,7 +40,8 @@ lookup_options:
     convert_to: Sensitive
   wls_profile::node::copy_domain::custom_identity_privatekey_passphrase:
     convert_to: Sensitive
-
+  wls_profile::admin_server::fmw_cluster::trust_keystore_passphrase:
+    convert_to: Sensitive
 wls_profile::domain_name:         MYDOMAIN
 wls_profile::cluster_name:        main
 wls_profile::java_version:        8u152
@@ -443,6 +444,15 @@ wls_profile::weblogic::fmw_software::jdk_home:                    "%{lookup('wls
 wls_profile::weblogic::fmw_software::os_user:                     "%{lookup('wls_profile::os_user')}"
 wls_profile::weblogic::fmw_software::os_group:                    "%{lookup('wls_profile::os_group')}"
 wls_profile::weblogic::fmw_software::source:                      "%{lookup('wls_profile::source')}"
+#------------------------------------------------------------------------------
+#
+# FMW cluster
+#
+#------------------------------------------------------------------------------
+wls_profile::admin_server::fmw_cluster::custom_trust:                           "%{alias('wls_profile::basic_domain::wls_domain::custom_trust')}"
+wls_profile::admin_server::fmw_cluster::trust_keystore_file:                    "%{alias('wls_profile::basic_domain::wls_domain::trust_keystore_file')}"
+wls_profile::admin_server::fmw_cluster::trust_keystore_passphrase:              "%{alias('wls_profile::basic_domain::wls_domain::trust_keystore_passphrase')}"
+wls_profile::admin_server::fmw_cluster::jsse_enabled:                           "%{alias('wls_profile::basic_domain::wls_domain::jsse_enabled')}"
 #------------------------------------------------------------------------------
 #
 # WebLogic Patches
