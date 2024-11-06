@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.32.1
+
+**Bug fixes**
+
+[fmw_cluster] Fix for clusters other than SOA
+
+
 ## Release 0.32.0
 
 **Features**
