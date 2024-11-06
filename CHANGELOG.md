@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.32.0
+
+**Features**
+
+- [fmw_cluster] Initial implementation
+
+**Maintenance**
+
+- [release] Update saz/limits version dependency
+
 ## Release 0.31.0
 
 **Features**
