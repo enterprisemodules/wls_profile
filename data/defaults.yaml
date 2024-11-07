@@ -453,6 +453,9 @@ wls_profile::admin_server::fmw_cluster::custom_trust:                           
 wls_profile::admin_server::fmw_cluster::trust_keystore_file:                    "%{alias('wls_profile::basic_domain::wls_domain::trust_keystore_file')}"
 wls_profile::admin_server::fmw_cluster::trust_keystore_passphrase:              "%{alias('wls_profile::basic_domain::wls_domain::trust_keystore_passphrase')}"
 wls_profile::admin_server::fmw_cluster::jsse_enabled:                           "%{alias('wls_profile::basic_domain::wls_domain::jsse_enabled')}"
+wls_profile::admin_server::fmw_cluster::adminserver_ssl_port:                   "%{alias('wls_profile::basic_domain::wls_domain::adminserver_ssl_port')}"
+wls_profile::admin_server::fmw_cluster::administration_port_enabled:            "%{alias('wls_profile::basic_domain::wls_domain::administration_port_enabled')}"
+wls_profile::admin_server::fmw_cluster::administration_port:                    "%{alias('wls_profile::basic_domain::wls_domain::administration_port')}"
 #------------------------------------------------------------------------------
 #
 # WebLogic Patches
