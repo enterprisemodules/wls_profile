@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.32.2
+
+**Bug fixes**
+
+- [fmw_cluster] Fix when using SSL ports
+
 ## Release 0.32.1
 
 **Bug fixes**
