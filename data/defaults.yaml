@@ -133,6 +133,7 @@ wls_profile::weblogic::limits::list:
 wls_profile::weblogic::packages::list:
   binutils.x86_64:  {}
   net-tools:        {}
+  unzip:            {}
 #------------------------------------------------------------------------------
 #
 # Groups to create
@@ -633,3 +634,5 @@ wls_profile::weblogic::wls_patches::patch_levels:
       OCT2022RU:
         "%{lookup('wls_profile::middleware_home')}:34686388": #WLS PATCH SET UPDATE 14.1.1.0.221010
           source:           "%{lookup('wls_profile::source')}/p34686388_141100_Generic.zip"
+  '14120':
+      NONE:       {}

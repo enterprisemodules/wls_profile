@@ -38,6 +38,7 @@ class wls_profile (
   String[1] $weblogic_user,
   Wls_install::Versions
   $weblogic_version,
+  Integer[7,21] $jdk_major_version = Integer($java_version.split('u')[0]),
   Enum[
     'standard',
     'forms',

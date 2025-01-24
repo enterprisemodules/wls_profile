@@ -297,6 +297,7 @@ class wls_profile::basic_domain::wls_domain (
   #
   wls_install::domain { $domain_name:
     version                               => $version,
+    jdk_major_version                     => $wls_profile::jdk_major_version,
     wls_domains_dir                       => $domains_dir,
     wls_apps_dir                          => "${domains_dir}/applications",
     weblogic_home_dir                     => $weblogic_home,
@@ -335,6 +336,7 @@ class wls_profile::basic_domain::wls_domain (
     rcu_soa_profile                       => $rcu_soa_profile,
     *                                     => $optional_settings,
   }
+
   #
   # Over here you define the nodemanager. Here you can specify the address
   # the nodemanager is running on and the listen address. When you create multiple domains

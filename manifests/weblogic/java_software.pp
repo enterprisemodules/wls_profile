@@ -54,7 +54,7 @@ class wls_profile::weblogic::java_software (
   Optional[Boolean]   $urandom_fix,
   String[1]           $version,
   Boolean             $x64,
-  Optional[String[1]] $cryptography_extension_file = undef
+  Optional[String[1]] $cryptography_extension_file = undef,
 ) inherits wls_profile {
   echo { "Java version ${version}":
     withpath => false,
@@ -72,6 +72,9 @@ class wls_profile::weblogic::java_software (
     $jce = false
   }
 
+  $version_major = $version.split('u')[0]
+  $version_minor = $version.split('u')[1]
+
   case  $facts['os']['name'] {
     'AIX': {
       package { 'Java8_64.jre':
@@ -86,12 +89,13 @@ class wls_profile::weblogic::java_software (
       }
     }
     'RedHat', 'CentOS', 'OracleLinux', 'AlmaLinux', 'Rocky': {
-      $remove = ['java-1.7.0-openjdk.x86_64', 'java-1.6.0-openjdk.x86_64']
+      $remove = ['java-1.8.0-openjdk.x86_64', 'java-1.7.0-openjdk.x86_64', 'java-1.6.0-openjdk.x86_64']
+
+      easy_type::debug_evaluation() # Show local variable on extended debug
 
       package { $remove:
         ensure  => absent,
       }
-
       -> java::download { "jdk-${version}-linux-x64.tar.gz":
         ensure         => 'present',
         java_se        => 'jdk',
@@ -102,12 +106,14 @@ class wls_profile::weblogic::java_software (
         jce            => $jce,
         jce_url        => "${source}/${cryptography_extension_file}",
         manage_basedir => true,
+        java_home      => $wls_profile::jdk_home,
       }
 
       -> file { '/usr/bin/java':
         ensure => 'link',
-        target => "/usr/java/${full_version}/bin/java",
+        target => "${wls_profile::jdk_home}/bin/java",
       }
+
       if ($urandom_fix == true) {
         exec { "set urandom ${full_version}":
           command => "sed -i -e's/^securerandom.source=.*/securerandom.source=file:\\/dev\\/.\\/urandom/g' ${java_homes}/${full_version}/jre/lib/security/java.security",
@@ -116,6 +122,7 @@ class wls_profile::weblogic::java_software (
           path    => '/bin',
         }
       }
+
       if ($rsa_key_size_fix == true) {
         exec { "sleep 3 sec for urandomJavaFix ${full_version}":
           command => '/bin/sleep 3',
