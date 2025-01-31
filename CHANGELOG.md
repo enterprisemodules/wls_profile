@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.33.0
+
+**Features**
+
+- [core] Add support for java version higher than (1.)8
+
 ## Release 0.32.2
 
 **Bug fixes**

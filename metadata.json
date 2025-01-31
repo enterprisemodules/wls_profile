@@ -1,8 +1,8 @@
 {
   "name": "enterprisemodules-wls_profile",
-  "version": "0.32.2",
+  "version": "0.33.0",
   "author": "enterprisemodules",
-  "summary": "Easy customisable profile classes for WebLogic and Fusion nodes for Linux, Solaris & AIX",
+  "summary": "Easy customisable profile classes for WebLogic 11,12 & 14nd Fusion 12 and 14 nodes for Linux, Solaris & AIX",
   "license": "Apache-2.0",
   "source": "https://github.com/enterprisemodules/wls_profile",
   "dependencies": [
