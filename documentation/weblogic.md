@@ -75,13 +75,6 @@ Look at the description of the stages and their properties.
 
 
 
-## Experience the Power of Puppet for WebLogic
-
-If you want to play and experiment with Puppet and WebLogic, please take a look at our playgrounds. At our playgrounds, we provide you with a pre-installed environment, where you experiment fast and easy.
-
-{% include super_hero.html title="For WebLogic" ref="/playgrounds#weblogic" %}
-
-
 ## Attributes
 
 

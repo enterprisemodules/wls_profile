@@ -18,13 +18,6 @@ When these customizations aren't enough, you can replace the class with your own
 
 
 
-## Experience the Power of Puppet for WebLogic
-
-If you want to play and experiment with Puppet and WebLogic, please take a look at our playgrounds. At our playgrounds, we provide you with a pre-installed environment, where you experiment fast and easy.
-
-{% include super_hero.html title="For WebLogic" ref="/playgrounds#weblogic" %}
-
-
 ## Attributes
 
 
@@ -135,5 +128,7 @@ Type: `String[1]`
 ### environment_file<a name='basic_domain::wls_startup_environment_file'>
 
 Optional name of the environment file to use in the startup unit. You must use your own Puppet code to ensure the correct content of the file.
+Type: `Optional[Stdlib::Absolutepath]`
+
 
 [Back to overview of basic_domain::wls_startup](#attributes)
