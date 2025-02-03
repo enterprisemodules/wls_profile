@@ -8,6 +8,7 @@ fixtures:
     facts:               'https://github.com/puppetlabs/puppetlabs-facts.git'
     puppet_agent:        'https://github.com/puppetlabs/puppetlabs-puppet_agent.git'
     provision:           'https://github.com/puppetlabs/provision.git'
+    java:                'https://github.com/enterprisemodules/puppetlabs-java.git'
   forge_modules:
     easy_type:              enterprisemodules-easy_type
     wls_install:            enterprisemodules-wls_install
@@ -23,5 +24,4 @@ fixtures:
     firewall:               puppetlabs-firewall
     firewalld:              puppet-firewalld
     sleep:                  fiddyspence-sleep
-    java:                   puppetlabs-java
     sshkeys_core:           puppetlabs-sshkeys_core

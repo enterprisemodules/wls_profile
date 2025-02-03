@@ -7,6 +7,7 @@ fixtures:
   repositories:
     facts:        'https://github.com/puppetlabs/puppetlabs-facts.git'
     puppet_agent: 'https://github.com/puppetlabs/puppetlabs-puppet_agent.git'
+    java:         'https://github.com/enterprisemodules/puppetlabs-java.git'
     provision:    'https://github.com/puppetlabs/provision.git'
     easy_type:    'https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/enterprisemodules/easy_type_src.git'
     wls_install:  'https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/enterprisemodules/wls_install.git'
