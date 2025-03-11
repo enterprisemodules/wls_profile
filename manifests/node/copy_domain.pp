@@ -202,7 +202,7 @@ class wls_profile::node::copy_domain (
     # Ensure the java update window exists
     #
     schedule { 'java_update_window':
-      range  => $java_update_window,
+      range => $java_update_window,
     }
     $java_update_schedule = 'java_update_window'
   } else {

@@ -230,7 +230,7 @@ class wls_profile::weblogic::wls_patches (
         # Ensure the patch window and add it to patches beeing applied
         #
         schedule { 'wls_patch_window':
-          range  => $patch_window,
+          range => $patch_window,
         }
 
         #

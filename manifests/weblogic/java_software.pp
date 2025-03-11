@@ -94,7 +94,7 @@ class wls_profile::weblogic::java_software (
       easy_type::debug_evaluation() # Show local variable on extended debug
 
       package { $remove:
-        ensure  => absent,
+        ensure => absent,
       }
       -> java::download { "jdk-${version}-linux-x64.tar.gz":
         ensure         => 'present',
