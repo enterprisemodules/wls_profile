@@ -300,6 +300,7 @@ class wls_profile::weblogic (
   include wls_install    # Do the basic setup like fact caching etc
 
   easy_type::ordered_steps([
+      # lint:ignore:strict_indent
       'wls_profile::weblogic::em_license',
       ['wls_profile::weblogic::sysctl', { 'implementation' => 'easy_type::profile::sysctl' }],
       ['wls_profile::weblogic::limits', { 'implementation' => 'easy_type::profile::limits' }],
@@ -312,5 +313,6 @@ class wls_profile::weblogic (
       ['wls_profile::weblogic::fmw_software', { 'onlyif' => $install_fusion }],
       'wls_profile::weblogic::wls_opatch',
       'wls_profile::weblogic::wls_patches',
+      # lint:endignore:strict_indent
   ])
 }

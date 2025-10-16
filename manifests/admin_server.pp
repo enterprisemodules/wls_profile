@@ -283,6 +283,7 @@ class wls_profile::admin_server (
   $install_fusion = $wls_profile::install_type in ['forms','ohs_standalone','osb','osb_soa','osb_soa_bpm','soa','soa_bpm','bam','oim','oud','wc','wc_wcc_bpm']
 
   easy_type::ordered_steps([
+      # lint:ignore:strict_indent
       'wls_profile::basic_domain',
       'wls_profile::admin_server::wls_servers',
       'wls_profile::admin_server::wls_cluster',
@@ -291,5 +292,6 @@ class wls_profile::admin_server (
       'wls_profile::admin_server::wls_users_and_groups',
       ['wls_profile::admin_server::fmw_cluster', { 'onlyif' => $install_fusion }],
       'wls_profile::admin_server::pack_domain',
+      # lint:endignore:strict_indent
   ])
 }

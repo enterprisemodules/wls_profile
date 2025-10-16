@@ -100,8 +100,10 @@ class wls_profile::node (
   Optional[String] $wls_startup = undef
 ) inherits wls_profile {
   easy_type::ordered_steps([
+      # lint:ignore:strict_indent
       'wls_profile::weblogic',
       'wls_profile::node::copy_domain',
       'wls_profile::basic_domain::wls_startup',
+      # lint:endignore:strict_indent
   ])
 }

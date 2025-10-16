@@ -4,3 +4,4 @@
 --no-lookup_in_parameter
 --no-params_empty_string_assignment
 --no-parameter_documentation
+--no-exec_idempotency
