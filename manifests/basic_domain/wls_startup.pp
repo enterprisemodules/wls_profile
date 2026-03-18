@@ -49,11 +49,11 @@
 #    This value is used in multiple places. To make sure in all classed the correct value is used, use the hiera key `wls_profile::basic_domain::os_user` to change it to your requested value.
 #    Default value: `oracle`
 #
-# @param [Stdlib::Absolutepath] environment_file
+# @param [Optional[Stdlib::Absolutepath]] environment_file
 #    Optional name of the environment file to use in the startup unit.
 #    You must use your own Puppet code to ensure the correct content of the file.
 #
-# @param [String[1]] systemd_template
+# @param [Optional[String[1]]] systemd_template
 #    Optional name of the systemd template to use in the startup unit.
 #    You must use your own Puppet code to ensure the correct content of the file.
 #
