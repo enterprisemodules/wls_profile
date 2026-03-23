@@ -105,7 +105,8 @@ class wls_profile::weblogic::java_software (
         package_type   => 'tar.gz',
         jce            => $jce,
         jce_url        => "${source}/${cryptography_extension_file}",
-        manage_basedir => true
+        manage_basedir => true,
+        java_home      => $wls_profile::jdk_home,
       }
 
       -> file { '/usr/bin/java':
