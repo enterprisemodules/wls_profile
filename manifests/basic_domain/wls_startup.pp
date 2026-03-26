@@ -53,6 +53,10 @@
 #    Optional name of the environment file to use in the startup unit.
 #    You must use your own Puppet code to ensure the correct content of the file.
 #
+# @param [Optional[String[1]]] systemd_template
+#    Optional name of the systemd template to use in the startup unit.
+#    You must use your own Puppet code to ensure the correct content of the file.
+#
 #
 # See the file "LICENSE" for the full license governing this code.
 #
@@ -66,6 +70,7 @@ class wls_profile::basic_domain::wls_startup (
   Optional[String[1]]             $trust_keystore_file,
   Stdlib::Absolutepath            $weblogic_home,
   Optional[Stdlib::Absolutepath]  $environment_file,
+  Optional[String[1]]             $systemd_template,
   #
   # We want the key trust_keystore_passphrase to connect to wls_profile::basic_domain::wls_domain::trust_keystore_passphrase. Normaly we would
   # do this inside of the hiera data, but because the value can also be undef, and the lookup conversion in hiera will transform this into a Sensitive[undef]
@@ -92,6 +97,7 @@ class wls_profile::basic_domain::wls_startup (
         trust_keystore_file       => $trust_keystore_file,
         trust_keystore_passphrase => $trust_keystore_passphrase,
         environment_file          => $environment_file,
+        systemd_template          => $systemd_template,
       }
     }
     default: {
